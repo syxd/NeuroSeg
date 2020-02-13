@@ -1,0 +1,433 @@
+\begin{thebibliography}{46}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Bas and Erdogmus(2011)}]{Bas2011}
+\bibinfo{author}{Bas, E.}, \bibinfo{author}{Erdogmus, D.},
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Principal curves as skeletons of tubular objects}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{9},
+  \bibinfo{pages}{181--191}.
+%Type = Article
+\bibitem[{{Basu} et~al.(2016){Basu}, {Ooi} and {Racoceanu}}]{Basu2016}
+\bibinfo{author}{{Basu}, S.}, \bibinfo{author}{{Ooi}, W.T.},
+  \bibinfo{author}{{Racoceanu}, D.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Neurite tracing with object process}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{35},
+  \bibinfo{pages}{1443--1451}.
+%Type = Article
+\bibitem[{Cai et~al.(2006)Cai, Xu, Lu, Lichtman, Yung and Wong}]{Cai2006}
+\bibinfo{author}{Cai, H.}, \bibinfo{author}{Xu, X.}, \bibinfo{author}{Lu, J.},
+  \bibinfo{author}{Lichtman, J.W.}, \bibinfo{author}{Yung, S.P.},
+  \bibinfo{author}{Wong, S.T.C.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{Repulsive force based snake model to segment and
+  track neuronal axons in 3{D} microscopy image stacks}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{32},
+  \bibinfo{pages}{1608--1620}.
+%Type = Article
+\bibitem[{Chen et~al.(2015)Chen, Xiao, Liu and Peng}]{Chen2015}
+\bibinfo{author}{Chen, H.}, \bibinfo{author}{Xiao, H.}, \bibinfo{author}{Liu,
+  T.}, \bibinfo{author}{Peng, H.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Smarttracing: self-learning-based neuron
+  reconstruction}.
+\newblock \bibinfo{journal}{Brain Informatics} \bibinfo{volume}{2},
+  \bibinfo{pages}{135}.
+\newblock \DOIprefix\doi{10.1007/s40708-015-0018-y}.
+%Type = Inproceedings
+\bibitem[{{\c{C}}i{\c{c}}ek et~al.(2016){\c{C}}i{\c{c}}ek, Abdulkadir,
+  Lienkamp, Brox and Ronneberger}]{Cicek2016}
+\bibinfo{author}{{\c{C}}i{\c{c}}ek, {\"O}.}, \bibinfo{author}{Abdulkadir, A.},
+  \bibinfo{author}{Lienkamp, S.S.}, \bibinfo{author}{Brox, T.},
+  \bibinfo{author}{Ronneberger, O.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{{3D U-Net}: learning dense volumetric segmentation
+  from sparse annotation}, in: \bibinfo{booktitle}{Proc. MICCAI}, pp.
+  \bibinfo{pages}{424--432}.
+%Type = Article
+\bibitem[{{De} et~al.(2016){De}, {Cheng}, {Zhang}, {Lin}, {Li}, {Ong}
+  et~al.}]{De2016}
+\bibinfo{author}{{De}, J.}, \bibinfo{author}{{Cheng}, L.},
+  \bibinfo{author}{{Zhang}, X.}, \bibinfo{author}{{Lin}, F.},
+  \bibinfo{author}{{Li}, H.}, \bibinfo{author}{{Ong}, K.H.}, et~al.,
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{A graph-theoretical approach for tracing filamentary
+  structures in neuronal and retinal images}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{35},
+  \bibinfo{pages}{257--272}.
+\newblock \DOIprefix\doi{10.1109/TMI.2015.2465962}.
+%Type = Article
+\bibitem[{Dou et~al.(2017)Dou, Yu, Chen, Jin, Yang, Qin et~al.}]{Dou2017}
+\bibinfo{author}{Dou, Q.}, \bibinfo{author}{Yu, L.}, \bibinfo{author}{Chen,
+  H.}, \bibinfo{author}{Jin, Y.}, \bibinfo{author}{Yang, X.},
+  \bibinfo{author}{Qin, J.}, et~al., \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{{3D} deeply supervised network for automated
+  segmentation of volumetric medical images}.
+\newblock \bibinfo{journal}{Med. Imag. Anal.} \bibinfo{volume}{41},
+  \bibinfo{pages}{40--54}.
+%Type = Article
+\bibitem[{Frasconi et~al.(2014)Frasconi, Silvestri, Soda, Cortini, Pavone and
+  Iannello}]{Frasconi2014}
+\bibinfo{author}{Frasconi, P.}, \bibinfo{author}{Silvestri, L.},
+  \bibinfo{author}{Soda, P.}, \bibinfo{author}{Cortini, R.},
+  \bibinfo{author}{Pavone, F.S.}, \bibinfo{author}{Iannello, G.},
+  \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Large-scale automated identification of mouse brain
+  cells in confocal light sheet microscopy images}.
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{30},
+  \bibinfo{pages}{587--593}.
+\newblock \DOIprefix\doi{10.1093/bioinformatics/btu469}.
+%Type = Article
+\bibitem[{Giorgio and De~Stefano(2013)}]{Giorgio2013}
+\bibinfo{author}{Giorgio, A.}, \bibinfo{author}{De~Stefano, N.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Clinical use of brain volumetry}.
+\newblock \bibinfo{journal}{J. Magn. Reson. Imaging} \bibinfo{volume}{37},
+  \bibinfo{pages}{1--14}.
+%Type = Article
+\bibitem[{{Gu} et~al.(2017){Gu}, {Zhang}, {Zhao}, {Li} and {Cheng}}]{Gu2017}
+\bibinfo{author}{{Gu}, L.}, \bibinfo{author}{{Zhang}, X.},
+  \bibinfo{author}{{Zhao}, H.}, \bibinfo{author}{{Li}, H.},
+  \bibinfo{author}{{Cheng}, L.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{{Segment 2D and 3D Filaments by Learning Structured
+  and Contextual Features}}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{36},
+  \bibinfo{pages}{596--606}.
+%Type = Article
+\bibitem[{Li et~al.(2017)Li, Zeng, Peng and Ji}]{Li2017}
+\bibinfo{author}{Li, R.}, \bibinfo{author}{Zeng, T.}, \bibinfo{author}{Peng,
+  H.}, \bibinfo{author}{Ji, S.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Deep learning segmentation of optical microscopy
+  images improves {3-D} neuron reconstruction}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{36},
+  \bibinfo{pages}{1533--1541}.
+\newblock \DOIprefix\doi{10.1109/TMI.2017.2679713}.
+%Type = Article
+\bibitem[{Liu et~al.(2019)Liu, Chen, Wang and Peng}]{Liu2019}
+\bibinfo{author}{Liu, M.}, \bibinfo{author}{Chen, W.}, \bibinfo{author}{Wang,
+  C.}, \bibinfo{author}{Peng, H.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{{A Multiscale Ray-Shooting Model for Termination
+  Detection of Tree-Like Structures in Biomedical Images}}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{38},
+  \bibinfo{pages}{1923--1934}.
+%Type = Article
+\bibitem[{Liu et~al.(2016)Liu, Zhang, Liu, Feng, Peng and Cai}]{Liu2016}
+\bibinfo{author}{Liu, S.}, \bibinfo{author}{Zhang, D.}, \bibinfo{author}{Liu,
+  S.}, \bibinfo{author}{Feng, D.}, \bibinfo{author}{Peng, H.},
+  \bibinfo{author}{Cai, W.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Rivulet: {3D} neuron morphology tracing with
+  iterative back-tracking}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{14},
+  \bibinfo{pages}{387}.
+\newblock \DOIprefix\doi{10.1007/s12021-016-9302-0}.
+%Type = Article
+\bibitem[{Liu et~al.(2018)Liu, Zhang, Song, Peng and Cai}]{Liu2018}
+\bibinfo{author}{Liu, S.}, \bibinfo{author}{Zhang, D.}, \bibinfo{author}{Song,
+  Y.}, \bibinfo{author}{Peng, H.}, \bibinfo{author}{Cai, W.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{{Automated 3-D Neuron Tracing With Precise Branch
+  Erasing and Confidence Controlled Back Tracking}}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{37},
+  \bibinfo{pages}{2441--2452}.
+%Type = Article
+\bibitem[{Navlakha et~al.(2013)Navlakha, Ahammad and Myers}]{Navlakha2013}
+\bibinfo{author}{Navlakha, S.}, \bibinfo{author}{Ahammad, P.},
+  \bibinfo{author}{Myers, E.W.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Unsupervised segmentation of noisy electron
+  microscopy images using salient watersheds and region merging}.
+\newblock \bibinfo{journal}{BMC Bioinform.} \bibinfo{volume}{14},
+  \bibinfo{pages}{294}.
+\newblock \DOIprefix\doi{10.1186/1471-2105-14-294}.
+%Type = Article
+\bibitem[{Peng et~al.(2015)Peng, Hawrylycz, Roskams, Hill, Spruston, Meijering
+  et~al.}]{peng2015}
+\bibinfo{author}{Peng, H.}, \bibinfo{author}{Hawrylycz, M.},
+  \bibinfo{author}{Roskams, J.}, \bibinfo{author}{Hill, S.},
+  \bibinfo{author}{Spruston, N.}, \bibinfo{author}{Meijering, E.}, et~al.,
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{{BigNeuron}: large-scale 3d neuron reconstruction
+  from optical microscopy images}.
+\newblock \bibinfo{journal}{Neuron} \bibinfo{volume}{87},
+  \bibinfo{pages}{252--256}.
+%Type = Article
+\bibitem[{Peng et~al.(2011)Peng, Long and Myers}]{Peng2011}
+\bibinfo{author}{Peng, H.}, \bibinfo{author}{Long, F.}, \bibinfo{author}{Myers,
+  G.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Automatic {3D} neuron tracing using all-path
+  pruning}.
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{27},
+  \bibinfo{pages}{239--247}.
+\newblock \DOIprefix\doi{10.1093/bioinformatics/btr237}.
+%Type = Article
+\bibitem[{Peng et~al.(2010)Peng, Ruan, Atasoy and Sternson}]{Peng2010a}
+\bibinfo{author}{Peng, H.}, \bibinfo{author}{Ruan, Z.},
+  \bibinfo{author}{Atasoy, D.}, \bibinfo{author}{Sternson, S.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Automatic reconstruction of 3d neuron structures
+  using a graph-augmented deformable model}.
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{26},
+  \bibinfo{pages}{38--46}.
+%Type = Article
+\bibitem[{Peng et~al.(2014)Peng, Tang, Xiao, Bria, Zhou, Butler
+  et~al.}]{Peng2014}
+\bibinfo{author}{Peng, H.}, \bibinfo{author}{Tang, J.}, \bibinfo{author}{Xiao,
+  H.}, \bibinfo{author}{Bria, A.}, \bibinfo{author}{Zhou, J.},
+  \bibinfo{author}{Butler, V.}, et~al., \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Virtual finger boosts three-dimensional imaging and
+  microsurgery as well as terabyte volume image visualization and analysis}.
+\newblock \bibinfo{journal}{Nature Communications} \bibinfo{volume}{5},
+  \bibinfo{pages}{4342}.
+%Type = Article
+\bibitem[{Peng et~al.(2017)Peng, Zhou, Meijering, Zhao, Ascoli and
+  Hawrylycz}]{Peng2017}
+\bibinfo{author}{Peng, H.}, \bibinfo{author}{Zhou, Z.},
+  \bibinfo{author}{Meijering, E.}, \bibinfo{author}{Zhao, T.},
+  \bibinfo{author}{Ascoli, G.A.}, \bibinfo{author}{Hawrylycz, M.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Automatic tracing of ultra-volumes of neuronal
+  images}.
+\newblock \bibinfo{journal}{Nature Methods} \bibinfo{volume}{14},
+  \bibinfo{pages}{332}.
+%Type = Article
+\bibitem[{Petrella et~al.(2003)Petrella, Coleman and Doraiswamy}]{Petrella2003}
+\bibinfo{author}{Petrella, J.R.}, \bibinfo{author}{Coleman, R.E.},
+  \bibinfo{author}{Doraiswamy, P.M.}, \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{Neuroimaging and early diagnosis of alzheimer
+  disease: A look to the future}.
+\newblock \bibinfo{journal}{Radiology} \bibinfo{volume}{226},
+  \bibinfo{pages}{315--336}.
+%Type = Article
+\bibitem[{Quan et~al.(2013)Quan, Zheng, Yang, Ding, Li, Li et~al.}]{Quan2013}
+\bibinfo{author}{Quan, T.}, \bibinfo{author}{Zheng, T.}, \bibinfo{author}{Yang,
+  Z.}, \bibinfo{author}{Ding, W.}, \bibinfo{author}{Li, S.},
+  \bibinfo{author}{Li, J.}, et~al., \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{NeuroGPS: automated localization of neurons for
+  brain circuits using L1 minimization model}}.
+\newblock \bibinfo{journal}{Scientific Reports} \bibinfo{volume}{3},
+  \bibinfo{pages}{1414}.
+%Type = Article
+\bibitem[{Quan et~al.(2015)Quan, Zhou, Li, Li, Li, Li et~al.}]{Quan2015}
+\bibinfo{author}{Quan, T.}, \bibinfo{author}{Zhou, H.}, \bibinfo{author}{Li,
+  J.}, \bibinfo{author}{Li, S.}, \bibinfo{author}{Li, A.}, \bibinfo{author}{Li,
+  Y.}, et~al., \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{{NeuroGPS-Tree}: automatic reconstruction of
+  large-scale neuronal populations with dense neurites}.
+\newblock \bibinfo{journal}{Nature Methods} \bibinfo{volume}{13},
+  \bibinfo{pages}{51--54}.
+%Type = Article
+\bibitem[{Radojević and Meijering(2017)}]{Radojevic2017}
+\bibinfo{author}{Radojević, M.}, \bibinfo{author}{Meijering, E.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{{Automated neuron tracing using probability
+  hypothesis density filtering}}.
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{33},
+  \bibinfo{pages}{1073--1080}.
+\newblock \DOIprefix\doi{10.1093/bioinformatics/btw751}.
+%Type = Article
+\bibitem[{Santamaría-Pang et~al.(2015)Santamaría-Pang, Hernandez-Herrera,
+  Papadakis, Saggau and Kakadiaris}]{Santamaria2015}
+\bibinfo{author}{Santamaría-Pang, A.}, \bibinfo{author}{Hernandez-Herrera,
+  P.}, \bibinfo{author}{Papadakis, M.}, \bibinfo{author}{Saggau, P.},
+  \bibinfo{author}{Kakadiaris, I.A.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Automatic morphological reconstruction of neurons
+  from multiphoton and confocal microscopy images using 3d tubular models}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{13},
+  \bibinfo{pages}{297--320}.
+%Type = Article
+\bibitem[{Senft(2011)}]{Senft2011}
+\bibinfo{author}{Senft, S.L.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{A brief history of neuronal reconstruction}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{9},
+  \bibinfo{pages}{119--128}.
+%Type = Article
+\bibitem[{Skibbe et~al.(2015)Skibbe, Reisert, Maeda, Koyama, Oba, Ito and
+  Ishii}]{Skibbe2015}
+\bibinfo{author}{Skibbe, H.}, \bibinfo{author}{Reisert, M.},
+  \bibinfo{author}{Maeda, S.}, \bibinfo{author}{Koyama, M.},
+  \bibinfo{author}{Oba, S.}, \bibinfo{author}{Ito, K.}, \bibinfo{author}{Ishii,
+  S.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Efficient monte carlo image analysis for the location
+  of vascular entity}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{34},
+  \bibinfo{pages}{628--643}.
+%Type = Article
+\bibitem[{{Skibbe} et~al.(2019){Skibbe}, {Reisert}, {Nakae}, {Watakabe},
+  {Hata}, {Mizukami} et~al.}]{Skibbe2019}
+\bibinfo{author}{{Skibbe}, H.}, \bibinfo{author}{{Reisert}, M.},
+  \bibinfo{author}{{Nakae}, K.}, \bibinfo{author}{{Watakabe}, A.},
+  \bibinfo{author}{{Hata}, J.}, \bibinfo{author}{{Mizukami}, H.}, et~al.,
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Pat--probabilistic axon tracking for densely labeled
+  neurons in large 3-d micrographs}.
+\newblock \bibinfo{journal}{IEEE Trans. Med. Imag.} \bibinfo{volume}{38},
+  \bibinfo{pages}{69--78}.
+%Type = Article
+\bibitem[{Srivastava et~al.(2014)Srivastava, Hinton, Krizhevsky, Sutskever and
+  Salakhutdinov}]{Srivastava2014}
+\bibinfo{author}{Srivastava, N.}, \bibinfo{author}{Hinton, G.},
+  \bibinfo{author}{Krizhevsky, A.}, \bibinfo{author}{Sutskever, I.},
+  \bibinfo{author}{Salakhutdinov, R.}, \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Dropout: A simple way to prevent neural networks from
+  overfitting}.
+\newblock \bibinfo{journal}{J. Mach. Learn. Res.} \bibinfo{volume}{15},
+  \bibinfo{pages}{1929--1958}.
+%Type = Inproceedings
+\bibitem[{S\"{u}mb\"{u}l et~al.(2016)S\"{u}mb\"{u}l, Roossien, Cai, Chen,
+  Barry, Cunningham et~al.}]{Suembuel2016}
+\bibinfo{author}{S\"{u}mb\"{u}l, U.}, \bibinfo{author}{Roossien, D.},
+  \bibinfo{author}{Cai, D.}, \bibinfo{author}{Chen, F.},
+  \bibinfo{author}{Barry, N.}, \bibinfo{author}{Cunningham, J.P.}, et~al.,
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Automated scalable segmentation of neurons from
+  multispectral images}, in: \bibinfo{booktitle}{Proc. Adv. Neural Inf.
+  Process. Syst.}, pp. \bibinfo{pages}{1912--1920}.
+%Type = Inproceedings
+\bibitem[{Sun et~al.(2019)Sun, Xiao, Liu and Wang}]{Sun2019}
+\bibinfo{author}{Sun, K.}, \bibinfo{author}{Xiao, B.}, \bibinfo{author}{Liu,
+  D.}, \bibinfo{author}{Wang, J.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Deep high-resolution representation learning for
+  human pose estimation}, in: \bibinfo{booktitle}{Proc. IEEE Conf. Comput. Vis.
+  Pattern Recognit.}, pp. \bibinfo{pages}{5693--5703}.
+%Type = Article
+\bibitem[{Wang et~al.(2017)Wang, Lee, Pradana, Zhou and Peng}]{Wang2017}
+\bibinfo{author}{Wang, C.W.}, \bibinfo{author}{Lee, Y.C.},
+  \bibinfo{author}{Pradana, H.}, \bibinfo{author}{Zhou, Z.},
+  \bibinfo{author}{Peng, H.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Ensemble neuron tracer for 3d neuron reconstruction}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{15},
+  \bibinfo{pages}{185--198}.
+%Type = Inproceedings
+\bibitem[{Wang et~al.(2018)Wang, Zhang, Song, Liu, Gao, Peng and
+  Cai}]{Wang2018}
+\bibinfo{author}{Wang, H.}, \bibinfo{author}{Zhang, D.}, \bibinfo{author}{Song,
+  Y.}, \bibinfo{author}{Liu, S.}, \bibinfo{author}{Gao, R.},
+  \bibinfo{author}{Peng, H.}, \bibinfo{author}{Cai, W.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{{Memory and Time Efficient 3D Neuron Morphology
+  Tracing in Large-Scale Images}}, in: \bibinfo{booktitle}{Proc. DICTA}, pp.
+  \bibinfo{pages}{1--8}.
+%Type = Article
+\bibitem[{Wang et~al.(2019)Wang, Zhu, Ding, Shen, Yang, Xu et~al.}]{Wang2019}
+\bibinfo{author}{Wang, H.}, \bibinfo{author}{Zhu, Q.}, \bibinfo{author}{Ding,
+  L.}, \bibinfo{author}{Shen, Y.}, \bibinfo{author}{Yang, C.Y.},
+  \bibinfo{author}{Xu, F.}, et~al., \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{{Scalable volumetric imaging for ultrahigh-speed
+  brain mapping at synaptic resolution}}.
+\newblock \bibinfo{journal}{National Science Review} \URLprefix
+  \url{https://doi.org/10.1093/nsr/nwz053}, \DOIprefix\doi{10.1093/nsr/nwz053}.
+%Type = Article
+\bibitem[{Wang et~al.(2011)Wang, Narayanaswamy, Tsai and Roysam}]{Wang2011}
+\bibinfo{author}{Wang, Y.}, \bibinfo{author}{Narayanaswamy, A.},
+  \bibinfo{author}{Tsai, C.L.}, \bibinfo{author}{Roysam, B.},
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{A broadly applicable {3-D} neuron tracing method
+  based on open-curve snake}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{9},
+  \bibinfo{pages}{193--217}.
+%Type = Article
+\bibitem[{Wu et~al.(2014)Wu, He, Yang, Guo, Luo, Zhou et~al.}]{Wu2014}
+\bibinfo{author}{Wu, J.}, \bibinfo{author}{He, Y.}, \bibinfo{author}{Yang, Z.},
+  \bibinfo{author}{Guo, C.}, \bibinfo{author}{Luo, Q.}, \bibinfo{author}{Zhou,
+  W.}, et~al., \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{{3D BrainCV}: Simultaneous visualization and analysis
+  of cells and capillaries in a whole mouse brain with one-micron voxel
+  resolution}.
+\newblock \bibinfo{journal}{NeuroImage} \bibinfo{volume}{87},
+  \bibinfo{pages}{199--208}.
+%Type = Article
+\bibitem[{Xiao and Peng(2013)}]{Xiao2013}
+\bibinfo{author}{Xiao, H.}, \bibinfo{author}{Peng, H.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{APP2}: automatic tracing of {3D} neuron morphology
+  based on hierarchical pruning of a gray-weighted image distance-tree}.
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{29},
+  \bibinfo{pages}{1448--1454}.
+\newblock \DOIprefix\doi{10.1093/bioinformatics/btt170}.
+%Type = Inproceedings
+\bibitem[{Xu et~al.(2016)Xu, Su, Zhu, Guan and Zhang}]{Xu2016}
+\bibinfo{author}{Xu, K.}, \bibinfo{author}{Su, H.}, \bibinfo{author}{Zhu, J.},
+  \bibinfo{author}{Guan, J.}, \bibinfo{author}{Zhang, B.},
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Neuron segmentation based on {CNN} with
+  semi-supervised regularization}, in: \bibinfo{booktitle}{Proc. IEEE Conf.
+  Comput. Vis. Pattern Recognit. Workshops}, pp. \bibinfo{pages}{1324--1332}.
+\newblock \DOIprefix\doi{10.1109/CVPRW.2016.167}.
+%Type = Article
+\bibitem[{Yang et~al.(2013)Yang, Gonzalez-Bellido and Peng}]{Yang2013}
+\bibinfo{author}{Yang, J.}, \bibinfo{author}{Gonzalez-Bellido, P.T.},
+  \bibinfo{author}{Peng, H.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{A distance-field based automatic neuron tracing
+  method}.
+\newblock \bibinfo{journal}{BMC Bioinform.} \bibinfo{volume}{14},
+  \bibinfo{pages}{93}.
+\newblock \DOIprefix\doi{10.1186/1471-2105-14-93}.
+%Type = Article
+\bibitem[{Yang et~al.(2019)Yang, Hao, Liu, Wan, Zhong and Peng}]{Yang2018}
+\bibinfo{author}{Yang, J.}, \bibinfo{author}{Hao, M.}, \bibinfo{author}{Liu,
+  X.}, \bibinfo{author}{Wan, Z.}, \bibinfo{author}{Zhong, N.},
+  \bibinfo{author}{Peng, H.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{{FMST}: an automatic neuron tracing method based on
+  fast marching and minimum spanning tree}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{17},
+  \bibinfo{pages}{185--196}.
+\newblock \DOIprefix\doi{10.1007/s12021-018-9392-y}.
+%Type = Inproceedings
+\bibitem[{Yu et~al.(2017)Yu, Cheng, Dou, Yang, Chen, Qin et~al.}]{Yu2017}
+\bibinfo{author}{Yu, L.}, \bibinfo{author}{Cheng, J.Z.}, \bibinfo{author}{Dou,
+  Q.}, \bibinfo{author}{Yang, X.}, \bibinfo{author}{Chen, H.},
+  \bibinfo{author}{Qin, J.}, et~al., \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Automatic {3D} cardiovascular mr segmentation with
+  densely-connected volumetric convnets}, in: \bibinfo{booktitle}{Proc.
+  MICCAI}, pp. \bibinfo{pages}{287--295}.
+%Type = Inproceedings
+\bibitem[{Zhao et~al.(2019)Zhao, Chen, Xiong, Liu, Zeng, Zhang
+  et~al.}]{Zhao2019}
+\bibinfo{author}{Zhao, J.}, \bibinfo{author}{Chen, X.}, \bibinfo{author}{Xiong,
+  Z.}, \bibinfo{author}{Liu, D.}, \bibinfo{author}{Zeng, J.},
+  \bibinfo{author}{Zhang, Y.}, et~al., \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Progressive learning for neuronal population
+  reconstruction from optical microscopy images}, in: \bibinfo{booktitle}{Proc.
+  MICCAI}, pp. \bibinfo{pages}{750--759}.
+%Type = Article
+\bibitem[{Zhao et~al.(2011)Zhao, Xie, Amat, Clack, Ahammad, Peng
+  et~al.}]{Zhao2011}
+\bibinfo{author}{Zhao, T.}, \bibinfo{author}{Xie, J.}, \bibinfo{author}{Amat,
+  F.}, \bibinfo{author}{Clack, N.}, \bibinfo{author}{Ahammad, P.},
+  \bibinfo{author}{Peng, H.}, et~al., \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Automated reconstruction of neuronal morphology based
+  on local geometrical and global structural models}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{9},
+  \bibinfo{pages}{247--261}.
+%Type = Article
+\bibitem[{Zhou et~al.(2018)Zhou, Kuo, Peng and Long}]{Zhou2018}
+\bibinfo{author}{Zhou, Z.}, \bibinfo{author}{Kuo, H.C.}, \bibinfo{author}{Peng,
+  H.}, \bibinfo{author}{Long, F.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Deepneuron: an open deep learning toolbox for neuron
+  tracing}.
+\newblock \bibinfo{journal}{Brain Informatics} \bibinfo{volume}{5},
+  \bibinfo{pages}{3}.
+%Type = Article
+\bibitem[{Zhou et~al.(2016)Zhou, Liu, Long and Peng}]{Zhou2016}
+\bibinfo{author}{Zhou, Z.}, \bibinfo{author}{Liu, X.}, \bibinfo{author}{Long,
+  B.}, \bibinfo{author}{Peng, H.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{{TReMAP}: Automatic {3D} neuron reconstruction based
+  on tracing, reverse mapping and assembling of 2d projections}.
+\newblock \bibinfo{journal}{Neuroinformatics} \bibinfo{volume}{14},
+  \bibinfo{pages}{41}.
+\newblock \DOIprefix\doi{10.1007/s12021-015-9278-1}.
+%Type = Inproceedings
+\bibitem[{{Zhou} et~al.(2015){Zhou}, {Sorensen} and {Peng}}]{Zhou2015}
+\bibinfo{author}{{Zhou}, Z.}, \bibinfo{author}{{Sorensen}, S.A.},
+  \bibinfo{author}{{Peng}, H.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{{Neuron Crawler: An automatic tracing algorithm for
+  very large neuron images}}, in: \bibinfo{booktitle}{Proc. IEEE Int. Symp.
+  Biomed. Imag.}, pp. \bibinfo{pages}{870--874}.
+\newblock \DOIprefix\doi{10.1109/ISBI.2015.7164009}.
+
+\end{thebibliography}

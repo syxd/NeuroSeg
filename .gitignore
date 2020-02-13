@@ -1,0 +1,8 @@
+*.log
+*.blg
+*.out
+*.spl
+*.gz
+*.aux
+draft_algorithm.tex
+*.pptx
