@@ -25,7 +25,7 @@
 %%%%%
 \definecolor{newcolor}{rgb}{.8,.349,.1}
 
-\newcommand{\xj}[1]{\textcolor[rgb]{1,0,0}{(CXJ:#1)}}
+\newcommand{\xj}[1]{\textcolor[rgb]{1,0,0}{(#1)}}
 \newcommand{\zj}[1]{\textcolor[rgb]{1,0,1}{(ZJ:#1)}}
 \newcommand{\md}[1]{\textcolor[rgb]{0,0,1}{#1}}
 \newcommand{\td}[1]{\textcolor[rgb]{0.5,0.0,0.5}{#1}}
@@ -61,7 +61,7 @@
 Reconstruction of neuronal populations from large-scale optical microscopy (OM) brain images is essential to investigate neuronal circuits and brain mechanisms.
 To mitigate the impact of low quality of images on neuron reconstruction, some studies have been conducted to extract neuron voxels using deep neural networks (DNNs).
 However, training such a DNN usually relies on a large number of images with voxel-wise annotations, which is very costly to obtain in terms of both finance and labor.
-In this paper, we propose an \md{unsupervised} progressive learning framework for robust neuron reconstruction free of manual annotations. Our framework consists of a neuron tracing module and a segmentation network, which mutually complement and progressively promote each other.
+In this paper, we propose an progressive learning framework for robust neuron reconstruction free of manual annotations. Our framework consists of a neuron tracing module and a segmentation network, which mutually complement and progressively promote each other.
 Based on the progressively learned model, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
 To reconstruct neuronal populations from a terabyte-sized large-scale image, we introduce a new automatic reconstruction algorithm by adaptively tracing neurons block by block and assembling individual neurons continuously and smoothly.
 

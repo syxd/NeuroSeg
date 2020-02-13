@@ -94,9 +94,9 @@ Each element in $\mathbf{P}$ indicates the probability that the corresponding vo
 To utilize the probability map, one natural way is to reconstruct neurons directly from it.
 However, since the pseudo labels are not as accurate as manual annotations, 
 especially at the early iterations, some local details might lose in the probability map. Therefore, we employ an enhanced representation by fusing the probability map and the raw image block, in order to keep detailed structures and suppress noise signals effectively.
-Specifically, a new probability map $\widetilde{\mathbf{P}} $ is first constructed by linearly mapping the value range of $ \mathbf{P}\in [0,1] $ to the value range $[\mathbf{b}_{min}, \mathbf{b}_{max}]$ of $\mathbf{B}$.
+Specifically, a new probability map $\widetilde{\mathbf{P}} $ is first constructed by linearly mapping the value range of $ \mathbf{P}\in [0,1] $ to the value range $[{b}_{min}, {b}_{max}]$ of $\mathbf{B}$.
 \begin{equation}
-\widetilde{\mathbf{P}}(x) = (\mathbf{b}_{max}-\mathbf{b}_{min})\mathbf{P}(x).
+\widetilde{\mathbf{P}}(x) = ({b}_{max}-{b}_{min})\mathbf{P}(x).
 \end{equation}
 
 
@@ -138,12 +138,13 @@ Iteration by iteration, the completeness and accuracy of neuron reconstruction a
 	\label{fig:ultra_framework}
 \end{figure*}
 
-The PLNPR described in the previous section could reconstruct neurons in megabyte-sized local image blocks. A block averagely contains $ 3\sim10 $ neurons in our VISoR-40 dataset, which are cropped from the cortical regions of a mouse brain. However, neurons might exist across multiple blocks. Therefore, \md{an effective stitching process} is needed to reconstruct neuronal populations from a large-scale 3D image. 
+The PLNPR described in the previous section could reconstruct neurons in megabyte-sized local image blocks.\delete{A block averagely contains $ 3\sim10 $ neurons in our VISoR-40 dataset, which are cropped from the cortical regions of a mouse brain.} However, neurons might exist across multiple blocks. Therefore, \md{an effective stitching process} is needed to reconstruct neuronal populations from a large-scale 3D image. 
 %
-Our UltraNPR consists of four key components: a soma detection module, a local reconstruction module, a block search module, and a neurites fusion module, as shown is~\ref{fig:ultra_framework}.
+To tackle with this problem, our UltraNPR consists of four key components: a soma detection module, a local reconstruction module, a block search module, and a neurites fusion module, as shown is~\ref{fig:ultra_framework}.
+\xj{TODO: ORDER}
 At first, the large-scale image is divided into overlapped 3D blocks of the same size. 
 The overlap between adjacent blocks is introduced to avoid false continuation and increase the robustness of the reconstruction.
-Then, the soma detection module is used to detect somas from each block.
+The soma detection module is used to detect somas from each block.
 The local reconstruction module is based on our PLNPR algorithm to reconstruct neurons from low-quality image blocks.
 To reconstruct a large-scale image block by block,  we repeatedly apply the block search module to determine what the next block needs to be reconstructed. 
 Finally, the neurites fusion module is applied to obtain a complete and continuous reconstruction from adjacent blocks.
@@ -156,7 +157,7 @@ Due to the overlap between blocks, somas in the overlapped area would be detecte
 We merge the overlapped somas in adjacent blocks by averaging their position and radius to deal with this over-detection problem.
 After that, we get a set of somas $ \mathbf{S} $ in the large-scale image, as shown in Fig.~{4} of the supplementary file.
 %The soma detection results from the large-scale image are visualized in Fig.~{4} of the supplementary file.
-These somas are also used to define the initial blocks for neuron reconstruction in the next step.
+%These somas are also used to define the initial blocks for neuron reconstruction in the next step.
 
 
 \subsubsection{Block Search Policy and Local Reconstruction}
@@ -169,16 +170,14 @@ Each block $ B_{i} $  has a $ flag =  \{0,1\}$ to indicate whether it has been r
 As somas are where signals from the dendrites are joined and pass on, the blocks that contains somas are the most probable locations to start the tracing.
 Therefore, for each block $ B_{i} $ that contains somas, we apply our PLNPR to reconctruct neurites $ N_{i} $ from it, and set $ flag(B_{i}) = 1 $ to indicate it has been reconstructed.
 
-For all remaining unreconstructed blocks, the reconstruction process is conducted as follows:
+Then, for all remaining unreconstructed blocks, the reconstruction process is conducted as follows:
 %
 Firstly, for each unreconstructed block $ B_{i} $, we compute the number of its neighboring blocks that have been reconstructed.  After that, we can find the unreconstructed block $ B^* $ with the largest number of neighboring reconstructed blocks.
 %
-Next, for each neighboring reconstructed block of $ B^* $, we collect the neuronal compartments which are close to the boundary of $ B^* $. Since these compartments typically indicate the continuity of the structure of neurons,  we call them as terminal tips and use them as the potential continuous signals for growing the neuronal structure in $ B^* $.
-%
-Then, we reconstruct $ B^* $ using the terminal tips as pseudo-somas from its neighboring reconstructed blocks.
+Next, for each neighboring reconstructed block of $ B^* $, we collect the neuronal compartments which are close to the boundary of $ B^* $. Since these compartments typically indicate the continuity of the structure of neurons,  we call them as terminal tips and use them as the pseudo-somas for growing the neuronal structure in $ B^* $.
 After that, we get its neurites set $ N^* $, and set $ flag(B^*) = 1 $.
 %
-This process will be terminated when all blocks have been reconstructed.
+This process continues iteratively until all blocks have been reconstructed.
 
 \subsubsection{Neurites Fusion from Adjacent Blocks}
 \label{sec:fusion}
