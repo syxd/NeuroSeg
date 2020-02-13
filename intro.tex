@@ -3,7 +3,7 @@
 
 Reconstruction of neuronal morphology is of great significance for brain studies. Obtaining a blue print of the brain architecture, including the morphologies and interconnectivities of neuronal populations, allows for measuring and visualizing neuronal structure, understanding neuronal identity, and determining potential connectivity.
 Therefore, complete reconstruction of neuronal populations from large-scale brain images is essential to investigate the mechanism of the nervous system, analyze brain changes, and facilitate our understanding of how the brain works or fails to work properly in the diseases such as dementia and Alzheimer's disease~\cite{Petrella2003, Giorgio2013}.
-One of the key techniques in this endeavor is optical microscopy (OM), which allows detailed visualization of neurons in the brain and makes the reconstruction of every neuron possible~\cite{Senft2011}, as shown in Fig.~\ref{fig:brain}.
+One of the key techniques in this endeavor is optical microscopy (OM), which allows detailed visualization of neurons and makes the reconstruction of every neuron possible~\cite{Senft2011}, as shown in Fig.~\ref{fig:brain}.
 However, despite numerous efforts devoted, this task is still one of the main challenges in computational neuroscience.
 
 \begin{figure}[t]
@@ -17,7 +17,7 @@ However, despite numerous efforts devoted, this task is still one of the main ch
 The challenges in large-scale neuronal population reconstruction are mainly caused by complex morphology of neurons, low quality and large volume of OM brain images.
 Due to the complicated process of imaging acquisition and the uneven distribution of fluorescence markers in neurons, the intensities of voxels that are occupied by neurons vary dramatically in highly noisy and inhomogeneous environments.
 Moreover, to detail the structure of neurons in the brain, high resolution of OM images are required. Such an image typically contains trillions of voxels and the image size is formidably large in a terabyte scale. It is even impractical to directly load the entire large image into computer memory before reconstructing neurons when considering the memory cost and tracing time.
-Manual reconstruction of neuronal populations from OM images is an extremely laborious and time-consuming task, which requires a sophisticated knowledge base of neuron morphology, and is difficult, if not impossible, to be performed at a large scale.
+Manual reconstruction of neuronal populations from large-scale brain images is an extremely laborious and time-consuming task, which requires a sophisticated knowledge base of neuron morphology.
 Therefore, an effective and automated large-scale neuronal population reconstruction algorithm for these challenging situations is highly desired in practice.
 
 
@@ -27,19 +27,13 @@ Despite their great improvement in this task, several limitations still remain t
 
 
 One main bottleneck of these methods is that the base tracer used for neuron tracing from image blocks are all conventional tracing schemes, which typically employ traditional image processing algorithms. Unfortunately, these algorithms using hand-crafted features and rules\delete{ are sensitive to the selection of hyper-parameters and} have difficulty in reconstructing neurons from low-contrast and noisy image blocks.
-To improve the reconstruction quality from noisy image blocks, some deep learning based approaches are proposed recently. However, they require a great amount of manually annotated data for network training.
+To improve the reconstruction quality from noisy image blocks, some deep learning based approaches are proposed recently. However, they require a great amount of manually annotated data for neuron segmentation network training.
 %
 To take advantage of both conventional methods and deep learning techniques, we propose to leverage these two paradigms in a Progressive Learning manner for Neuronal Population Reconstruction (PLNPR).
 
-We observe the approximate locations of neurons can be effectively inferred by existing conventional methods.
-Although it is hard for them to reconstruct all neurons with complete structures, they still offer important clues to obtain complicated patterns of neurons.
-Therefore, we can utilize conventional methods to produce pseudo labels for network training.
-More specifically, our iterative framework trains a deep segmentation network progressively without using manual annotations.
-%Therefore, we take advantage of the reconstruction maps inferred from conventional methods as pseudo labels to train  networks.
-The network is expected to learn more comprehensive features of neurons from noisy labels.
-With a more powerful network for segmenting neurons, the neuron reconstruction could be improved.
-Then we progressively refine the network with better neuron reconstruction results as pseudo labels, and reconstruct more complete neurons with better neuron segmentation.
-%We observe the reconstruction maps inferred from existing conventional algorithms can effectively provide approximate locations of neurons. Although these voxels may not cover all neurons, they still provide important cues for obtaining complicated patterns of neurons. Therefore, we take advantage of conventional methods to produce pseudo-labels for network training. More specifically, our iterative framework trains a deep segmentation network progressively without using manual annotations. The network is expected to learn more comprehensive features for neurons from noisy labels. With more powerful segmentation network for neuron voxels, the neuron reconstruction could be improved. Then we progressively refine the segmentation network with better neuron reconstruction results as pseudo labels, and produce more complete neurons with better neuron segmentation.
+We observe the reconstruction maps inferred from existing conventional algorithms can effectively provide approximate locations of neurons. Although these voxels may not cover all neurons, they still provide important cues for obtaining complicated patterns of neurons.
+Therefore, we take advantage of conventional methods to produce pseudo-labels for network training.
+More specifically, our iterative framework trains a deep segmentation network progressively without using manual annotations. The network is expected to learn more comprehensive features of neurons from noisy labels. With a more powerful network for segmenting neurons, the neuron reconstruction could be improved. Then we progressively refine the network with better neuron reconstruction results as pseudo labels, and reconstruct more complete neurons with better neuron segmentation.
 
 \begin{figure*}[th]
 	\centering
@@ -48,9 +42,9 @@ Then we progressively refine the network with better neuron reconstruction resul
 	\label{fig:framework}
 \end{figure*}
 
-Another main bottleneck of existing large-scale neuron reconstruction methods is that they mainly focus on large-scale single neuron reconstruction and the images they processed usually contain only one single neuron. However, a large-scale OM brain image often contains dense neuronal populations in practice.
+Another main bottleneck of existing large-scale neuron reconstruction methods~\cite{Zhou2015, Peng2017, Wang2018} is that they mainly focus on large-scale single neuron reconstruction and the images they processed usually contain only one single neuron. However, a large-scale OM brain image often contains dense neuronal populations in practice.
 %
-To reconstruct dense neuronal populations from large-scale or even ultra-large-scale noisy images, we introduce UltraNPR, a block-by-block tracing algorithm which utilizes the proposed deep-learning based PLNPR method as the base tracer and designs a new tracing strategy and a fusion algorithm for the large-scale neuronal population reconstruction application.
+To reconstruct dense neuronal populations from large-scale or even ultra-large-scale noisy images, we introduce UltraNPR, a block-by-block tracing algorithm which utilizes the proposed deep-learning based PLNPR method as the base tracer and \md{designs a tracing strategy with a fusion algorithm for the large-scale neuronal population reconstruction application}.
 %In this work, we introduce UltraNPR, an algorithm designed for reconstructing dense neuronal populations from large-scale or even ultra-large-scale images. UltraNPR reconstructs neuronal populations by progressively improving the completeness of neuronal structure block by block.
 %
 \delete{Firstly, the large-scale raw image is divided into blocks of the same size.
