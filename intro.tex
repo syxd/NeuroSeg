@@ -35,13 +35,6 @@ We observe the reconstruction maps inferred from existing conventional algorithm
 Therefore, we take advantage of conventional methods to produce pseudo-labels for network training.
 More specifically, our iterative framework trains a deep segmentation network progressively without using manual annotations. The network is expected to learn more comprehensive features of neurons from noisy labels. With a more powerful network for segmenting neurons, the neuron reconstruction could be improved. Then we progressively refine the network with better neuron reconstruction results as pseudo labels, and reconstruct more complete neurons with better neuron segmentation.
 
-\begin{figure*}[th]
-	\centering
-	\includegraphics[width=1\textwidth]{./Illustrations/framework2.pdf}
-	\caption{Diagram of our progressive learning algorithm for neuron reconstruction in an image block. (a) The segmentation network extracts neuron signals from the raw image. (b) The output probability map is employed to enhance the raw image in order to preserve both global structures and local signal details, which facilitates the neuron tracing module (c) for more complete neuronal population reconstruction. To train the segmentation network, we use the reconstructed neurons as pseudo labels (red arrows), and iteratively refine the network learning and neuron reconstruction with a set of images. The black arrows show the reconstruction pass from an image during testing.}
-	\label{fig:framework}
-\end{figure*}
-
 Another main bottleneck of existing large-scale neuron reconstruction methods~\cite{Zhou2015, Peng2017, Wang2018} is that they mainly focus on large-scale single neuron reconstruction and the images they processed usually contain only one single neuron. However, a large-scale OM brain image often contains dense neuronal populations in practice.
 %
 To reconstruct dense neuronal populations from large-scale or even ultra-large-scale noisy images, we introduce UltraNPR, a block-by-block tracing algorithm which utilizes the proposed deep-learning based PLNPR method as the base tracer and \md{designs a tracing strategy with a fusion algorithm for the large-scale neuronal population reconstruction application}.
