@@ -45,7 +45,7 @@
 \author{Jie \snm{Zhao}}
 \author{Xuejin \snm{Chen}\corref{cor1}}
 \cortext[cor1]{Corresponding author: 
-	Tel.: +86-551-3600852;  }
+	Tel.: +86-551-63600852;  }
 \ead{xjchen99@ustc.edu.cn}
 %\fnref{fn1}}
 %\fntext[fn1]{This is author footnote for second author.}
@@ -62,28 +62,43 @@
 
 
 \begin{abstract}
-Reconstruction of neuronal populations from large-scale optical microscopy (OM) brain images is essential to investigate neuronal circuits and brain mechanisms.
-To mitigate the impact of low quality of images on neuron reconstruction, some studies have been conducted to extract neuron voxels using deep neural networks (DNNs).
-However, training such a DNN usually relies on a large number of images with voxel-wise annotations, which is very costly to obtain in terms of both finance and labor.
-In this paper, we propose an progressive learning framework for robust neuron reconstruction free of manual annotations. Our framework consists of a neuron tracing module and a segmentation network, which mutually complement and progressively promote each other.
+Reconstruction of neuronal populations from ultra-scale optical microscopy (OM) images is essential to investigate neuronal circuits and brain mechanisms.
+The noises, low contrast, huge memory and high computational cost pose significant challenges in the neuronal population reconstruction.
+%
+Recently, many studies have been conducted to extract neuron signals using deep neural networks (DNNs).
+However, training such DNNs usually relies on a huge amount of voxel-wise annotations in OM images, which are expensive in terms of both finance and labor.
+%
+Moreover, the high memory cost of DNNs limits the volume of input images that can be handled at one time. 
+%
+In this paper, we propose a framework for dense neuronal population reconstruction in ultra-scale images.
+%
+To solve the problem of high cost in obtaining manual annotation for network training, we propose an progressive learning scheme for neuronal population reconstruction (PLNPR) which does not require any manual annotations. 
+%
+Our PLNPR scheme consists of a neuron tracing module and a segmentation network that mutually complement and progressively promote each other. 
 Based on the progressively learned model, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
-To reconstruct neuronal populations from a terabyte-sized large-scale image, we introduce a new automatic reconstruction algorithm by adaptively tracing neurons block by block and assembling individual neurons continuously and smoothly.
-
-We build a dataset called ``VISoR-40" that consists of 40 OM image blocks from mouse cortical regions. Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method for neuronal population reconstruction and single neuron reconstruction, respectively.
-Furthermore, we successfully apply our method to the reconstruction of dense neuronal populations in a large-scale mouse brain slice.
+%
+To reconstruct dense neuronal populations in a terabyte-sized ultra-scale image, we introduce an automatic framework that adaptively traces neurons block by block and fuses multiple neurons in overlapped regions continuously and smoothly.
+%
+We build a dataset ``VISoR-40" which consists of 40 OM image blocks from cortical regions of a mouse.
+Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method for neuronal population reconstruction and single neuron reconstruction, respectively.
+Furthermore, we successfully apply our method to reconstruction of dense neuronal populations in a ultra-scale mouse brain slice. 
+The proposed adaptive block-wise reconstruction and fusion strategy greatly improve the completeness of neurites in dense neuronal population reconstruction. 
 \end{abstract}
 
 \begin{keyword}
-\KWD Neuronal population reconstruction\sep Ultra-scale images\sep Optical microscopy \sep Progressive learning
+\KWD Neuronal population reconstruction 
+\sep Ultra-scale images 
+\sep Optical microscopy 
+\sep Progressive learning
 \end{keyword}
 
 \end{frontmatter}
 
 
 \input{intro}
-\input{relatedwork}
-\input{algorithm}
-\input{results}
+%\input{relatedwork}
+%\input{algorithm}
+%\input{results}
 
 \section{Conclusion}
 \label{sec:conclusion}
