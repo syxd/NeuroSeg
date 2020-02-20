@@ -194,7 +194,7 @@ After soma detection, if a block $ B_{i}$ contains somas, we apply our PLNPR to 
 For the remaining unreconstructed blocks, we compute the number of its neighboring blocks that have been reconstructed. 
 The unreconstructed block $B^*$ with the largest number of neighboring reconstructed blocks is selected for reconstruction next.
 %
-Though NGPST can perform neuron tracing without any somas, it typically fails to separate neurons with dense neurites.
+Though NGPST can perform neuron tracing without any somas, it typically fails to separate neurons with dense neurites, as shown in Fig.~\ref{fig:ngpst_pseudosoma}(a).
 %
 We follow the structure of the reconstructed neurons in the blocks that have been traced by set the neurite tips as pseudo somas for NGPST in the unreconstructed block.
 %
@@ -207,26 +207,30 @@ This block search and reconstruction process continues iteratively until all blo
 
 \md{Fig.~\ref{fig:blocksearch} shows the procedure of our iterative local reconstruction. the order of propagation, comparison between NGPST with/without neurite tips as pseudo somas. }
 
-\begin{figure}
+\begin{figure*}[t]
 	\centering
-	\vspace{1cm}
-	\caption{Iterative block reconstruction. }
+	%\vspace{1cm}
+	\includegraphics[width=1\textwidth]{./Illustrations/ultranpr_block_search2.pdf}
+	\caption{An example of the iterative block reconstruction.  (a) }
 	\label{fig:blocksearch}
+\end{figure*}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1\columnwidth]{./Illustrations/ngpst_pseudosoma.pdf}
+	\caption{Comparison of neuronal population reconstruction on an enhanced image block. (a) Using NGPST without using neurite tips as pseudo somas. 	(b) Using NGPST with neurite tips as pseudo somas. Separated neurons are shown in different colors. }
+	\label{fig:ngpst_pseudosoma}
 \end{figure}
 
 \subsubsection{Neurites Fusion from Adjacent Blocks}
 \label{sec:fusion}
 
 Since neurons would be split into fragmented neurites when dividing the raw image into blocks, neurites from adjacent blocks need to be correctly connected, and the connection should be as continuous and smooth as possible.
-\md{Given two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$, and their reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$, for each neurite ${N}_{ai}$, we look for the neurite ${N}_{bj}$ which has the largest overlapping volume with ${N}_{ai}$ in block B. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete reconstruction.   } 
+\md{Given two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$, and their reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$, for each neurite ${N}_{ai}$, we look for the neurite ${N}_{bj}$ which has the largest overlapping volume with ${N}_{ai}$. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete reconstruction.} 
 \xj{So you fuse the whole neurites together?}
-
-
-
-As fragmented neurites in the overlapping area may belong to different neurons, we first match them \xj{whom?} by comparing the overlapping region between every two neurites from adjacent blocks.
-%
-Then, the matched neurites are fused to get a continuous and smooth reconstruction. 
-\xj{This matching process does not matter with different neurons..}
+\delete{
+As fragmented neurites in the overlapping area may belong to different neurons, we first match them \xj{whom?} by comparing the overlapping region between every two neurites from adjacent blocks.Then, the matched neurites are fused to get a continuous and smooth reconstruction. \xj{This matching process does not matter with different neurons..}
+}
 
 However, directly assembling matched neurites would cause over-tracing and topological discrepancy, as shown in Fig.~\ref{fig:overlap_discrepancy}.
 The over-tracing problem \xj{highlight the problem in the figure} is caused by the overlap between blocks when the respective neurites from these blocks are assembled.
@@ -235,10 +239,11 @@ But this region is inside the adjacent block due to the overlap between them, wh
 Therefore, when assembling two matched neurites from adjacent blocks, we only consider neuronal compartments which are not near the boundary of the corresponding block. 
 \xj{highlight the boundary area to distinguish with the block. }
 
-\begin{figure}[t]
+\begin{figure}[th]
 	\centering
-	\includegraphics[width=1\columnwidth]{./Illustrations/neuorns_fusion2.pdf}
-	\caption{Two examples of correcting the over-tracing and topological discrepancy errors by our fusion algorithm. These reconstructions are shown in skeleton mode for better visualization. \xj{Show all neurites in two blocks. }}
+	\includegraphics[width=1\columnwidth]{./Illustrations/neuorns_fusion5.png}
+	\caption{
+		Two examples of over-tracing (yellow) and topological discrepancy (red) errors when assembling two overlapped neurites. These reconstructions are shown in skeleton mode for better visualization. \xj{Show all neurites in two blocks.}}
 	\label{fig:overlap_discrepancy}
 \end{figure}
 
