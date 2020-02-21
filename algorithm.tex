@@ -150,22 +150,16 @@ Iteration by iteration, the completeness and accuracy of neuron reconstruction a
 
 
 Our PLNPR enhances the image signal and traces neurons for each image block.
-However, for a ultra-scale OM images consisting of a large number of blocks, neurons usually exist across multiple blocks. 
-Therefore, \md{an effective stitching process} is needed to reconstruct complete neuronal populations. 
+However, for a ultra-scale OM images consisting of a great number of blocks, neurons usually exist across multiple blocks. 
+We propose an effective stitching process by looking for the most continuous block to trace for dense neuron populations from multiple neighboring blocks. 
 %
 As somas are where signals from the dendrites are joined and pass on, the blocks that contains somas are the most probable locations to start the tracing.
-We start from reconstructing neurons in the blocks where somas can be detected and then trace the neurons in neighboring blocks.  
+We start from reconstructing neurons in the blocks where somas can be detected.
+For blocks where no soma can be detected, we trace the neurons by generating pseudo-somas from the neurite tips from their neighboring blocks. 
 %
-Our UltraNPR consists of four key components: a soma detection module, a local reconstruction module, a block search module, and a neurites fusion module, as shown is~\ref{fig:ultra_framework}.
-\xj{TODO: ORDER}
-\delete{
-%At first, the large-scale image is divided into overlapped 3D blocks of the same size. 
-%The overlap between adjacent blocks is introduced to avoid false continuation and increase the robustness of the reconstruction.
-The soma detection module is used to detect somas from each block.
-The local reconstruction module is based on our PLNPR algorithm to reconstruct neurons from low-quality image blocks.
-To reconstruct a large-scale image block by block,  we repeatedly apply the block search module to determine what the next block needs to be reconstructed. 
-Finally, the neurites fusion module is applied to obtain a complete and continuous reconstruction from adjacent blocks.
-}
+Finally, the neurites reconstructed in local blocks are fused to get complete neurons. 
+Fig.~\ref{fig:ultra_framework} shows the pipeline of our UltraNPR approach. 
+%Our UltraNPR consists of four components: a soma detection module, a block reconstruction module, a block search module, and a neurite fusion module, as shown in
 
 
 \subsubsection{Initial Soma Detection}
@@ -173,11 +167,11 @@ Finally, the neurites fusion module is applied to obtain a complete and continuo
 
 In order to detect somas in a ultra-scale image efficiently, we apply the soma detection algorithm~\cite{Quan2013} on each block separately. 
 %
-For each block $B_{i}$, we get a set of somas $\hat{S}_i = s_{ik}, k=1,\ldots,M_{i} $. 
+For each block $B_{i}$, we get a set of somas.
+% $\hat{S}_i = s_{ik}, k=1,\ldots,M_{i} $. 
 %Each soma $ s_{ik} $ is represented by its center $ (x,y,z) $ and radius $ r $.
 Due to the overlap between blocks, somas in the overlapped area would be detected repeatedly.
-We merge the overlapped somas in adjacent blocks by averaging their position and radius to deal with this over-detection problem.
-After that, we get a set of somas $ \mathbf{S} $ in the large-scale image, \md{as shown in Fig.~{4} of the supplementary file.}
+We merge the overlapped somas in adjacent blocks by averaging their position and radius and get a set of somas $\mathbf{S} $ in the large-scale image, \md{as shown in Fig.~4 of the supplementary file.}
 %The soma detection results from the large-scale image are visualized in Fig.~{4} of the supplementary file.
 %These somas are also used to define the initial blocks for neuron reconstruction in the next step.
 
@@ -186,64 +180,68 @@ After that, we get a set of somas $ \mathbf{S} $ in the large-scale image, \md{a
 \label{sec:trace}
 
 %Since the raw image is too large to directly load it into computer memory before reconstruction, we reconstruct the neuronal population block by block.
+%At the beginning, each block $B_{i}$ is initialized with a flag $ f_i = 0$ to indicate that it has not been reconstructed.
 %
-At the beginning, each block $B_{i}$ is initialized with a flag $ f_i = 0$ to indicate that it has not been reconstructed.
+After soma detection, if a block $B_{i}$ contains somas, we apply our PLNPR to reconctruct neurites and get a set of neurites $\mathcal{N}_{i}$ in this block, as shown by the blocks in yellow frames in Fig.~\ref{fig:blocksearch}(a).
+%and set $flag(B_{i})= 1 $ to indicate that it has been reconstructed.
 %
-After soma detection, if a block $ B_{i}$ contains somas, we apply our PLNPR to reconctruct neurites $ N_{i} $ from it, and set $flag(B_{i})= 1 $ to indicate that it has been reconstructed.
-%
-For the remaining unreconstructed blocks, we compute the number of its neighboring blocks that have been reconstructed. 
-The unreconstructed block $B^*$ with the largest number of neighboring reconstructed blocks is selected for reconstruction next.
+For the remaining unreconstructed blocks, we check its neighboring blocks that have been reconstructed and add the neurite tips from the reconstructed blocks as its pseudo somas. 
 %
 Though NGPST can perform neuron tracing without any somas, it typically fails to separate neurons with dense neurites, as shown in Fig.~\ref{fig:ngpst_pseudosoma}(a).
 %
 We follow the structure of the reconstructed neurons in the blocks that have been traced by set the neurite tips as pseudo somas for NGPST in the unreconstructed block.
 %
-More specifically, for each neighboring reconstructed block of $ B^* $, we collect the neuronal compartments that are close to the boundary of $ B^* $, and use them as the pseudo-somas for growing the neuronal structure in $B^*$.
-%Since these compartments typically indicate the continuity of the structure of neurons,  we call them as terminal tips and use them as the pseudo-somas for growing the neuronal structure in $ B^* $.
-After that, we get its neurites set $ N^* $, and set $ flag(B^*) = 1 $.
+The unreconstructed block $B^*$ which has the largest number of neighboring reconstructed blocks and the largest number of pseudo somas is selected for reconstruction next.
+%
+More specifically, for each neighboring reconstructed block of $ B^*$, we collect the neuronal compartments that are close to the boundary of $ B^* $, and use them as the pseudo-somas for growing the neuronal structure in $B^*$.
+After that, we get its neurites set $ \mathcal{N}^* $.
+Fig.~\ref{fig:blocksearch} (b)(c) show two examples of unreconstructed blocks (red) that to be traced from its neighboring blocks (yellow) that have been reconstructed. 
 %
 This block search and reconstruction process continues iteratively until all blocks have been reconstructed.
+%
 
 
-\md{Fig.~\ref{fig:blocksearch} shows the procedure of our iterative local reconstruction. the order of propagation, comparison between NGPST with/without neurite tips as pseudo somas. }
+
+%\md{Fig.~\ref{fig:blocksearch} shows the procedure of our iterative local reconstruction. the order of propagation, comparison between NGPST with/without neurite tips as pseudo somas. }
 
 \begin{figure*}[t]
 	\centering
 	%\vspace{1cm}
-	\includegraphics[width=1\textwidth]{./Illustrations/ultranpr_block_search2.pdf}
-	\caption{An example of the iterative block reconstruction.  (a) }
+	\includegraphics[width=0.8\textwidth]{./Illustrations/ultranpr_block_search2.pdf}
+	\caption{An example of the iterative block reconstruction for ten blocks. (a) The number indicate the order in which the ten blocks are traced. The blocks 1, 2, 3, 4 are firstly reconstructed using our PLNPR since there are somas detected in these four blocks. (b) The block-6 is reconstructed by setting the neurite tips (red dots) from its two neighboring blocks (3, 4) as pseudo somas for tracing. (c) The block-7 is reconstructed by setting the neurite tips   as pseudo somas from its neighboring block (1). \xj{change the order of b,c.}}
 	\label{fig:blocksearch}
 \end{figure*}
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\columnwidth]{./Illustrations/ngpst_pseudosoma.pdf}
-	\caption{Comparison of neuronal population reconstruction on an enhanced image block. (a) Using NGPST without using neurite tips as pseudo somas. 	(b) Using NGPST with neurite tips as pseudo somas. Separated neurons are shown in different colors. }
+	\caption{Comparison of neuronal population reconstruction on an enhanced image block. (a) Using NGPST without using neurite tips as pseudo somas. 	(b) Using NGPST with neurite tips as pseudo somas. Separated neurons are shown in different colors. \xj{What about two neurites belong to the same neuron but separate at the boundary?} }
 	\label{fig:ngpst_pseudosoma}
 \end{figure}
 
-\subsubsection{Neurites Fusion from Adjacent Blocks}
+\subsubsection{Neurite Fusion from Adjacent Blocks}
 \label{sec:fusion}
 
-Since neurons would be split into fragmented neurites when dividing the raw image into blocks, neurites from adjacent blocks need to be correctly connected, and the connection should be as continuous and smooth as possible.
-\md{Given two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$, and their reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$, for each neurite ${N}_{ai}$, we look for the neurite ${N}_{bj}$ which has the largest overlapping volume with ${N}_{ai}$. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete reconstruction.} 
-\xj{So you fuse the whole neurites together?}
-\delete{
-As fragmented neurites in the overlapping area may belong to different neurons, we first match them \xj{whom?} by comparing the overlapping region between every two neurites from adjacent blocks.Then, the matched neurites are fused to get a continuous and smooth reconstruction. \xj{This matching process does not matter with different neurons..}
-}
-
-However, directly assembling matched neurites would cause over-tracing and topological discrepancy, as shown in Fig.~\ref{fig:overlap_discrepancy}.
-The over-tracing problem \xj{highlight the problem in the figure} is caused by the overlap between blocks when the respective neurites from these blocks are assembled.
-The topological discrepancy \xj{highlight the problem in the figure} is mainly caused by the lack of context information for tracing methods, which makes the reconstruction near the block boundary often inaccurate and unreliable.
+Since neurons would be split into fragmented neurites when dividing the raw image into blocks, we now fuse the neurites from adjacent blocks that are reconstructed separately into connected and complete neurons.
+\md{Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for each neurite ${N}_{ai}$, we look for the neurite ${N}_{bj}$ which has the largest overlapping volume with ${N}_{ai}$. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete neuron.} 
+ 
+There might be over-tracing and topological discrepancy between two neurites that are reconstructed in two blocks separately, as shown in Fig.~\ref{fig:overlap_discrepancy}.
+Generally, the reconstruction quality near the block boundary often inaccurate and unreliable.
 But this region is inside the adjacent block due to the overlap between them, which means substantial context information of this region can be provided to the tracing methods and leads to a better reconstruction.
+%
 Therefore, when assembling two matched neurites from adjacent blocks, we only consider neuronal compartments which are not near the boundary of the corresponding block. 
 \xj{highlight the boundary area to distinguish with the block. }
+
+
+
+\delete{However, directly assembling matched neurites would cause over-tracing and topological discrepancy, as shown in Fig.~\ref{fig:overlap_discrepancy}.
+The over-tracing problem is caused by the overlap between blocks when the respective neurites from these blocks are assembled.
+The topological discrepancy is mainly caused by the lack of context information for tracing methods, which makes the reconstruction near the block boundary often inaccurate and unreliable.}
 
 \begin{figure}[th]
 	\centering
 	\includegraphics[width=1\columnwidth]{./Illustrations/neuorns_fusion5.png}
-	\caption{
-		Two examples of over-tracing (yellow) and topological discrepancy (red) errors when assembling two overlapped neurites. These reconstructions are shown in skeleton mode for better visualization. \xj{Show all neurites in two blocks.}}
+	\caption{Examples of over-tracing (yellow) and topological discrepancy (red) when assembling two overlapped neurites. These reconstructions are shown in skeleton mode for better visualization.}
 	\label{fig:overlap_discrepancy}
 \end{figure}
 
@@ -261,11 +259,11 @@ For two matched neurites, we select the longer one as the reference neurite $\ma
 For each branch $\mathcal{H_B}$ in neurite $\mathcal{N_B}$, we search in neurite $\mathcal{N_A}$ to see if there is a branch $\mathcal{H_A}$ that overlaps with it.
 \xj{Do you have order for the branches? for root to leaf or leaf to root? say, if you merge a branch in the middle, what happens for all its children or parent branch?  }
 %
-
+\xj{compartment->dots. how do you get these point from branches? uniformly sampling? }
 Firstly, we remove the neuronal compartments in branch $\mathcal{H_A}$ and branch $\mathcal{H_B}$ that near the boundary of the corresponding block, and all branches that are connected to the removed compartments will also be removed. Here, this distance is set to be $70$ voxels.
 \xj{What distance? distance between what? how do you compute the distance?}
 
-Secondly, for each neuronal compartment in branch $\mathcal{H_B}$, if there are compartments of branch $\mathcal{H_A}$ around it, it will be removed; otherwise, it is considered to be valid. The searching radius is empirically set to be $10$ voxels.
+Secondly, for each remaining neuronal compartment in branch $\mathcal{H_B}$, if there are compartments of branch $\mathcal{H_A}$ around it, it will be removed; otherwise, it is considered to be valid. The searching radius is empirically set to be $10$ voxels.
 \xj{what is a compartment in a branch? it is necessary to show a figure to visualize a neurite, a branch, a compartment.   }
 \xj{Where is the searching radius used? Using a radius, what is the center? }
 
