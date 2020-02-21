@@ -100,7 +100,7 @@ In addition, the performance improvement gets stable about five iterations of th
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{./Illustrations/trace_networks_fscore11.pdf}
-	\caption{F-Score of neuron reconstruction on the VISoR-40 test dataset \xj{the whole dataset?} at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.}
+	\caption{F-Score of neuron reconstruction on the VISoR-40 testing dataset \xj{the whole dataset?} at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.}
 	\label{fig:fscore_DNNs}
 \end{figure}
 
@@ -300,6 +300,7 @@ With ever-increasing number of unlabeled neuron datasets are collected, our meth
 %\subsubsection{Experimental Settings}
 To reconstruct dense neuron populations in a large-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
 The overlap between adjacent blocks is set to be $300$ voxels in each dimension. 
+The $\delta_{\alpha}$ is set to be 70 voxels and the $\delta_{\beta}$ is set to be 10 voxels.
 %
 Our UltraNPR took just over one day \xj{in hours} to reconstruct the image on a cluster computer with $64$ GB of working memory and 20 NVIDIA 1080Ti GPUs.
 %
