@@ -236,58 +236,44 @@ This block search and reconstruction process continues iteratively until all blo
 	\label{fig:overlap_discrepancy}
 \end{figure}
 
-\subsubsection{Neurite Fusion from Adjacent Blocks}
+\subsubsection{Neurite Fusion in Adjacent Blocks}
 \label{sec:fusion}
 
 Since neurons would be split into fragmented neurites when dividing the raw image into blocks, we now fuse the neurites from adjacent blocks that are reconstructed separately into connected and complete neurons.
-\md{Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for each neurite ${N}_{ai}$, we look for the neurite ${N}_{bj}$ which has the largest overlapping volume with ${N}_{ai}$. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete neuron.} 
+Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for each neurite ${N}_{a}$, we look for the neurite ${N}_{b}$ which has the largest overlapping volume with ${N}_{a}$. If the overlapped volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a smooth and complete neuron.
  
 There might be over-tracing and topological discrepancy between two neurites that are reconstructed in two blocks separately, as shown in Fig.~\ref{fig:overlap_discrepancy}.
-Generally, the reconstruction quality near the block boundary often inaccurate and unreliable.
-But this region is inside the adjacent block due to the overlap between them, which means substantial context information of this region can be provided to the tracing methods and leads to a better reconstruction.
-%
-Therefore, when assembling two matched neurites from adjacent blocks, we only consider neuronal \md{points} which are not near the boundary of the corresponding block. 
-\xj{highlight the boundary area to distinguish with the block. }
-
-
-
-\delete{However, directly assembling matched neurites would cause over-tracing and topological discrepancy, as shown in Fig.~\ref{fig:overlap_discrepancy}.
-The over-tracing problem is caused by the overlap between blocks when the respective neurites from these blocks are assembled.
-The topological discrepancy is mainly caused by the lack of context information for tracing methods, which makes the reconstruction near the block boundary often inaccurate and unreliable.}
-
-
-\xj{What is the key insight of our fusion algorithm? Fusion order or blending weight or anything? }
-Based on the above observations, a fusion algorithm is designed to assemble the matched neurites.
+Generally, the reconstruction quality near the block boundary is less accurate and reliable than that in the middle of blocks because of less context. 
+Therefore, when fusing two neurites, we tend to keep the neurite segments in the middle of blocks as following. 
+%But this region is inside the adjacent block due to the overlap between them, which means substantial context information of this region can be provided to the tracing methods and leads to a better reconstruction.
+%Therefore, when assembling two matched neurites from adjacent blocks, we only consider neuronal \md{points} which are not near the boundary of the corresponding block. 
+  
 For two matched neurites, we select the longer one as the reference neurite $\mathcal{N}_A$, and merge the other neurite $\mathcal{N}_B$ to the reference neurite, as shown in Fig~\ref{fig:fusion_algorithm} (b).
 %
-For each branch $\mathcal{H_B}$ in neurite $\mathcal{N_B}$, we search in neurite $\mathcal{N_A}$ to see if there is a branch $\mathcal{H_A}$ that overlaps with it, as shown in Fig~\ref{fig:fusion_algorithm} (c)(d).
-
-%\xj{Do you have order for the branches? for root to leaf or leaf to root? say, if you merge a branch in the middle, what happens for all its children or parent branch? }
-%\xj{compartment->dots. how do you get these point from branches? uniformly sampling? }
-Firstly, for each neuronal point in branch $\mathcal{H_A}$ and branch $\mathcal{H_B}$, if the distance of this point and the boundary of the block to which it belongs is less than a threshold $\delta_{\alpha}$, it will be removed and all branches that are connected to the removed neuronal points will also be removed, as shown in Fig~\ref{fig:fusion_algorithm} (e).
-%we remove the neuronal points in branch $\mathcal{H_A}$ and branch $\mathcal{H_B}$ that near the boundary of the corresponding block, and all branches that are connected to the removed points will also be removed, as shown in Fig~\ref{fig:fusion_algorithm} (e). Here, this distance is set to be $70$ voxels.\xj{What distance? distance between what? how do you compute the distance?}
-
-Then, for each remaining neuronal point in branch $\mathcal{H_B}$, if there are neuronal points of branch $\mathcal{H_A}$ around it and the minimum distance between them is less than a threshold $\delta_{\beta}$, it will be removed; otherwise, it is considered to be valid, as Fig~\ref{fig:fusion_algorithm} (f) shows. 
-%The searching radius is empirically set to be $10$ voxels.
-%\xj{what is a compartment in a branch? it is necessary to show a figure to visualize a neurite, a branch, a compartment.}
-%\xj{Where is the searching radius used? Using a radius, what is the center? }
-After that, the edited branch $\mathcal{H_B}$ is connected to $\mathcal{H_A}$ by searching the nearest neuronal point in branch $\mathcal{H_A}$.
+Each neurite is decomposed to a set of neurite branches, as Fig.~\ref{fig:fusion_algorithm} \xj{(b) shows}.
+Each branch is sampled uniformly into a set of \md{fragments, as Fig.~\ref{fig:fusion_algorithm} (c) shows}.
 %
-When all branches $\mathcal{H_B}$ overlapping with the neurite $\mathcal{N_A}$ are processed, we can obtain the assembled neurite $\mathcal{N_{AB}}$, as shown in Fig~\ref{fig:fusion_algorithm} (g).
+For each branch of neurite $N_B$, we search a branch which has largest overlap with it in the reference neurite $N_A$, as Fig~\ref{fig:fusion_algorithm} (d) shows.
+To fuse the matched two branches, for each point $p_a$ in branch $F_a$, if $p$ lies in the boundary region of block $\blk_b$ ($\delta_{\alpha}$ voxels to the block boundary of $\blk_b$), it will be removed and all its child branches are also deleted, as shown in Fig~\ref{fig:fusion_algorithm} (e). \xj{where is this operation shown?}
+\md{The same deletion operation is performed on the points on branches $F_b$ that are located in the boundary regions of block $\blk_a$.}
+
+
+Then, for each remaining point $p_b$ in branch $\brc_b$, if there is a point $p_a$ on branch $\brc_a$ so that $dis(p_b,p_a)<\beta$, it will be removed, as Fig~\ref{fig:fusion_algorithm} (f) shows. \xj{i can not find which point is deleted. }
+%
+After that, the remaining part of branch $\brc_b$ is merged to the reference branch $\brc_a$ by connecting it to the nearest point in $\brc_a$.
+%
+Fig~\ref{fig:fusion_algorithm} (g) shows the final fusion results of the two neurites. 
+%
 If there are remaining branches $\mathcal{H_B}$ which are not overlapped with neurite $\mathcal{N_A}$, the $\mathcal{N_{AB}}$ will be updated by assembling the remaining branches $\mathcal{H_B}$.
-%\xj{show the steps of fusion algorithm and then the fusion results.}
-
-In this way, after all matched neurites are processed, we can obtain a continuous and smooth reconstruction from the two adjacent blocks, as shown in Fig~\ref{fig:fusion_algorithm} (h).
-%Fig.~\ref{fig:overlap_discrepancy} shows two examples of correcting the over-tracing and topological discrepancy errors by our algorithm.
-
+\xj{Does this mean that there might be branches not connected together in a neurite?}
+%
+By fusing all neurites in two adjacent blocks, we can obtain more complete reconstruction of dense neuronal populations, as shown in Fig~\ref{fig:fusion_algorithm} \md{(h)}.
+ 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\columnwidth]{./Illustrations/trace_four_blocks2.pdf}
 	\caption{One example of reconstructing neuronal populations from four adjacent blocks using our method. We can observe that, the fragmented neurites from adjacent blocks are assembled continuously and smoothly.}
 	\label{fig:reconstruct_blocks}
 \end{figure}
-%As shown in Fig.~\ref{fig:reconstruct_blocks}, the neuronal population from four adjacent blocks are successfully reconstructed from the noisy images by our UltraNPR method and the fragment neurites in adjacent blocks are assembled continuously and smoothly.
-%It can be seen that the neuronal population is successfully reconstructed from the noisy images and the fragment neurites in adjacent blocks are assembled continuously and smoothly.
-%The overall ``UltraNPR"" algorithm can be found in Algorithm~\ref{alg:reconstruction}.
-
+ 
 
