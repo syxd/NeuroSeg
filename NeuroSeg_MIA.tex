@@ -53,7 +53,7 @@
 \ead{xjchen99@ustc.edu.cn}
 %\fnref{fn1}}
 %\fntext[fn1]{This is author footnote for second author.}
-\author{Zhiwei  \snm{Xiong}}
+\author{Zhiwei \snm{Xiong}}
 %% Third author's email
 \author{Dong \snm{Liu}}
 \author{Junjie  \snm{Zeng}}
@@ -67,25 +67,24 @@
 
 \begin{abstract}
 Reconstruction of neuronal populations from ultra-scale optical microscopy (OM) images is essential to investigate neuronal circuits and brain mechanisms.
-The noises, low contrast, huge memory and high computational cost pose significant challenges in the neuronal population reconstruction.
+The noises, low contrast, huge memory requirement and high computational cost pose significant challenges in the neuronal population reconstruction.
 %
 Recently, many studies have been conducted to extract neuron signals using deep neural networks (DNNs).
 However, training such DNNs usually relies on a huge amount of voxel-wise annotations in OM images, which are expensive in terms of both finance and labor.
+%Moreover, the high memory cost of DNNs limits the volume of input images that can be handled at one time. 
 %
-Moreover, the high memory cost of DNNs limits the volume of input images that can be handled at one time. 
+In this paper, we propose a novel framework for dense neuronal population reconstruction in ultra-scale images.
 %
-In this paper, we propose a framework for dense neuronal population reconstruction in ultra-scale images.
+To solve the problem of high cost in obtaining manual annotation for training DNNs, we propose a progressive learning scheme for neuronal population reconstruction (PLNPR) which does not require any manual annotations. 
 %
-To solve the problem of high cost in obtaining manual annotation for network training, we propose an progressive learning scheme for neuronal population reconstruction (PLNPR) which does not require any manual annotations. 
+Our PLNPR scheme consists of a traditional neuron tracing module and a deep segmentation network that mutually complement and progressively promote each other. 
+%Based on the DNN model progressively trained, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
 %
-Our PLNPR scheme consists of a neuron tracing module and a segmentation network that mutually complement and progressively promote each other. 
-Based on the progressively learned model, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
+To reconstruct dense neuronal populations in a terabyte-sized ultra-scale image, we introduce an automatic framework which adaptively traces neurons block by block and fuses multiple neurons in overlapped regions continuously and smoothly.
 %
-To reconstruct dense neuronal populations in a terabyte-sized ultra-scale image, we introduce an automatic framework that adaptively traces neurons block by block and fuses multiple neurons in overlapped regions continuously and smoothly.
-%
-We build a dataset ``VISoR-40" which consists of 40 OM image blocks from cortical regions of a mouse.
-Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method for neuronal population reconstruction and single neuron reconstruction, respectively.
-Furthermore, we successfully apply our method to reconstruction of dense neuronal populations in a ultra-scale mouse brain slice. 
+We build a dataset ``VISoR-40" which consists of 40 large-scale OM image blocks from cortical regions of a mouse.
+Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method on neuronal population reconstruction and single neuron reconstruction.
+Furthermore, we successfully apply our method to reconstruct dense neuronal populations in a ultra-scale mouse brain slice. 
 The proposed adaptive block-wise reconstruction and fusion strategy greatly improve the completeness of neurites in dense neuronal population reconstruction. 
 \end{abstract}
 
@@ -106,20 +105,19 @@ The proposed adaptive block-wise reconstruction and fusion strategy greatly impr
 
 \section{Conclusion}
 \label{sec:conclusion}
-In this work, we propose PLNPR, an \md{unsupervised} progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
-Without using any manual annotations, we take advantage of neuron tracing techniques and deep segmentation networks, and make them mutually complement and promote each other progressively.
+In this work, we propose PLNPR, a progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
+Without using any manual annotations, our PLNPR method takes advantage of neuron tracing techniques and deep segmentation networks, and makes them mutually complement and promote each other progressively.
 We extensively validate the proposed PLNPR for neuron reconstruction and the results demonstrate the effectiveness and superiority of our method.
-%This framework can progressively train a deep segmentation network for extracting neuron voxels without using any manual an5421`notations. 
-%We extensively validate the proposed 3D DSN on two distinct applications and the results demonstrate the effectiveness and generalization of the proposed network.
-Furthermore, we introduce UltraNPR, a reconstruction algorithm that makes possible the neuronal population reconstruction from large-scale OM brain images.
-We also construct a new neuron dataset ``VISoR-40'' which consists of $ 40 $ OM image blocks for the evaluation of neuronal population reconstruction.
-This dataset will be published to facilitate further work on brain research, including but not limited to neuron counting, neuron reconstruction and neuron morphology analysis, and so on.
+Integrating PLNPR with an efficient block-wise tracing and fusion strategy, our UltraNPR successfully reconstruct dense neuronal populations in a ultra-scale OM images of a mouse brain slice.
+%
+We construct a new dataset ``VISoR-40'' which consists of 40 OM image blocks for evaluation of neuronal population reconstruction.
+This dataset is now available and we believe that it will facilitate further brain studies, including neuron counting, neuron reconstruction, neuron morphology analysis, and so on.
 
 \section*{Acknowledgements}
 This work was supported by the Natural Science Foundation of China [grant number 91732304]; and the Fundamental Research Funds for the Central Universities [grant numbers WK2380000002, WK3490000003].
  
 
-\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+\bibliographystyle{model2-names}\biboptions{authoryear}
 \bibliography{NeuroSegRef}
 
 \end{document}

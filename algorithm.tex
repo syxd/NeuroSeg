@@ -6,11 +6,13 @@
 	\caption{Diagram of our UltraNPR algorithm for neuronal population reconstruction in a large-scale brain slice.}
 	\label{fig:ultra_framework}
 \end{figure*}
+
+
 \md{
-Given a  large-scale noisy OM image, we follow a block-by-block reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
+Given a large-scale noisy OM image, we follow a block-by-block reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
 %
 The ultra-scale input image may contain billions or even trillions of voxels.
-Therefore, we first divide the input image into blocks that are averagely in size of $0.5mm\times0.5mm\times 0.5mm$ with some overlap. 
+Therefore, we first divide the input image into blocks that are averagely in size of $0.5mm\times 1mm\times 0.25mm$ with some overlap. 
 %
 For each block, we first enhance noisy image signals by deep neural network, which is trained by progressive learning from reconstructed neurons using traditional tracing algorithms. Then we reconstruct neuron in each block using the enhanced image. 
 %
