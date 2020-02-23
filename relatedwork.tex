@@ -1,5 +1,11 @@
 \section{Related Work}
 \label{sec:related work}
+\begin{figure*}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./Illustrations/framework_ultranpr.PNG}
+	\caption{Diagram of our UltraNPR algorithm for neuronal population reconstruction in a large-scale brain slice.}
+	\label{fig:ultra_framework}
+\end{figure*}
 
 %\subsection{Techniques for Robust Neuron Reconstruction}
 %\label{sec:neuron reconstruction}
@@ -40,12 +46,3 @@ The input images usually contain only one single neuron so that the signal is ve
 %
 In comparison, we target a more challenging task to reconstruct dense neuronal \md{population} in ultra-scale OM images, where closely spaced neurites that belong to different neurons are difficult be distinguished for existing methods that are designed for single neuron reconstruction.
 
-%
-%Despite their great improvement in neuron reconstruction from large-scale images, all of them mainly focus on single neuron reconstruction and the images they process usually contain only one neuron.
-%However, a large-scale OM brain image usually contains dense neuronal populations in practice.
-%Since these methods are mainly designed for large-scale single neuron reconstruction, they are not useful for dense neuronal populations, in which neurons frequently contact or close to each other in the image.
-%These methods can be extended to sparsely spaced neurons but are not useful for dense neuronal populations, in which neurites frequently contact or close to each other in the image. 
-%If closely spaced neurites belonging to different neurons are not distinguished, individual neurons may be assembled in the reconstruction. 
-
-%Therefore, a complete reconstruction of dense neuronal populations from large-scale images still remains challenging for existing methods.
-%In this work, we introduce a new algorithm to reconstruct neuronal populations from large-scale or even ultra-large-scale images.
