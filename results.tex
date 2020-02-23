@@ -50,7 +50,7 @@ The key idea of PLNPR is to progressively improve the performance of neuron reco
 In order to demonstrate the performance improvement, four widely-used tracing methods, including APP1~\cite{Peng2011}, APP2~\cite{Xiao2013}, MOST\cite{Wu2014} and NGPST~\cite{Quan2015}, are tested as the neuron tracing module in our framework. 
 We use their implementations in the software Vaa3D~\cite{Peng2014}. 
 %
-Eight iterations are tested on our VISoR-40 dataset, and the improvement of neuronal population reconstruction is shown in Fig.~\ref{fig:fscore_iterations}.
+Eight iterations are tested on our VISoR-40 dataset, and the improvement of neuronal population reconstruction is shown in Fig.~\ref{fig:ablation_study_plnpr}~(a).
 We only show the F-Score which is widely used to reflect the overall performance of neuron reconstruction.
 %
 Moreover, the neuron reconstruction performance on a testing block at different iterations are shown in the Fig.~\ref{fig:trace_iterations} and \md{Table.~\ref{table:trace_iterations}}.
@@ -59,13 +59,14 @@ Moreover, the neuron reconstruction performance on a testing block at different 
 The results show that our progressive learning strategy effectively facilitates conventional tracing methods to reconstruct more complete neuronal populations.
 In addition, the performance improvement gets stable about five iterations of the progressive learning for all the tested tracing methods. 
 
-
+\delete{
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{./Illustrations/trace_iterations_fscore8.pdf}
 	\caption{Progressively improved F-score of neuron reconstruction results under eight iterations in our progressive learning framework using four neuron tracing methods.}% APP1~\cite{Peng2011} and its variant APP2~\cite{Xiao2013}, MOST\cite{Wu2014} and NGPST~\cite{Quan2015} on the VISoR-40 test dataset at eight iterations. For each of the four neuron tracing methods, our approach progressively improves their reconstruction results.} 
 	\label{fig:fscore_iterations}
 \end{figure}
+}
 
 \begin{figure*}[t]
 	\centering
@@ -73,27 +74,22 @@ In addition, the performance improvement gets stable about five iterations of th
 		\begin{minipage}[b]{0.32\linewidth}
 			\centering
 			\includegraphics[height=3.7cm]{./Illustrations/trace_iterations_fscore8.pdf}
-		\end{minipage}
-	}
-	%\hspace{0.1cm}
+		\end{minipage}}
 	\subfigure[]{
 		\begin{minipage}[b]{0.32\linewidth}
 			\centering
 			\includegraphics[height=3.7cm]{./Illustrations/trace_networks_fscore11.pdf}
-		\end{minipage}
-	}
-	%\hspace{0.1cm}
+		\end{minipage}}
 	\subfigure[]{
 		\begin{minipage}[b]{0.32\linewidth}
 			\centering
 			\includegraphics[height=3.7cm]{./Illustrations/weight_paprameter7.pdf}
-		\end{minipage}
-	}
+		\end{minipage}}
 	\caption{
-	(a) Comparisons of neuronal population reconstruction performance on the VISoR-40 test dataset at different iterations using four neuron tracing methods.
-	(b) F-Score of neuron reconstruction on the VISoR-40 testing dataset at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.
-	(c) Neuron reconstruction performance with different $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement on the VISoR-40 test dataset. From left to right, the value of $\alpha$ increases from $0$ to $1$ by a step of $0.1$.}
-	\label{fig:tracing_performance_plnpr}
+		(a) Comparisons of neuronal population reconstruction performance on the VISoR-40 test dataset at different iterations using four neuron tracing methods. 
+		(b) F-Score of neuron reconstruction on the VISoR-40 testing dataset at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.
+		(c) Neuron reconstruction performance with different $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement on the VISoR-40 test dataset. From left to right, the value of $\alpha$ increases from $0$ to $1$ by a step of $0.1$.}
+	\label{fig:ablation_study_plnpr}
 \end{figure*}
 
 
@@ -104,6 +100,7 @@ In addition, the performance improvement gets stable about five iterations of th
 	% APP1~\cite{Peng2011}, APP2~\cite{Xiao2013}, MOST\cite{Wu2014} and NGPST~\cite{Quan2015}.}
 	\label{fig:trace_iterations}
 \end{figure}
+
 
 \begin{table}[t]
 	\centering
@@ -126,20 +123,21 @@ In addition, the performance improvement gets stable about five iterations of th
 	\end{tabular}
 \end{table}
 
+\delete{
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{./Illustrations/trace_networks_fscore11.pdf}
 	\caption{F-Score of neuron reconstruction on the VISoR-40 testing dataset at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.}
 	\label{fig:fscore_DNNs}
 \end{figure}
-
+}
 
 
 \subsubsection{Neuron Segmentation Network}
 
 To further verify the effectiveness and robustness of our progressive learning strategy, we test three commonly used deep segmentation networks, including 3D DSN~\cite{Dou2017}, 3D U-Net~\cite{Cicek2016} and a 3D version of HRNet~\cite{Sun2019}, for generating the neuron probability map.
 %All of them have the same input size, i.e. $160 \times 160\times 160$.
-Five iterations are tested on our VISoR-40 dataset, and the F-Score improvement of reconstruction results is shown in the Fig.~\ref{fig:fscore_DNNs}. 
+Five iterations are tested on our VISoR-40 dataset, and the F-Score improvement of reconstruction results is shown in the Fig.~\ref{fig:ablation_study_plnpr}~(b). 
 %
 It can be seen that our PLNPR algorithm effectively improves the neuron reconstruction performance by combining any one of the three neuron segmentation networks.
 Consequently, the segmentation network and traditional tracing method can complement and promote each other, leading to more complete reconstruction.
@@ -147,7 +145,7 @@ Consequently, the segmentation network and traditional tracing method can comple
 
 \subsubsection{Enhancement Parameter} 
 
-In order to explore the influence of parameter $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement, we adopt different values for $\alpha$, and the results are shown in Fig.~\ref{fig:weight_paprameter}.
+In order to explore the influence of parameter $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement, we adopt different values for $\alpha$, and the results are shown in Fig.~\ref{fig:ablation_study_plnpr}~(c).
 $\alpha=0$ means that the raw image block is directly used as input for the tracing module.
 $\alpha=1$ means that only the probability maps are used as input for neuron tracing. 
 It indicates that the performance is improved by combing the probability map with the raw intensity, mainly because that the probability map reflects the long-range trajectory structures while the original intensity preserves signal details to some extent.
@@ -155,12 +153,14 @@ It indicates that the performance is improved by combing the probability map wit
 %Hence, the chosen of the parameter $\alpha$ is not very demanding and the reconstruction performance can achieve significant improvement with any $\alpha >0$. 
 In this paper, we empirically select $\alpha=0.1$ to reduce the influence of false positive predictions in probability maps due to the limited performance of the DNN model trained by pseudo labels and increase the robustness of the whole framework.
 
+\delete{
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{./Illustrations/weight_paprameter7.pdf}
 	\caption{Neuron reconstruction performance with different $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement on the VISoR-40 test dataset. From left to right, the value of $\alpha$ increases from $0$ to $1$ by a step of $0.1$.  }
 	\label{fig:weight_paprameter}
 \end{figure}
+}
 
 
 \subsubsection{Comparison on VISoR-40 Dataset}
