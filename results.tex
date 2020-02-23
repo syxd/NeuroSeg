@@ -21,7 +21,7 @@ The VISoR-40 dataset consists of 40 OM image blocks cropped from the mouse brain
 We randomly select $ 32 $ blocks for progressively training the segmentation network in our PLNPR.
 %
 The remaining 8 blocks with manual annotations are used as the testing data.
-Each testing block is first labeled manually and independently by two experts. Then, by cross-checking each other's result, their agreed annotation is approved by an expert \xj{the third one?} to generate the final ground truth.
+Each testing block is first labeled manually and independently by two experts. Then, by cross-checking each other's result, their agreed annotation is approved by an expert to generate the final ground truth.
 
 \subsubsection{Experimental Settings and Evaluation Metrics}
 
@@ -67,6 +67,35 @@ In addition, the performance improvement gets stable about five iterations of th
 	\label{fig:fscore_iterations}
 \end{figure}
 
+\begin{figure*}[t]
+	\centering
+	\subfigure[]{
+		\begin{minipage}[b]{0.32\linewidth}
+			\centering
+			\includegraphics[height=3.7cm]{./Illustrations/trace_iterations_fscore8.pdf}
+		\end{minipage}
+	}
+	%\hspace{0.1cm}
+	\subfigure[]{
+		\begin{minipage}[b]{0.32\linewidth}
+			\centering
+			\includegraphics[height=3.7cm]{./Illustrations/trace_networks_fscore11.pdf}
+		\end{minipage}
+	}
+	%\hspace{0.1cm}
+	\subfigure[]{
+		\begin{minipage}[b]{0.32\linewidth}
+			\centering
+			\includegraphics[height=3.7cm]{./Illustrations/weight_paprameter7.pdf}
+		\end{minipage}
+	}
+	\caption{
+	(a) Comparisons of neuronal population reconstruction performance on the VISoR-40 test dataset at different iterations using four neuron tracing methods.
+	(b) F-Score of neuron reconstruction on the VISoR-40 testing dataset at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.
+	(c) Neuron reconstruction performance with different $\alpha$ in Eq.~\eqref{equ: enhance} for image enhancement on the VISoR-40 test dataset. From left to right, the value of $\alpha$ increases from $0$ to $1$ by a step of $0.1$.}
+	\label{fig:tracing_performance_plnpr}
+\end{figure*}
+
 
 \begin{figure}[t]
 	\centering
@@ -100,7 +129,7 @@ In addition, the performance improvement gets stable about five iterations of th
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{./Illustrations/trace_networks_fscore11.pdf}
-	\caption{F-Score of neuron reconstruction on the VISoR-40 testing dataset \xj{the whole dataset?} at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.}
+	\caption{F-Score of neuron reconstruction on the VISoR-40 testing dataset at five iterations. Combining any one of the three neuron segmentation networks, our approach progressively improves the reconstruction performance.}
 	\label{fig:fscore_DNNs}
 \end{figure}
 
@@ -301,9 +330,10 @@ With ever-increasing number of unlabeled neuron datasets are collected, our meth
 %\subsubsection{Experimental Settings}
 To reconstruct dense neuron populations in an ultra-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
 The overlap between adjacent blocks is set to be $300$ voxels along each dimension. 
+The $\delta_{ovlp}$ is set to be 10 voxels.
 The $\delta_{\alpha}$ is set to be 70 voxels and the $\beta$ is set to be 10 voxels.
 %
-Our UltraNPR took just over one day \xj{in hours} to reconstruct the image on a cluster computer with $64$ GB of working memory and 20 NVIDIA 1080Ti GPUs.
+Our UltraNPR takes just over one day \xj{in hours} to reconstruct the image on a cluster computer with $64$ GB of working memory and 20 NVIDIA 1080Ti GPUs.
 %
 As shown in Fig.~\ref{fig:reconstruct_brain}, a neuronal population which consists of $5348$ neurons is successfully reconstructed from the large-scale image.
 
