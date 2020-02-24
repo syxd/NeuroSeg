@@ -220,7 +220,7 @@ To fuse the matched two branches, for each point $p_a$ in the branch $F_a$, if $
 The same deletion operation is performed on the points on branches in $N_b$ that are located in the boundary regions of block $\blk_b$.
 
 
-Then, for each remaining point $p_b$ in branch $\brc_b$, if there is a point $p_a$ in branch $\brc_a$ so that $dis(p_b,p_a)<\beta$, it will be removed since the point $p_a$ is kept for the neurite, as Fig~\ref{fig:fusion_algorithm} (g) shows.
+Then, for each remaining point $p_b$ in branch $\brc_b$, if there is a point $p_a$ in branch $\brc_a$ so that $dis(p_b,p_a)<\delta_{pt}$, it will be removed since the point $p_a$ is kept for the neurite, as Fig~\ref{fig:fusion_algorithm} (g) shows.
 %
 After that, the remaining part of branch $\brc_b$ is merged to the reference branch $\brc_a$ by connecting it to the nearest point in $\brc_a$.
 After all matched branches are processed as above, we can obtain the fused neurite $N_{ab}$.
