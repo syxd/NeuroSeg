@@ -22,7 +22,7 @@ However, these methods employs hand-crafted features that usually suffer from li
 Recently, deep-learning-based methods~\cite{Li2017, Zhou2018, Xu2016,Kozinski-MIA2020} bring the power of DNNs to improve the reconstruction performance. 
 Instead of manually designing sophisticated features, these DNNs learn feature representations in a data-driven way and extract more distinctive features. 
 With more complicated classifiers employed to segment neuron voxels from image blocks, these methods achieve more robust reconstruction results. 
-Despite great \md{improvements}, these DNN-based methods rely on extensive manual annotations of neuron voxels for network training.
+Despite great improvements, these DNN-based methods rely on extensive manual annotations of neuron voxels for network training.
 Unfortunately, due to the complicated morphology of neurons and the low quality of OM images, such annotations are very costly to obtain in terms of both time and labor.
 %
 In comparison, we propose a novel iterative framework to progressively improve the 3D DNN-based neuron reconstruction performance without using manual annotations.
@@ -44,5 +44,5 @@ Starting from the cell body, the neurites are then traced in neighboring blocks 
 However, all of these methods focus on single neuron reconstruction.
 The input images usually contain only one single neuron so that the signal is very sparse without confusion of different neurons. 
 %
-In comparison, we target a more challenging task to reconstruct dense neuronal \md{population} in ultra-scale OM images, where closely spaced neurites that belong to different neurons are difficult be distinguished for existing methods that are designed for single neuron reconstruction.
+In comparison, we target a more challenging task to reconstruct dense neuronal populations in ultra-scale OM images, where closely spaced neurites that belong to different neurons are difficult be distinguished for existing methods that are designed for single neuron reconstruction.
 

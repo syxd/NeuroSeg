@@ -8,7 +8,6 @@
 \end{figure*}
 
 
-\md{
 Given a large-scale noisy OM image, we follow a block-by-block neruon reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
 %
 The ultra-scale input image may contain billions or even trillions of voxels.
@@ -18,7 +17,7 @@ For each block, we first enhance the noisy images by a deep neural network, whic
 Then we reconstruct multiple neurons in each block using the enhanced image. 
 %
 Since it is more reliable to start from somas rather than subtle neurites for neuron reconstruction, our UltraNPR employs an effective block propagation strategy to trace dense neuronal populations in an adaptive order. 
-Finally, we fuse overlapped neurites in adjacent blocks to reconstruct complete neuronal populations for the whole ultra-scale image.}
+Finally, we fuse overlapped neurites in adjacent blocks to reconstruct complete neuronal populations for the whole ultra-scale image.
 
 \subsection{PLNPR for Robust Neuron Reconstruction}
 %\subsection{Unsupervised Progressive Learning for Neuronal Population Reconstruction}
@@ -130,7 +129,7 @@ Iteration by iteration, the completeness and accuracy of neuron reconstruction a
 \end{figure}
 
 
-Our PLNPR enhances the image \md{signals} and traces neurons \md{from} each image block.
+Our PLNPR enhances the image signals  and traces neurons from each image block.
 However, neurons usually exist across multiple blocks in an ultra-scale image. 
 % 
 We propose an effective stitching process by looking for the most continuous block to trace dense neuron populations from multiple neighboring blocks. 
@@ -138,7 +137,7 @@ We propose an effective stitching process by looking for the most continuous blo
 As somas are where signals from the dendrites are joined and pass on, we start from reconstructing neurons in the blocks where somas can be detected.
 For blocks where no soma can be detected, we trace the neurons by generating pseudo-somas from the neurite tips from their neighboring blocks. 
 %
-Finally, the neurites reconstructed \md{from} local blocks are fused to get complete neurons. 
+Finally, the neurites reconstructed from local blocks are fused to get complete neurons. 
 Fig.~\ref{fig:ultra_framework} shows the pipeline of our UltraNPR approach. 
 %Our UltraNPR consists of four components: a soma detection module, a block reconstruction module, a block search module, and a neurite fusion module, as shown in
 
@@ -172,7 +171,7 @@ In order to avoid under-segmentation of neurons, we follow the neuron structure 
 %
 Therefore, for each iteration of our block propagation, the unreconstructed block $B^*$ which has the largest number of neighboring reconstructed blocks and the largest number of pseudo somas is selected for reconstruction next.
 %
-More specifically, for each neighboring reconstructed block of $B^*$, we collect the neuronal \md{points} that are close to the boundary of $B^*$, and use them as the pseudo-somas for growing the neuronal structure in $B^*$.
+More specifically, for each neighboring reconstructed block of $B^*$, we collect the neuronal points that are close to the boundary of $B^*$, and use them as the pseudo-somas for growing the neuronal structure in $B^*$.
 After that, we get its neurites set $ \mathcal{N}^*$.
 Fig.~\ref{fig:blocksearch} shows the block propagation and reconstruction process of ten neighboring blocks. 
 %(b)(c) show two examples of unreconstructed blocks (red) that to be traced from its neighboring blocks (yellow) that have been reconstructed. 
@@ -213,7 +212,7 @@ Therefore, when fusing two neurites, we tend to keep the neurite segments in the
 For two matched neurites, we select the longer one as the reference neurite $N_a$, and merge the other neurite $N_b$ to the reference neurite, as shown in Fig.~\ref{fig:fusion_algorithm} (b).
 %
 Each neurite is decomposed to a set of neurite branches, as Fig.~\ref{fig:fusion_algorithm} (c) shows.
-Each branch is sampled uniformly into a set of \md{fragments}, as Fig.~\ref{fig:fusion_algorithm} (d) shows.
+Each branch is sampled uniformly into a set of fragments, as Fig.~\ref{fig:fusion_algorithm} (d) shows.
 %
 For each branch of neurite $N_b$, we search the branch which has the largest overlapped volume with it in the reference neurite $N_a$, as Fig~\ref{fig:fusion_algorithm} (f) shows.
 To fuse the matched two branches, for each point $p_a$ in the branch $F_a$, if $p_a$ lies in the boundary region of block $\blk_a$ ($\delta_{bound}$ voxels to the block boundary of $\blk_a$), it will be removed and all its child branches are also deleted, as shown in Fig~\ref{fig:fusion_algorithm} (g).  

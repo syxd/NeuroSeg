@@ -24,11 +24,11 @@ Therefore, an effective and automatic reconstruction algorithm for large-scale n
  % 
  
  
-Attempts have been made for neuron reconstruction for large-scale OM images in recent years, such as Neuron Crawler~\cite{Zhou2015}, \md{UltraTracer~\cite{Peng2017} and MEIT~\cite{Wang2018}}.
+Attempts have been made for neuron reconstruction for large-scale OM images in recent years, such as Neuron Crawler~\cite{Zhou2015}, UltraTracer~\cite{Peng2017} and MEIT~\cite{Wang2018}.
 A common solution is to divide the large-scale image into blocks and then trace neurons block by block.
-Despite their great \md{improvements} in this task, several limitations still remain.
+Despite their great improvements in this task, several limitations still remain.
 %
-One main bottleneck is that the base tracers used for neuron tracing in image blocks typically employ a series of traditional image processing algorithms \md{such as binarization, fast marching, fusion,} etc. 
+One main bottleneck is that the base tracers used for neuron tracing in image blocks typically employ a series of traditional image processing algorithms such as binarization, fast marching, fusion, etc. 
 Unfortunately, these algorithms using hand-crafted features and rules have difficulty in reconstructing neurons from low-contrast and noisy image blocks.
 To improve the reconstruction quality, deep learning techniques have been adopted in neuron reconstruction recently~\cite{Xu2016, Li2017, Zhou2018, Kozinski-MIA2020}. 
 However, these approaches require huge amount of manually annotated data for neuron segmentation network training.
@@ -48,7 +48,7 @@ Another limitation of existing large-scale neuron reconstruction methods~\cite{Z
 %
 For dense neuronal population reconstruction in ultra-scale OM images, dense neurites may cross with each other, making the neuron tracing much more challenging in low-contrast and noisy OM images. 
 % 
-Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer \md{in} blocks, and design a novel tracing and fusion strategy for dense neuronal populations.
+Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer in blocks, and design a novel tracing and fusion strategy for dense neuronal populations.
 %
 We start local reconstruction using our PLNPR in the blocks where soma can be detected, and propagate a group of neurite tips as pseudo somas for neighboring blocks to trace the neuron population. 
 %
@@ -92,8 +92,4 @@ In summary, we make the following contributions in this work.
 \item Extensive experiments on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our progressive learning algorithm for both neuronal population reconstruction and single neuron reconstruction.
 \end{enumerate}
 }
-%%%%%%%%%%%%%%%%%%%%%
-%Before proceeding into the detailed account of our approach, it is useful to briefly review the related research efforts.
-\delete{
-The remainder of this paper is organized as follows. In Section~\ref{sec:related work}, we make a survey of related work. In Section~\ref{sec:method}, we first introduce the PLNPR algorithm, then elaborate the UltraNPR algorithm. We report the experiment results and discussions in Section~\ref{sec:experiments}. Finally, conclusions are drawn in Section~\ref{sec:conclusion}.
-}
+ 
