@@ -200,9 +200,7 @@ This block reconstruction and propagation process continues iteratively until al
 	\label{fig:overlap_discrepancy}
 \end{figure}
 Since neurons would be split into fragmented neurites when dividing the raw image into blocks, we now fuse the neurites from adjacent blocks that are reconstructed separately into connected and complete neurons.
-Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for each neurite ${N}_{a}\in \nset_{a}$, we look for the neurite ${N}_{b}\in \nset_{b}$ which has the largest overlap with ${N}_{a}$. 
-If the overlap volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a complete neuron.
-\xj{we look for neurites $\tilde{\nset_{b}}\in \nset_{b}$ which overlap with ${N}_{a}$. For each neurite ${N}_{b}\in \tilde{\nset_{b}}$, if the overlap volume between ${N}_{b}$ and ${N}_{a}$ is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a more complete neuron.}
+Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for any pair of neurites $N_a$ and $N_b$ in the two sets respectively, if their overlapping volume is larger than a threshold $\delta_{ovlp}$, we fuse them together to get more a complete neurite.
 
 There might be over-tracing and topological discrepancy between two neurites that are reconstructed in two blocks separately, as shown in Fig.~\ref{fig:overlap_discrepancy}.
 Generally, the reconstruction quality near the block boundary is less accurate and reliable than that in the middle of blocks because of less context. 
