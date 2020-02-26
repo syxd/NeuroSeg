@@ -3,7 +3,7 @@
 \begin{figure*}[th]
 	\centering
 	\includegraphics[width=1\textwidth]{./Illustrations/framework_plnpr.pdf}
-	\caption{Diagram of our progressive learning algorithm for neuron reconstruction in an image block. (a) The segmentation network extracts neuron signals from the raw image. (b) The output probability map is employed to enhance the raw image in order to preserve both global structures and local signal details, which facilitates the neuron tracing module (c) for more complete neuronal population reconstruction. To train the segmentation network, we use the reconstructed neurons as pseudo labels (red arrows), and iteratively refine the network learning and neuron reconstruction with a set of images. The black arrows show the reconstruction pass from an image block at the test stage.}
+	\caption{Diagram of our progressive learning algorithm for neuron reconstruction from an image block. (a) The segmentation network extracts neuron signals from the raw image. (b) The output probability map is employed to enhance the raw image in order to preserve both global structures and local signal details, which facilitates the neuron tracing module (c) for more complete neuronal population reconstruction. To train the segmentation network, we use the reconstructed neurons as pseudo labels (red arrows), and iteratively refine the network learning and neuron reconstruction with a set of images. The black arrows show the reconstruction pass from an image block at the test stage.}
 	\label{fig:framework}
 \end{figure*}
 
@@ -123,13 +123,13 @@ Iteration by iteration, the completeness and accuracy of neuron reconstruction a
 \begin{figure}[t]
 	\centering
 	%\vspace{1cm}
-	\includegraphics[width=0.5\textwidth]{./Illustrations/ultranpr_block_search.pdf}
+	\includegraphics[width=1\columnwidth]{./Illustrations/ultranpr_block_search.pdf}
 	\caption{An example of the iterative block reconstruction for ten blocks. (a) The number indicate the order in which the ten blocks are traced. The blocks 1, 2, 3, 4 are firstly reconstructed using our PLNPR since there are somas detected in these four blocks. (b) Block-6 is reconstructed by setting the neurite tips (red dots) from its two neighboring blocks (3, 4) as pseudo somas for tracing. (c) Block-7 is reconstructed by setting the neurite tips from its neighboring block-1 as pseudo somas.}
 	\label{fig:blocksearch}
 \end{figure}
 
 
-Our PLNPR enhances the image signals  and traces neurons from each image block.
+Our PLNPR enhances the image signals and traces neurons from each image block.
 However, neurons usually exist across multiple blocks in an ultra-scale image. 
 % 
 We propose an effective stitching process by looking for the most continuous block to trace dense neuron populations from multiple neighboring blocks. 
@@ -182,7 +182,7 @@ This block reconstruction and propagation process continues iteratively until al
 %\md{Fig.~\ref{fig:blocksearch} shows the procedure of our iterative local reconstruction. the order of propagation, comparison between NGPST with/without neurite tips as pseudo somas. }
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{./Illustrations/ngpst_pseudosoma.pdf}
+	\includegraphics[width=0.9\columnwidth]{./Illustrations/ngpst_pseudosoma.pdf}
 	\caption{Neuron reconstruction results for an enhanced block by NGPST without setting somas (a) and setting neurite tips from its neighboring block as pseudo somas (b). Neurons are shown in individual colors. }
 	\label{fig:ngpst_pseudosoma}
 \end{figure}
@@ -202,6 +202,7 @@ This block reconstruction and propagation process continues iteratively until al
 Since neurons would be split into fragmented neurites when dividing the raw image into blocks, we now fuse the neurites from adjacent blocks that are reconstructed separately into connected and complete neurons.
 Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for each neurite ${N}_{a}\in \nset_{a}$, we look for the neurite ${N}_{b}\in \nset_{b}$ which has the largest overlap with ${N}_{a}$. 
 If the overlap volume between them is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a complete neuron.
+\xj{we look for neurites $\tilde{\nset_{b}}\in \nset_{b}$ which overlap with ${N}_{a}$. For each neurite ${N}_{b}\in \tilde{\nset_{b}}$, if the overlap volume between ${N}_{b}$ and ${N}_{a}$ is larger than a threshold $\delta_{ovlp}$, we fuse these two neurites together to get a more complete neuron.}
 
 There might be over-tracing and topological discrepancy between two neurites that are reconstructed in two blocks separately, as shown in Fig.~\ref{fig:overlap_discrepancy}.
 Generally, the reconstruction quality near the block boundary is less accurate and reliable than that in the middle of blocks because of less context. 
@@ -233,7 +234,7 @@ By fusing all neurites in two adjacent blocks, we can obtain more complete recon
  
  \begin{figure}[t]
  	\centering
- 	\includegraphics[width=0.5\textwidth]{./Illustrations/fusion_algorithm.pdf}
+ 	\includegraphics[width=1\columnwidth]{./Illustrations/fusion_algorithm.pdf}
  	\caption{Neurite fusion in two adjacent blocks. (a) Neurites reconstructed separately in two blocks. For two matched neurites $N_a$ and $N_b$ (b), each neurite is decomposed to branches (c) and each branch is sampled into points (d). We delete the points in the boundary regions and merge the points in the middle area of the block (g) to get a more smooth and complete neurite (h). (e) Fusion results of two blocks. }
  	\label{fig:fusion_algorithm}
  \end{figure}

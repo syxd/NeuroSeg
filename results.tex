@@ -323,7 +323,7 @@ With ever-increasing number of unlabeled neuron datasets are collected, our meth
 \label{sec:exp_UltraNPR}
 
 %\subsubsection{Experimental Settings}
-To reconstruct dense neuron populations in an ultra-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
+To reconstruct the dense neuron population from an ultra-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
 %
 The overlap between adjacent blocks is set to be $300$ voxels along each dimension. 
 The $\delta_{ovlp}$ is set to be 10 voxels.
@@ -334,12 +334,20 @@ It took our UltraNPR about 34 hours for deep image segmentation, 1 hour for neur
 As shown in Fig.~\ref{fig:reconstruct_brain}, a neuronal population which consists of $5348$ neurons is successfully reconstructed in the brain slice.
 
 
-\xj{compare with UltraTracer, MEIT in Fig.~\ref{fig:reconstruct_blocks}.}
+Fig.~\ref{fig:reconstruct_blocks} shows the neuronal populations reconstructed from a large-scale image consisting of four adjacent blocks using three different methods, including UltraTracer~\cite{Peng2017}, MEIT~\cite{Wang2018} and our UltraNPR.
+Though MEIT~\cite{Wang2018} has the ability to reconstruct neurons from a large-scale image, neurons are not reconstructed seperately and compeletely.
+UltraTracer~\cite{Peng2017} achieves better performance of neuronal population reconstruction from the large-scale image. However, it still remains difficult to reconstruct neurons completely and many neurons are successfully separated.
+In comparison, our UltraNPR reconstructs a more complete neuronal population from the noisy image and individual neurons are reconstructed continuously and smoothly.
+%the neuronal population from four adjacent blocks are successfully reconstructed from the noisy images by our UltraNPR method and the fragment neurites in adjacent blocks are assembled continuously and smoothly.
+%\xj{compare with UltraTracer, MEIT in Fig.~\ref{fig:reconstruct_blocks}.}
 
 \begin{figure*}[t]
 	\centering
-	\includegraphics[width=0.8\textwidth]{./Illustrations/comparison_ultranpr.png}
-	\caption{One example of reconstructing neuronal populations from four adjacent blocks using our method. We can observe that, the fragmented neurites from adjacent blocks are assembled continuously and smoothly. \xj{Compare with UltraTracer, MEIT.}}
+	\includegraphics[width=0.8\textwidth]{./Illustrations/comparison_ultranpr.pdf}
+	\caption{Comparison of reconstructing neuronal populations from a large-scale image consisting of four adjacent blocks using UltraTracer~\cite{Peng2017}, MEIT~\cite{Wang2018} and our UltraNPR. Our method reconstructs more complete and continuous neurons compared to other methods. 
+	%We can observe that, the fragmented neurites from adjacent blocks are assembled continuously and smoothly. 
+	\xj{Compare with UltraTracer, MEIT.}
+	}
 	\label{fig:reconstruct_blocks}
 \end{figure*}
 
