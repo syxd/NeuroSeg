@@ -32,10 +32,11 @@ Pytorch is adopted to implement the DSN model. At each iteration of the progress
 To quantitatively evaluate our method, four commonly used metrics defined in \cite{Quan2015}, including precision, recall, F-Score, and Jaccard, are computed to measure the fidelity between the reconstruction results and the ground truth. 
 Their definitions are defined as follows:
 \begin{flalign}
-&Precission(R,G)= \frac{\vert R \cap G\vert}{\vert R\vert} = \frac{\vert TP\vert}{\vert R\vert}, & \\
+&Precision(R,G)= \frac{\vert R \cap G\vert}{\vert R\vert} = \frac{\vert TP\vert}{\vert R\vert}, & \\
 &Recall(R,G) = \frac{\vert R\cap G\vert}{\vert G\vert} = \frac{\vert TP\vert}{\vert G\vert}, & \\
-&F{-}Score(R,G)= \frac{2\vert R \cap G\vert}{\vert R\vert + \vert G\vert} = \frac{2\vert TP\vert}{\vert R\vert + \vert G\vert}, & \\
-&Jaccard(R,G)= \frac{\vert R\cap G\vert}{\vert R\cup G\vert} = \frac{\vert TP\vert}{\vert R\cup G\vert}, &
+&F{-}Score(R,G) = 2 \cdot{\frac{Precision \times Recall}{Precision + Recall}},&
+%&F{-}Score(R,G)= \frac{2\vert R \cap G\vert}{\vert R\vert + \vert G\vert} = \frac{2\vert TP\vert}{\vert R\vert + \vert G\vert}, & \\
+%&Jaccard(R,G)= \frac{\vert R\cap G\vert}{\vert R\cup G\vert} = \frac{\vert TP\vert}{\vert R\cup G\vert}, &
 \label{equ: metrics}
 \end{flalign}
 %
@@ -249,19 +250,19 @@ Data augmentation by transposing the three dimensions of each training image is 
 	\label{table:compare_BigNeuron}
 	\begin{tabular}{lccccccc}
 		\toprule
-		Method & Precision & Recall & F-Score & Jaccard & ESA & DSA & PDS\\
+		Method & Precision & Recall & F-Score & ESA & DSA & PDS\\
 		\midrule
-		MOST~\cite{Wu2014} & 0.619 & 0.361 & 0.456 & 0.295 & 31.730 & 38.211 & 0.633\\
-		FMST~\cite{Yang2019} & 0.575 & 0.629 & 0.601 & 0.429 & 17.878 & 23.459 & 0.558\\
-		APP2~\cite{Xiao2013} & 0.799 & 0.492 & 0.608 & 0.437 & 13.457 & 17.923 & 0.562\\
-		TReMAP~\cite{Zhou2016} & 0.771 & 0.415 & 0.539 & 0.369 & 11.269 & 17.941 & 0.539\\
-		NGPST~\cite{Quan2015} & 0.710 & 0.680 & 0.695 & 0.532 & 10.168 & 14.880 & 0.587\\
-		SmartTracing~\cite{Chen2015} & 0.701 & 0.648 & 0.674 & 0.508 & 8.532 & 11.609 & 0.543\\
-		Li2017~\cite{Li2017} & - & - & - & - & 4.917 & \textbf{7.972} &0.461 \\
-		UltraTracer~\cite{Peng2017} & \textbf{0.808} & 0.548 & 0.653 & 0.485 & 9.578 & 14.197 & 0.452 \\
-		MEIT~\cite{Wang2018} &  &  &  & & 12.068 &16.578 & 0.554 \\
+		MOST~\cite{Wu2014} & 0.629 & 0.508 & 0.541 & 31.730 & 38.211 & 0.633\\
+		FMST~\cite{Yang2019} & 0.575 & 0.658 & 0.591 & 17.878 & 23.459 & 0.558\\
+		APP2~\cite{Xiao2013} & \textbf{0.799} & 0.607 & 0.654 & 13.457 & 17.923 & 0.562\\
+		TReMAP~\cite{Zhou2016} & 0.771 & 0.508 & 0.578 & 11.269 & 17.941 & 0.539\\
+		NGPST~\cite{Quan2015} & 0.710 & 0.680 & 0.695 & 10.168 & 14.880 & 0.587\\
+		SmartTracing~\cite{Chen2015} & 0.701 & 0.722 & 0.613 & 10.430 & 13.430 & 0.547\\
+		MEIT~\cite{Wang2018} & 0.693  & \textbf{0.735} & 0.710 & 12.068 &16.578 & 0.554 \\
+		UltraTracer~\cite{Peng2017} & 0.787 & 0.655 & 0.687 & 9.578 & 14.197 & 0.452 \\
+		Li2017~\cite{Li2017} & - & - & - & 4.917 & \textbf{7.972} &0.461 \\
 		\midrule
-		Ours & 0.790 & \textbf{0.707} & \textbf{0.746}  & \textbf{0.595} & \textbf{4.784} & 8.309 & \textbf{0.451}\\
+		Ours & 0.790 & 0.730 & \textbf{0.749} & \textbf{4.784} & 8.309 & \textbf{0.451}\\
 		\bottomrule
 	\end{tabular}
 \end{table*}
