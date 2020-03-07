@@ -34,9 +34,9 @@ Their definitions are defined as follows:
 \begin{flalign}
 &Precision(R,G)= \frac{\vert R \cap G\vert}{\vert R\vert} = \frac{\vert TP\vert}{\vert R\vert}, & \\
 &Recall(R,G) = \frac{\vert R\cap G\vert}{\vert G\vert} = \frac{\vert TP\vert}{\vert G\vert}, & \\
-&F{-}Score(R,G) = 2 \cdot{\frac{Precision \times Recall}{Precision + Recall}},&
+&F{-}Score(R,G) = 2 \cdot{\frac{Precision \times Recall}{Precision + Recall}},&\\
 %&F{-}Score(R,G)= \frac{2\vert R \cap G\vert}{\vert R\vert + \vert G\vert} = \frac{2\vert TP\vert}{\vert R\vert + \vert G\vert}, & \\
-%&Jaccard(R,G)= \frac{\vert R\cap G\vert}{\vert R\cup G\vert} = \frac{\vert TP\vert}{\vert R\cup G\vert}, &
+&Jaccard(R,G)= \frac{\vert R\cap G\vert}{\vert R\cup G\vert} = \frac{\vert TP\vert}{\vert R\cup G\vert}, &
 \label{equ: metrics}
 \end{flalign}
 %
@@ -60,8 +60,6 @@ Moreover, the neuron reconstruction results on a test block at different iterati
 \xj{More qualitative and quantitative results are reported in the supplementary materials.}
 The results show that our progressive learning strategy effectively facilitates conventional tracing methods to reconstruct more complete neuronal populations.
 In addition, the performance improvement gets stable after five iterations of the progressive learning for all the tested tracing methods. 
-
- 
 
 \begin{figure*}[t]
 	\centering
@@ -151,8 +149,7 @@ Our PLNPR method reconstructs more complete and accurate neurons compared to oth
 	\label{fig:compare_VISoR}
 \end{figure*}
 
-
-
+\delete{
 \begin{table*}[th]
 	\centering
 	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 dataset.}
@@ -165,7 +162,7 @@ Our PLNPR method reconstructs more complete and accurate neurons compared to oth
 		APP2~\cite{Xiao2013}
 		& \textbf{0.980} & 0.115 & 0.191 & 0.119\\
 		SmartTracing~\cite{Chen2015}
-		& 0.961 & 0.125 & 0.196 & 0.118\\
+		& 0.877 & 0.291 & 0.400 & 0.242\\
 		TReMAP~\cite{Zhou2016}
 		& 0.917 & 0.199 & 0.326 & 0.203\\
 		MOST~\cite{Wu2014}          
@@ -183,7 +180,77 @@ Our PLNPR method reconstructs more complete and accurate neurons compared to oth
 	\end{tabular}
 \end{table*}
 
+\begin{table*}[th]
+	\centering
+	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 dataset.}
+	\label{table:compare_enhanced_img_VISoR}
+	\begin{tabular}{lcccc}
+		\toprule
+		Method & Precision & Recall & F-Score & Jaccard\\
+		\midrule
+		%\hline
+		APP2~\cite{Xiao2013}
+		& \textbf{0.973} & 0.447 & 0.604 & 0.480\\
+		SmartTracing~\cite{Chen2015}
+		& 0.917 & 0.622 & 0.701 & 0.480\\
+		TReMAP~\cite{Zhou2016}
+		& 0.906 & 0.421 & 0.573 & 0.429\\
+		MOST~\cite{Wu2014}          
+		& 0.953 & 0.597 & 0.725 & 0.655\\
+		APP1~\cite{Peng2011}
+		& 0.930 & 0.516 & 0.658 & 0.507\\
+		FMST~\cite{Yang2019}
+		& 0.916 & 0.435 & 0.588 &  0.439\\
+		Ours
+		& 0.971 & \textbf{0.829}&\textbf{0.893} & \textbf{0.833}\\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+}
 
+
+\begin{table*}[]
+	\centering
+	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 test dataset.}
+	\begin{tabular}{lcccc|cccc}
+		\hline
+		\multirow{2}{*}{Method} & \multicolumn{4}{c|}{Raw Images}  & \multicolumn{4}{c}{Enhanced Images}\\ 
+		\cline{2-5} \cline{6-9}
+		& Precision & Recall & F-Score & Jaccard & Precision & Recall & F-Score & Jaccard\\ 
+		\hline
+		\multicolumn{1}{l}{APP2~\cite{Xiao2013}} & 0.980 & 0.115 & 0.191 & 0.119 & 0.973 & 0.447 & 0.604 & 0.480\\
+		\multicolumn{1}{l}{SmartTracing~\cite{Chen2015}} & 0.877 & 0.291 & 0.400 & 0.242 & 0.917 & 0.622 & 0.701 & 0.480\\
+		\multicolumn{1}{l}{TReMAP~\cite{Zhou2016}} & 0.917 & 0.199 & 0.326 & 0.203 & 0.906 & 0.421 & 0.573 & 0.429\\
+		\multicolumn{1}{l}{MOST~\cite{Wu2014} } & 0.969 & 0.284& 0.434& 0.316 & 0.953 & 0.597 & 0.725 & 0.655\\
+		\multicolumn{1}{l}{APP1~\cite{Peng2011}} & 0.935 & 0.201 & 0.328 & 0.205 & 0.930 & 0.516 & 0.658 & 0.507\\
+		\multicolumn{1}{l}{FMST~\cite{Yang2019}} & 0.884 & 0.208 & 0.335 &  0.211 & 0.916 & 0.435 & 0.588 &  0.439\\
+		\multicolumn{1}{l}{NGPST~\cite{Quan2015}} & 0.978 & 0.603 & 0.741 & 0.623 & 0.971 & 0.829 & 0.893 & 0.833\\
+		\hline
+	\end{tabular}
+\end{table*}
+
+\begin{table*}[]
+	\centering
+	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 test dataset.}
+	\begin{tabular}{l|cc|cc|cc|cc}
+		\hline
+		\multirow{2}{*}{Method} & \multicolumn{2}{c|}{Precision}  & \multicolumn{2}{c|}{Recall} & \multicolumn{2}{c|}{F-Score} & \multicolumn{2}{c}{Jaccard}\\ 
+		\cline{2-9}
+		& Raw & Enhanced & Raw & Enhanced & Raw & Enhanced & Raw & Enhanced \\ 
+		\hline
+		\multicolumn{1}{l|}{APP2~\cite{Xiao2013}} & 0.980 & 0.973 & 0.115 & 0.447 & 0.191 & 0.604 & 0.119  & 0.480\\
+		\multicolumn{1}{l|}{SmartTracing~\cite{Chen2015}} & 0.877 & 0.917 & 0.291 & 0.622 & 0.400 & 0.701 & 0.242 & 0.480\\
+		\multicolumn{1}{l|}{TReMAP~\cite{Zhou2016}} & 0.917 & 0.906 & 0.199 & 0.421 & 0.326 & 0.573 & 0.203 & 0.429\\
+		\multicolumn{1}{l|}{MOST~\cite{Wu2014} } & 0.969 & 0.953 & 0.284 & 0.597 & 0.434 & 0.725 & 0.316 
+		& 0.655\\
+		\multicolumn{1}{l|}{APP1~\cite{Peng2011}} & 0.935 & 0.930 & 0.201 & 0.516 & 0.328 & 0.658  & 0.205 
+		& 0.507\\
+		\multicolumn{1}{l|}{FMST~\cite{Yang2019}} & 0.884 & 0.916 & 0.208 & 0.435 & 0.335 & 0.588 &  0.211 
+		&  0.439\\
+		\multicolumn{1}{l|}{NGPST~\cite{Quan2015}} & 0.978 & 0.971 & 0.603 & 0.829 & 0.741 & 0.893 & 0.623 & 0.833\\
+		\hline
+	\end{tabular}
+\end{table*}
 
 %<18-AAAI-Adaptive Graph Convolutional Neural Networks>
 To prove the effectiveness of our method on neuronal population reconstruction, we compare it with seven widely used neuron tracing methods, including APP1~\cite{Peng2011},  APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, SmartTracing~\cite{Chen2015}, NGPST~\cite{Quan2015}, TReMAP~\cite{Zhou2016} and  FMST~\cite{Yang2019}.
