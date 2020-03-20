@@ -46,7 +46,7 @@ In this work, we apply PLNPR on dense neuron population reconstruction in a ultr
 
 Another limitation of existing large-scale neuron reconstruction methods~\cite{Zhou2015, Peng2017, Wang2018} is that they mainly focus on single neuron reconstruction. 
 %
-For dense neuronal population reconstruction in ultra-scale OM images, dense neurites may cross with each other, making the neuron tracing much more challenging in low-contrast and noisy OM images. 
+For dense neuronal population reconstruction in ultra-scale images, dense neurites may cross with each other, making the neuron tracing much more challenging in low-contrast and noisy OM images. 
 % 
 Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer in blocks, and design a novel tracing and fusion strategy for dense neuronal populations.
 %
@@ -56,9 +56,9 @@ There are typically over-tracing and topological discrepancy in the reconstructe
 We design a fusion method with spatially varying confidences in order eliminate the tracing errors usually occur at boundary regions of local blocks.   
 
 
-In summary, we propose PLNPR, a progressive learning framework that integrates traditional neuron tracing methods and deep segmentation networks for neuron population reconstruction without using manual annotations.
+In summary, we propose PLNPR, a progressive learning framework that integrates traditional tracing methods and deep segmentation networks for neuron population reconstruction without using manual annotations.
 %
-We integrate our PLNPR with a block-wise propagation and fusion strategy which can reconstruct dense neuronal populations from trillions of voxels in ultra-scale OM images. 
+We integrate PLNPR with a block-wise propagation and fusion strategy which can reconstruct dense neuronal populations from trillions of voxels in ultra-scale OM images. 
 %
 In order to evaluate our method, we build a dataset ``VISoR-40" which consists of 40 OM image blocks from mouse cortical regions. Manual annotations of eight blocks in the dataset are available for the community. 
 Extensive experiments on our VISoR-40 dataset and the BigNeuron dataset demonstrate the effectiveness and superiority of our progressive learning algorithm for both neuronal population reconstruction and single neuron reconstruction.

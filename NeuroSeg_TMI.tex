@@ -1,0 +1,235 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+
+\ifCLASSINFOpdf
+\usepackage[pdftex]{graphicx}
+\else
+\fi
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{algorithm, algorithmic}
+\usepackage{array}
+\usepackage{multirow}
+
+
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\usepackage{url}
+\usepackage{booktabs}
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\newcommand{\xj}[1]{\textcolor[rgb]{1,0,0}{(#1)}}
+\newcommand{\zj}[1]{\textcolor[rgb]{1,0,1}{(#1)}}
+%\newcommand{\md}[1]{\textcolor[rgb]{0,0,1}{#1}}
+\newcommand{\td}[1]{\textcolor[rgb]{0.5,0.0,0.5}{#1}}
+
+\newcommand{\blk}{\mathbf{B}}
+\newcommand{\nrt}{N}
+\newcommand{\nset}{\mathcal{N}}
+\newcommand{\brc}{F}
+\newcommand{\delete}[1]{}
+
+\usepackage[pagebackref=false,breaklinks=false,letterpaper=false,colorlinks,bookmarks=false]{hyperref}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+%\title{Progressive Learning for Neuronal Population\\ Reconstruction from Optical Microscopy Images}
+%\title{Unsupervised Progressive Learning for Neuronal Population Reconstruction from Ultra-scale\\ 3D Optical Microscopy Images}
+\title{Neuronal population reconstruction from ultra-scale optical microscopy images via progressive learning}
+% 
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%\ifCLASSOPTIONpeerreview
+\author{Jie Zhao, Xuejin Chen, Zhiwei Xiong, Dong Liu, Junjie Zeng, \\Yueyi Zhang, Zheng-Jun Zha, Guoqiang Bi, \and Feng Wu
+%\thanks{This work is supported by the Natural Science Foundation of China under Grant 61632006 and 91732304, and the Fundamental Research Funds for the Central Universities under Grant WK2380000002 and WK3490000003.}
+%\thanks{J. Zhao, X. Chen, Z. Xiong, D. Liu, J. Zeng, C. Xie, Y. Zhang, Z. Zha, and F. Wu are with the CAS Key Laboratory of Technology in Geo-spatial Information Processing and Application System, EEIS Department, University of Science and Technology of China, Hefei 230027, China (email: \{jzhaoch, artzjj, xcy12345\}@mail.ustc.edu.cn; \{xjchen99, zwxiong, dongeliu, zhyuey, zhazj, fengwu\}@ustc.edu.cn).}
+%xjchen99@ustc.edu.cn; zwxiong@ustc.edu.cn; dongeliu@ustc.edu.cn; zhyuey@ustc.edu.cn; zhazj@ustc.edu.cn; fengwu@ustc.edu.cn).}
+%\thanks{G. Bi is with CAS Key Laboratory of Brain Function and Disease, and School of Life Sciences, University of Science and Technology of China, Hefei 230027, China (email: gqbi@ustc.edu.cn).}
+\thanks{J. Zhao, X. Chen, Z. Xiong, D. Liu, J. Zeng, Y. Zhang, Z. Zha, G. Bi and F. Wu are with the National Engineering Laboratory for Brain-inspired Intelligence Technology and Application, University of Science and Technology of China, Hefei 230027, China (email: \{jzhaoch, artzjj\}@mail.ustc.edu.cn; \{xjchen99, zwxiong, dongeliu, zhyuey, zhazj, gqbi, fengwu\}@ustc.edu.cn).}
+}
+%\fi
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\ifCLASSOPTIONpeerreview
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+\fi
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+Reconstruction of neuronal populations from ultra-scale optical microscopy (OM) images is essential to investigate neuronal circuits and brain mechanisms.
+The noises, low contrast, huge memory requirement and high computational cost pose significant challenges in the neuronal population reconstruction.
+%
+Recently, many studies have been conducted to extract neuron signals using deep neural networks (DNNs).
+However, training such DNNs usually relies on a huge amount of voxel-wise annotations in OM images, which are expensive in terms of both finance and labor.
+%Moreover, the high memory cost of DNNs limits the volume of input images that can be handled at one time. 
+%
+In this paper, we propose a novel framework for dense neuronal population reconstruction in ultra-scale images.
+%
+To solve the problem of high cost in obtaining manual annotation for training DNNs, we propose a progressive learning scheme for neuronal population reconstruction (PLNPR) which does not require any manual annotations. 
+%
+Our PLNPR scheme consists of a traditional neuron tracing module and a deep segmentation network that mutually complement and progressively promote each other. 
+%Based on the DNN model progressively trained, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
+%
+To reconstruct dense neuronal populations from a terabyte-sized ultra-scale image, we introduce an automatic framework which adaptively traces neurons block by block and fuses multiple neurons in overlapped regions continuously and smoothly.
+%
+We build a dataset ``VISoR-40" which consists of 40 large-scale OM image blocks from cortical regions of a mouse.
+Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method on neuronal population reconstruction and single neuron reconstruction.
+Furthermore, we successfully apply our method to reconstruct dense neuronal populations from an ultra-scale mouse brain slice. 
+The proposed adaptive block-wise reconstruction and fusion strategy greatly improve the completeness of neurites in dense neuronal population reconstruction. 
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Neuronal population reconstruction, ultra-scale images, optical microscopy, progressive learning.
+\end{IEEEkeywords}
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
+
+
+%%%%%%%%% BODY TEXT
+\input{intro}
+\input{relatedwork}
+\input{algorithm}
+\input{results}
+
+%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this work, we propose PLNPR, an unsupervised progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
+Without using any manual annotations, we take advantage of neuron tracing techniques and deep segmentation networks, and make them mutually complement and promote each other progressively.
+We extensively validate the proposed PLNPR for neuron reconstruction and the results demonstrate the effectiveness and superiority of our method.
+%This framework can progressively train a deep segmentation network for extracting neuron voxels without using any manual annotations. 
+%We extensively validate the proposed 3D DSN on two distinct applications and the results demonstrate the effectiveness and generalization of the proposed network.
+Furthermore, we introduce UltraNPR, a new reconstruction algorithm that makes possible the neuronal population reconstruction from large-scale OM images.
+We also construct a new neuron dataset ``VISoR-40'' which consists of $ 40 $ OM image blocks for the evaluation of neuronal population reconstruction.
+This dataset will be published to facilitate further work on brain research, including but not limited to neuron counting, neuron reconstruction and neuron morphology analysis, and so on.
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+%\input{appendices}
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\bibliographystyle{IEEEtran}
+\bibliography{NeuroSegRef}
+% that's all folks
+\end{document}
