@@ -64,7 +64,7 @@
 %
 %\ifCLASSOPTIONpeerreview
 \author{Jie Zhao, Xuejin Chen, Zhiwei Xiong, Dong Liu, Junjie Zeng, \\Yueyi Zhang, Zheng-Jun Zha, Guoqiang Bi, \and Feng Wu
-%\thanks{This work is supported by the Natural Science Foundation of China under Grant 61632006 and 91732304, and the Fundamental Research Funds for the Central Universities under Grant WK2380000002 and WK3490000003.}
+\thanks{This work was supported by the Natural Science Foundation of China under Grant 61632006 and 91732304, and the Fundamental Research Funds for the Central Universities under Grant WK2380000002 and WK3490000003.}
 %\thanks{J. Zhao, X. Chen, Z. Xiong, D. Liu, J. Zeng, C. Xie, Y. Zhang, Z. Zha, and F. Wu are with the CAS Key Laboratory of Technology in Geo-spatial Information Processing and Application System, EEIS Department, University of Science and Technology of China, Hefei 230027, China (email: \{jzhaoch, artzjj, xcy12345\}@mail.ustc.edu.cn; \{xjchen99, zwxiong, dongeliu, zhyuey, zhazj, fengwu\}@ustc.edu.cn).}
 %xjchen99@ustc.edu.cn; zwxiong@ustc.edu.cn; dongeliu@ustc.edu.cn; zhyuey@ustc.edu.cn; zhazj@ustc.edu.cn; fengwu@ustc.edu.cn).}
 %\thanks{G. Bi is with CAS Key Laboratory of Brain Function and Disease, and School of Life Sciences, University of Science and Technology of China, Hefei 230027, China (email: gqbi@ustc.edu.cn).}
@@ -172,15 +172,13 @@ Neuronal population reconstruction, ultra-scale images, optical microscopy, prog
 %%%%%%%%%%%%%%%%
 \section{Conclusion}
 \label{sec:conclusion}
-
-In this work, we propose PLNPR, an unsupervised progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
-Without using any manual annotations, we take advantage of neuron tracing techniques and deep segmentation networks, and make them mutually complement and promote each other progressively.
+In this work, we propose PLNPR, a progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
+Without using any manual annotations, our PLNPR method takes advantage of neuron tracing techniques and deep segmentation networks, and makes them mutually complement and promote each other progressively.
 We extensively validate the proposed PLNPR for neuron reconstruction and the results demonstrate the effectiveness and superiority of our method.
-%This framework can progressively train a deep segmentation network for extracting neuron voxels without using any manual annotations. 
-%We extensively validate the proposed 3D DSN on two distinct applications and the results demonstrate the effectiveness and generalization of the proposed network.
-Furthermore, we introduce UltraNPR, a new reconstruction algorithm that makes possible the neuronal population reconstruction from large-scale OM images.
-We also construct a new neuron dataset ``VISoR-40'' which consists of $ 40 $ OM image blocks for the evaluation of neuronal population reconstruction.
-This dataset will be published to facilitate further work on brain research, including but not limited to neuron counting, neuron reconstruction and neuron morphology analysis, and so on.
+Integrating PLNPR with an efficient block-wise tracing and fusion strategy, our UltraNPR successfully reconstruct dense neuronal populations from an ultra-scale OM images of a mouse brain slice.
+%
+We construct a new dataset ``VISoR-40'' which consists of 40 OM image blocks for evaluation of neuronal population reconstruction.
+This dataset is now available and we believe that it will facilitate further brain studies, including neuron counting, neuron reconstruction, neuron morphology analysis, and so on.
 
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
