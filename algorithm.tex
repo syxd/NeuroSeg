@@ -208,7 +208,7 @@ Therefore, when fusing two neurites, we tend to keep the neurite segments in the
 To fuse two neurites, we first select the longer one as the reference neurite $N_a$, and merge the other neurite $N_b$ to the reference neurite, as shown in Fig.~\ref{fig:fusion_algorithm} (b).
 %
 Each neurite is decomposed to a set of neurite branches, as Fig.~\ref{fig:fusion_algorithm} (c) shows.
-\xj{Each branch is sampled uniformly into a set of fragments}, as Fig.~\ref{fig:fusion_algorithm} (d) shows.
+Each branch is sampled uniformly into a set of fragments, as Fig.~\ref{fig:fusion_algorithm} (d) shows.
 %
 For each branch $\brc_b$ of neurite $N_b$, we search the branch $\brc_a$ which has the largest overlapped volume with it in the reference neurite $N_a$, as Fig~\ref{fig:fusion_algorithm} (f) shows.
 To fuse the matched two branches, for each point $p_a$ in the branch $\brc_a$, if $p_a$ lies in the boundary region of block $\blk_a$ ($\delta_{bound}$ voxels to the block boundary of $\blk_a$), it will be removed and all its child branches are also deleted, as shown in Fig~\ref{fig:fusion_algorithm} (g).  
