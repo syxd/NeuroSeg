@@ -24,11 +24,11 @@ Therefore, an effective and automatic reconstruction algorithm for large-scale n
  % 
  
  
-Attempts have been made for neuron reconstruction for large-scale OM images in recent years, such as Neuron Crawler~\cite{Zhou2015}, UltraTracer~\cite{Peng2017} and MEIT~\cite{Wang2018}.
+Attempts have been made for neuron reconstruction from large-scale OM images in recent years, such as Neuron Crawler~\cite{Zhou2015}, UltraTracer~\cite{Peng2017} and MEIT~\cite{Wang2018}.
 A common solution is to divide the large-scale image into blocks and then trace neurons block by block.
 Despite their great improvements in this task, several limitations still remain.
 %
-One main bottleneck is that the base tracers used for neuron tracing in image blocks typically employ a series of traditional image processing algorithms such as binarization, fast marching, fusion, etc. 
+One main bottleneck is that the base tracers used for neuron tracing in image blocks typically employ a series of traditional image processing algorithms such as binarization, fast marching, ray-shooting, etc. 
 Unfortunately, these algorithms using hand-crafted features and rules have difficulty in reconstructing neurons from low-contrast and noisy image blocks.
 To improve the reconstruction quality, deep learning techniques have been adopted in neuron reconstruction recently~\cite{Xu2016, Li2017, Zhou2018, Kozinski-MIA2020}. 
 However, these approaches require huge amount of manually annotated data for neuron segmentation network training.
@@ -42,13 +42,13 @@ The network is expected to learn more comprehensive features of neurons from noi
 With a more powerful network for segmenting neurons, the neuron reconstruction using conventional tracers could be improved. 
 Then we progressively refine the network with better neuron reconstruction results as pseudo labels, and reconstruct more complete neurons with better neuron segmentation.
 We first investigate this concept in our preliminary work \cite{Zhao2019} on a few image blocks. 
-In this work, we apply PLNPR on dense neuron population reconstruction in a ultra-scale OM image slice. 
+In this work, we apply PLNPR on dense neuron population reconstruction from an ultra-scale OM image. 
 
 Another limitation of existing large-scale neuron reconstruction methods~\cite{Zhou2015, Peng2017, Wang2018} is that they mainly focus on single neuron reconstruction. 
 %
-For dense neuronal population reconstruction in ultra-scale images, dense neurites may cross with each other, making the neuron tracing much more challenging in low-contrast and noisy OM images. 
+For dense neuronal population reconstruction from ultra-scale images, dense neurites may cross with each other, making the neuron tracing much more challenging in low-contrast and noisy OM images. 
 % 
-Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer in blocks, and design a novel tracing and fusion strategy for dense neuronal populations.
+Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer in blocks, and design a novel tracing and fusion strategy for reconstructing dense neuronal populations.
 %
 We start local reconstruction using our PLNPR in the blocks where soma can be detected, and propagate a group of neurite tips as pseudo somas for neighboring blocks to trace the neuron population. 
 %

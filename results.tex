@@ -55,10 +55,10 @@ We use their implementations in the software Vaa3D~\cite{Peng2014}.
 Eight iterations are tested on our VISoR-40 dataset, and the improvement of neuronal population reconstruction is shown in Fig.~\ref{fig:ablation_study_plnpr}~(a).
 We only show the F-Score which is widely used to reflect the overall performance of neuron reconstruction.
 %
-Moreover, the neuron reconstruction results on a test block at different iterations are shown in the Fig.~\ref{fig:trace_iterations}.
+Moreover, the reconstruction results on a test block at different iterations are shown in the Fig.~\ref{fig:trace_iterations}.
 %
 More qualitative and quantitative results are reported in the supplementary materials.
-The results show that our progressive learning strategy effectively facilitates conventional tracing methods to reconstruct more complete neuronal populations.
+The results show that our progressive learning strategy effectively facilitates conventional tracing methods to reconstruct more complete neurons.
 In addition, the performance improvement gets stable after five iterations of the progressive learning for all the tested tracing methods. 
 
 \begin{figure*}[t]
@@ -147,88 +147,95 @@ In this paper, we empirically select $\alpha=0.1$ to reduce the influence of fal
 	\label{fig:compare_VISoR}
 \end{figure*}
 
-\begin{table*}[t]
+
+\begin{figure*}[t]
 	\centering
-	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 test dataset given raw images and the same enhanced images as input.}
+	\subfloat[Precision]{
+		\begin{minipage}[b]{0.23\linewidth}
+			\centering
+			\includegraphics[height=3cm]{./Illustrations/PLNPR_same_enhanced_images_Precision.pdf}
+	\end{minipage}}
+	\hspace{0.1cm}
+	\subfloat[Recall]{
+		\begin{minipage}[b]{0.23\linewidth}
+			\centering
+			\includegraphics[height=3cm]{./Illustrations/PLNPR_same_enhanced_images_Recall.pdf}
+	\end{minipage}}
+	\hspace{0.1cm}
+	\subfloat[F-Score]{
+		\begin{minipage}[b]{0.23\linewidth}
+			\centering
+			\includegraphics[height=3cm]{./Illustrations/PLNPR_same_enhanced_images_FScore.pdf}
+	\end{minipage}}
+	\hspace{0.1cm}
+	\subfloat[Jaccard]{
+	\begin{minipage}[b]{0.23\linewidth}
+		\centering
+		\includegraphics[height=3cm]{./Illustrations/PLNPR_same_enhanced_images_Jaccard.pdf}
+\end{minipage}}
+	\caption{ Performance comparison with seven neuron tracing methods on the raw VISoR-40 test images and on the same images enhanced by our PLNPR.
+		%, including APP2~\cite{Xiao2013}, SmartTracing (ST)~\cite{Chen2015}, TReMAP~\cite{Zhou2016}, MOST~\cite{Wu2014}, APP1~\cite{Peng2011}, FMST~\cite{Yang2019} and NGPST~\cite{Quan2015}.
+	}
+	\label{fig:PLNPR_same_enahcned_images}
+\end{figure*}
+
+\begin{table}[t]
+	\centering
+	\caption{Performance comparison with different methods for neuronal population reconstruction on the VISoR-40 test dataset.% given raw images and the same enhanced images as input.
+	}
 	\label{table:compare_VISoR}
-	\begin{tabular}{lcccc|cccc}
-		\hline
-		\multirow{2}{*}{Method} & \multicolumn{4}{c|}{Raw Images}  & \multicolumn{4}{c}{Enhanced Images}\\ 
-		\cline{2-5} \cline{6-9}
-		& Precision & Recall & F-Score & Jaccard & Precision & Recall & F-Score & Jaccard\\ 
-		\hline
-		\multicolumn{1}{l}{APP2~\cite{Xiao2013}} & \textbf{0.980} & 0.115 & 0.191 & 0.119 & 0.973 & 0.447 & 0.604 & 0.480\\
-		\multicolumn{1}{l}{SmartTracing~\cite{Chen2015}} & 0.877 & 0.291 & 0.400 & 0.242 & 0.917 & 0.622 & 0.701 & 0.480\\
-		\multicolumn{1}{l}{TReMAP~\cite{Zhou2016}} & 0.917 & 0.199 & 0.326 & 0.203 & 0.906 & 0.421 & 0.573 & 0.429\\
-		\multicolumn{1}{l}{MOST~\cite{Wu2014} } & 0.969 & 0.284& 0.434& 0.316 & 0.953 & 0.597 & 0.725 & 0.655\\
-		\multicolumn{1}{l}{APP1~\cite{Peng2011}} & 0.935 & 0.201 & 0.328 & 0.205 & 0.930 & 0.516 & 0.658 & 0.507\\
-		\multicolumn{1}{l}{FMST~\cite{Yang2019}} & 0.884 & 0.208 & 0.335 &  0.211 & 0.916 & 0.435 & 0.588 &  0.439\\
-		\multicolumn{1}{l}{NGPST~\cite{Quan2015}} & 0.978 & 0.603 & 0.741 & 0.623 & 0.971 & \textbf{0.829} & \textbf{0.893} & \textbf{0.833}\\
+	\begin{tabular}{lcccc}
+		\toprule
+		Method & Precision & Recall & F-Score & Jaccard\\ 
+		\midrule
+		APP2~\cite{Xiao2013} & \textbf{0.980} & 0.115 & 0.191 & 0.119\\
+		SmartTracing~\cite{Chen2015} & 0.877 & 0.291 & 0.400 & 0.242\\
+		TReMAP~\cite{Zhou2016} & 0.917 & 0.199 & 0.326 & 0.2039\\
+		MOST~\cite{Wu2014} & 0.969 & 0.284& 0.434& 0.316\\
+		APP1~\cite{Peng2011} & 0.935 & 0.201 & 0.328 & 0.205\\
+		FMST~\cite{Yang2019} & 0.884 & 0.208 & 0.335 &  0.211\\
+		NGPST~\cite{Quan2015} & 0.978 & 0.603 & 0.741 & 0.623\\
+		\midrule
+		Ours & 0.971 & \textbf{0.829} & \textbf{0.893} & \textbf{0.833}\\
+		\bottomrule
 		\hline
 	\end{tabular}
-\end{table*}
+\end{table}
 
 
 %<18-AAAI-Adaptive Graph Convolutional Neural Networks>
-To prove the effectiveness of our method on neuronal population reconstruction, we compare it with seven widely used neuron tracing methods, including APP1~\cite{Peng2011},  APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, SmartTracing~\cite{Chen2015}, NGPST~\cite{Quan2015}, TReMAP~\cite{Zhou2016} and  FMST~\cite{Yang2019}.
+To prove the effectiveness of our method on neuronal population reconstruction, we compare it with seven widely used neuron tracing methods, including APP1~\cite{Peng2011},  APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, SmartTracing (ST)~\cite{Chen2015}, NGPST~\cite{Quan2015}, TReMAP~\cite{Zhou2016} and  FMST~\cite{Yang2019}.
 The parameters of these tracing methods are manually adjusted for each image block to get the optimal performance in our experiments.
 %
 Fig.~\ref{fig:compare_VISoR} shows the neuronal populations reconstructed from three test image blocks.
 We utilize NGPST with 3D DSN enhancement as ``Ours''. Note that the segmentation network in our approach is trained progressively on the VISoR-40 dataset in the training stage. We use the trained model directly at the test stage for evaluation. 
 Compared with other methods, our PLNPR is superior in both sparse and dense neurons.
 %
-Table~\ref{table:compare_VISoR} compares the quantitative results of different methods with regard to the four metrics including precision, recall, F-Score, and Jaccard.
+Table~\ref{table:compare_VISoR} compares the quantitative results of different methods with regard to the four metrics including precision, recall, F-Score and Jaccard.
 %
 It shows that our PLNPR makes a significant improvement on the overall performance compared with other methods.
-Though APP2 achieves the highest precision, the reconstructed neurons are significantly sparser than others.
+Though APP2~\cite{Xiao2013} achieves the highest precision, the reconstructed neurons are significantly sparser than others.
 %
 Conventional tracing methods~\cite{Peng2011, Xiao2013, Wu2014, Zhou2016} and learning-based methods~\cite{Chen2015, Yang2019} tend to extract the main trunk of neurons, while missing a large portion of subtle neurites. 
 Therefore, these methods have very high precision but significantly lower recall.
 Although NGPST~\cite{Quan2015} achieves better performance of neuronal population reconstruction compared with other single-neuron tracing methods, it still remains difficult to extract subtle neuron voxels for NGPST by using hand-crafted features.
 %
 In comparison, our method benefits from the progressively trained segmentation network, and reconstructs more complete neurons from challenging blocks, even there exhibit noises, low contrast, and blending of fluorescence in the blocks.
-%\textsc{\textsc{}}
-Furthermore,  the quantitative results of each tracing method when given raw images and the same enhanced images which are produced by our PLNPR method are compared in Table~\ref{table:compare_VISoR}.
-The results show that each method is promoted to achieve significantly higher overall performance and reconstruct more complete neuronal populations when using the same enhanced images as input.
 %
 
 
-\subsection{Evaluation of PLNPR on BigNeuron Dataset}
-\label{sec:exp_PLNPR_BigNeuron}
-
-\subsubsection{BigNeuron Dataset}
-
-To validate our PLNPR method on single neuron reconstruction, we employ the BigNeuron~\cite{peng2015} dataset.
-% which is a well-known community-derived neuron dataset. 
-This dataset consists of about $20,000$ 3D OM images in total, acquired from a variety of species and optical imaging systems by different institutes.
-%Some images have the corresponding manual annotations for evaluation.  
-Unlike our VISoR-40 dataset which is built for the evaluation of neuronal population reconstruction, each block in the BigNeuron dataset only contains a single neuron or fragmented neurites.
-% which are appropriate for single neuron reconstruction.
-Following \cite{Li2017}, we select the same 68 images that are from a variety of species to evaluate the performance of dense neurite reconstruction.
-Manual reconstruction by experts is associated with each image. 
-51 images are used for network training in \cite{Li2017} and the remaining 17 images are used for evaluation.
-Note that we do not use the manual annotations in our PLNPR in training the deep neural network. 
-
-
-\subsubsection{Experimental Settings}
- 
- 
-To evaluate our PLNPR on the single neuron reconstruction, we progressively train the DSN model on the BigNeuron dataset using pseudo labels generated by a conventional tracing method, such as NGPST~\cite{Quan2015} and APP2~\cite{Xiao2013}, instead of the provided manual annotations.
-%
-The learning rate was initialized as $\num{1e-4}$ and decayed using the ``poly" learning rate policy with power of $0.9$. The maximum iteration number is set to $ 24000 $. 
-We cropped image patches of size $160\times 160\times 8$ as input to the segmentation network since the axial dimensions are usually much lower in the images of the BigNeuron dataset than our VISoR-40 dataset.
-Data augmentation by transposing the three dimensions of each training image is also performed. 
-
-
-\subsubsection{Comparison on BigNeuron Dataset}
+%Furthermore,  the quantitative results of each tracing method when given raw images and the same enhanced images which are produced by our PLNPR method are compared in Table~\ref{table:compare_VISoR}. The results show that each method is promoted to achieve significantly higher overall performance and reconstruct more complete neuronal populations when using the same enhanced images as input.
+Furthermore, in order to evaluate the effectiveness of our progressive learning framework to enhance images, we compare the reconstruction performance of seven neuron tracing methods on the raw test images and on the same enhanced images  generated by our PLNPR method in Fig.~\ref{fig:PLNPR_same_enahcned_images}.
+For any of the seven methods, the overall reconstruction performance, including F-Score and Jaccard, using our enhanced images are much better than the results performed on the raw images under the same parameter settings.
+%Without losing to much precision, the recall and F-Score
 
 \begin{figure*}[th]
 	\centering
 	\includegraphics[width=0.9\textwidth]{./Illustrations/BigNeuron_comparison_v2.pdf}
 	\caption{Comparison of single neuron reconstruction results on two test images from the BigNeuron dataset.
 		% using MOST~\cite{Wu2014}, FMST~\cite{Yang2019}, APP2~\cite{Xiao2013}, TReMAP~\cite{Zhou2016}, NGPST~\cite{Quan2015}, SmartTracing~\cite{Chen2015}, Li2017~\cite{Li2017} and our PLNPR on two testing images from the BigNeuron dataset.
-	The reconstructed neurites are shown in blue and the corresponding ground truth (GT) are shown in red.
-	Our method reconstructs more complete and accurate neurons compared to other methods.
+		The reconstructed neurites are shown in blue and the corresponding ground truth (GT) are shown in red.
+		Our method reconstructs more complete and accurate neurons compared to other methods.
 	}
 	\label{fig:compare_BigNeuron}
 \end{figure*}
@@ -255,15 +262,44 @@ Data augmentation by transposing the three dimensions of each training image is 
 		\midrule
 		PLNPR-APP2 & \textbf{0.877} & 0.616 & 0.713 & \textbf{0.706} & 5.020 & \textbf{7.753} & 0.492\\
 		PLNPR-NGPST &0.783&\textbf{0.789}&\textbf{0.778}&0.691&\textbf{4.714}&9.458 & \textbf{0.428}\\
-		%PLNPR-NGPST (VISoR-40+BigNeuron) & 0.769 & 0.777 & 0.768 & 0.683 & 4.694 & 8.082 & 0.445\\
+		% PLNPR-NGPST (VISoR-40+BigNeuron) & 0.769 & 0.777 & 0.768 & 0.683 & 4.694 & 8.082 & 0.445\\
 		\bottomrule
 	\end{tabular}
 \end{table*}
 
+\subsection{Evaluation of PLNPR on BigNeuron Dataset}
+\label{sec:exp_PLNPR_BigNeuron}
+
+\subsubsection{BigNeuron Dataset}
+
+To validate our PLNPR method on single neuron reconstruction, we employ the BigNeuron~\cite{peng2015} dataset.
+% which is a well-known community-derived neuron dataset. 
+This dataset consists of about $20,000$ 3D OM images in total, acquired from a variety of species and optical imaging systems by different institutes.
+%Some images have the corresponding manual annotations for evaluation.  
+Unlike our VISoR-40 dataset which is built for the evaluation of neuronal population reconstruction, each image block in the BigNeuron dataset only contains a single neuron or fragmented neurites.
+% which are appropriate for single neuron reconstruction.
+Following \cite{Li2017}, we select the same 68 images that are from a variety of species to evaluate the performance of dense neurite reconstruction.
+Manual reconstruction by experts is associated with each image. 
+51 images are used for network training in \cite{Li2017} and the remaining 17 images are used for evaluation.
+Note that we do not use the manual annotations in our PLNPR in training the deep neural network. 
+
+
+\subsubsection{Experimental Settings}
+ 
+ 
+To evaluate our PLNPR on the single neuron reconstruction, we progressively train the DSN model on the BigNeuron dataset using pseudo labels generated by a conventional tracing method, such as NGPST~\cite{Quan2015} and APP2~\cite{Xiao2013}, instead of the provided manual annotations.
+%
+The learning rate was initialized as $\num{1e-4}$ and decayed using the ``poly" learning rate policy with power of $0.9$. The maximum iteration number is set to $ 24000 $. 
+We cropped image patches of size $160\times 160\times 8$ as input to the segmentation network since the axial dimensions are usually much lower in the images of the BigNeuron dataset than our VISoR-40 dataset.
+Data augmentation by transposing the three dimensions of each training image is also performed. 
+
+
+\subsubsection{Comparison on BigNeuron Dataset}
+
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{./Illustrations/comparison_ultranpr.pdf}
-	\caption{Reconstruction results of dense neuronal populations from four adjacent large-scale blocks using UltraTracer~\cite{Peng2017}, MEIT~\cite{Wang2018} and our UltraNPR. The second row shows close-up views for a local region with dense neurites. Our method reconstructs more complete and distinguishable neurons. 
+	\caption{Reconstruction results of dense neuronal populations from four adjacent large-scale blocks using UltraTracer~\cite{Peng2017}, MEIT~\cite{Wang2018}, NGPST~\cite{Quan2015} and our UltraNPR. The second row shows close-up views for a local region with dence neurites. Our method reconstructs more complete and distinguishable neurons. 
 	}
 	\label{fig:reconstruct_blocks}
 \end{figure*}
@@ -285,19 +321,21 @@ In order to compare with~\cite{Li2017}, we only compare the three evaluation met
 The three metrics defined in~\cite{Peng2010a} include the entire structure average (ESA), different structure average (DSA) and percentage of different structures (PDS).
 %
 
-We evaluate the results obtained from different methods on the BigNeuron dataset in Table~\ref{table:compare_BigNeuron}.
-``PLNPR-NGPST" means that we progressively train the DSN model using pseudo labels generated by NGPST~\cite{Quan2015}. In addition, we test our PLNPR by progressively learning with APP2~\cite{Xiao2013} (``PLNPR-APP2") which is same as the base tracer used in Li2017~\cite{Li2017}.
+Fig.~\ref{fig:compare_BigNeuron} visualizes the reconstructed neurons in two test images using different tracing methods.
+``PLNPR-NGPST" means that we progressively train the DSN model using pseudo labels generated by NGPST~\cite{Quan2015}.
+``PLNPR-APP2" means that the DSN model is progressively trained using the pseudo labels generated by APP2~\cite{Xiao2013}, which is same as the base tracer used in Li2017~\cite{Li2017}.
+%In addition, we test our PLNPR by progressively learning with APP2~\cite{Xiao2013} (``PLNPR-APP2") which is same as the base tracer used in Li2017~\cite{Li2017}.
+%have tuned the parameters for more than 10 times for each method and each test image block to find the best results.
+The parameters of each tracing method have been tuned more than 10 times for each image block to find the optimal results.
 %
-The weighted averages of the ESA, DSA and PDS are calculated by setting the of each test block proportional to the neuron length identified in the corresponding manual annotation.
+We evaluate the reconstruction results obtained from different methods on the test dataset in Table~\ref{table:compare_BigNeuron}.
+The weighted averages of the ESA, DSA and PDS are calculated by setting the weight of each test block which is proportional to the neuron length identified in the corresponding manual annotation.
 For these three scores, larger values indicate higher discrepancy between the tracing results and the manual reconstruction.
 %
-Fig.~\ref{fig:compare_BigNeuron} shows the reconstructed neurons from two test images using different methods.
-%
-From Table~\ref{table:compare_BigNeuron}, we can see that our method outperforms other methods on the BigNeuron dataset.
+From Table~\ref{table:compare_BigNeuron}, we can see that our method outperforms other methods on the BigNeuron test dataset.
 %Though APP2~\cite{Xiao2013} achieves the highest precision, a large portion of subtle neurites are missing, as shown in Fig.~\ref{fig:compare_BigNeuron}.
 %
-Comparing with \cite{Li2017}, our PLNPR achieves comparable performance.
-%
+Comparing with the deep learning-based method~\cite{Li2017}, both our PLNPR-APP2 and PLNPR-NGPST achieve comparable performance.
 However, our method does not require any manual annotations to train the deep segmentation network.
 With ever-increasing number of unlabeled neuron datasets are collected, our method could utilize them to further improve the performance of neuron reconstruction.
 
@@ -308,19 +346,19 @@ With ever-increasing number of unlabeled neuron datasets are collected, our meth
 \label{sec:exp_UltraNPR}
 
 %\subsubsection{Experimental Settings}
-To reconstruct the dense neuron population from an ultra-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
+To reconstruct the dense neuronal population from an ultra-scale image, we divide the entire image into blocks in size of $1120\times 2048\times 869$ considering the memory and computational efficiency of our PLNPR.
 %
 The overlap between adjacent blocks is set to be $300$ voxels along each dimension. 
-The $\delta_{ovlp}$ is set to be 10 voxels.
-The $\delta_{bound}$ is set to be 70 voxels and the $\delta_{pt}$ is set to be 10 voxels for neurite fusion in Sec.~\ref{sec:fusion}.
+The $\delta_{ovlp}$ is set to be 10 voxels, the $\delta_{bound}$ is set to be 70 voxels and the $\delta_{pt}$ is set to be 10 voxels for neurite fusion in Sec.~\ref{sec:fusion}.
 %
-It took our UltraNPR about 34 hours for deep image segmentation, 1 hour for neuron reconstruction in blocks, and 10 hours for neurite fusion to reconstruct the dense neuron population from the entire image on a cluster computer with $64$ GB of working memory and 20 NVIDIA 1080Ti GPUs.
+It took our UltraNPR about 34 hours for deep image segmentation, 1 hour for neuron reconstruction in blocks, and 10 hours for neurite fusion to reconstruct the dense neuronal population from the entire image on a cluster computer with $64$ GB of working memory and 20 NVIDIA 1080Ti GPUs.
 
 
-Since it is infeasible to manually annotate the dense nueron population in an ultra-scale image, quantitative evaluation of the reconstruction performance is not supported.
+Since it is infeasible to manually annotate the dense neuronal population in an ultra-scale image, quantitative evaluation of the reconstruction performance is not supported.
 %
 However, we select four adjacent large-scale image blocks to qualitatively compare our UltraNPR with two state-of-the-art methods, UltraTracer~\cite{Peng2017} and MEIT~\cite{Wang2018}, for large-scale neuron reconstruction.
-In addition, to verify the effectiveness of PLNPR for UltraNPR, we compare with NGPST~\cite{Quan2015} which uses raw image blocks as input to reconstruct neurons and ultlizes the block propagation and neurite fusion algorithms which are proposed in our UltraNPR to achieve the large-scale neuonal population reconstruction.
+We also compare our method with NGPST~\cite{Quan2015}, which is the state-of-the-art method for neuronal population reconstruction.
+Since the sheer volume of this large-scale image is far beyond the processing capability for NGPST, we extend NGPST by using the raw image blocks as input to reconstruct neurons and utilizing the block propagation and neurite fusion algorithms which are proposed in our UltraNPR method to achieve the large-scale neuonal population reconstruction.
 %
 
 \begin{figure}[t]
@@ -330,18 +368,19 @@ In addition, to verify the effectiveness of PLNPR for UltraNPR, we compare with 
 	\label{fig:single_neurons}
 \end{figure}
 
-Fig.~\ref{fig:reconstruct_blocks} shows the neuronal populations reconstructed results.
+Fig.~\ref{fig:reconstruct_blocks} compares the neuronal population reconstruction results of different methods.
 %
 MEIT~\cite{Wang2018} is designed for tracing single neuron, without separating individual neurons. 
-Moreover, it fails to reconstruct the subtle dendrites due to the noises and low contrast in our challenging image.
+Moreover, it fails to reconstruct the subtle dendrites due to the noises and low contrast in this challenging image.
 %\xj{Another drawback of MEIT is that many parameters have to be carefully tuned to obtain satisfied results. More results under different parameters using MEIT are shown in our supplementary files. }
 % 
 UltraTracer~\cite{Peng2017} achieves better performance of neuronal population reconstruction from the large-scale image. 
-However, for the local regions with low signal-noise-ratio, it fails to separate individual neurons and trace complete dendrites in a dense neuron population.
+However, for the local regions with low signal-noise-ratio, it fails to separate individual neurons and trace complete dendrites in a dense neuronal population.
 Although NGPST~\cite{Quan2015} can reconstruct separated individual neurons successfully, it still remains difficult to reconsruct complete neuronal populations from the challenging image for NGPST using hand-crafted features.
 In comparison, thanks to the signal enhancement by our deep network and block propagation designed for dense neurites, our UltraNPR is more robust to reconstruct a more complete neuronal population from the low-quality image while individual neurons are continuously and smoothly traced.
 
 
 As shown in Fig.~\ref{fig:reconstruct_brain}, a neuronal population which consists of $5348$ neurons is successfully reconstructed by our UltraNPR from the mouse brain slice. Several neurons selected from the reconstructed neuronal population are visualized in Fig.~\ref{fig:single_neurons}. 
 We believe that these large-scale reconstructions provide detailed neuronal structures and will effectively support further neuronal morphology analysis in the whole brain. 
-In summary, without any parameter-tuning and human interaction, our UltraNPR is capable of reconstructing dense neuronal populations from ultra-scale noisy OM images. 
+%In summary, without any parameter-tuning and human interaction, our UltraNPR is capable of reconstructing dense neuronal populations from ultra-scale noisy OM images. 
+In summary, without any manual annotations and human interaction, our UltraNPR is capable of reconstructing dense neuronal populations from ultra-scale noisy OM images. 
