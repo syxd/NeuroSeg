@@ -241,6 +241,11 @@ N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov,
   ``Dropout: A simple way to prevent neural networks from overfitting,''
   \emph{J. Mach. Learn. Res.}, vol.~15, no.~1, pp. 1929--1958, 2014.
 
+\bibitem{Cannon1998}
+R.~Cannon, D.~Turner, G.~Pyapali, and H.~Wheal, ``An on-line archive of
+  reconstructed hippocampal neurons,'' \emph{J. Neurosci. Meth.}, vol.~84,
+  no.~1, pp. 49 -- 54, 1998.
+
 \bibitem{peng2015}
 H.~Peng, M.~Hawrylycz, J.~Roskams, S.~Hill, N.~Spruston, E.~Meijering
   \emph{et~al.}, ``{BigNeuron}: large-scale 3d neuron reconstruction from
