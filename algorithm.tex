@@ -3,20 +3,22 @@
 \begin{figure*}[th]
 	\centering
 	\includegraphics[width=1\textwidth]{./Illustrations/framework_plnpr.pdf}
-	\caption{Diagram of our progressive learning algorithm for neuron reconstruction from an image block. (a) The segmentation network extracts neuron signals from the raw image. (b) The output probability map is employed to enhance the raw image in order to preserve both global structures and local signal details, which facilitates the neuron tracing module (c) for more complete neuronal population reconstruction. To train the segmentation network, we use the reconstructed neurons as pseudo labels (red arrows), and iteratively refine the network learning and neuron reconstruction with a set of images. The black arrows show the reconstruction pass from an image block at the test stage.}
+	\caption{Diagram of our progressive learning algorithm for neuron reconstruction from an image block. (a) The segmentation network extracts neuron signals from the raw image. (b) The output probability map is employed to enhance the raw image in order to preserve both global structures and local signal details, which facilitates the neuron tracing module (c) for more complete neuronal population reconstruction. To train the segmentation network, we use the reconstructed neurons as pseudo labels (red arrows), and iteratively refine the network model and neuron reconstruction with a set of images. The black arrows show the reconstruction pass from an image block at the test stage.}
 	\label{fig:framework}
 \end{figure*}
 
 
-Given a large-scale noisy OM image, we follow a block-by-block neruon reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
+Given an ultra-scale noisy OM image, our UltraNPR follows a block-by-block neruon reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
 %
 The ultra-scale input image may contain billions or even trillions of voxels.
-We first divide the input image into blocks that are averagely in size of $0.5mm\times 1mm\times 0.4mm$ with some overlaps. 
+We first divide the input image into blocks that are averagely in size of $0.5mm\times 1mm\times 0.4mm$ with overlaps. 
 %
-For each block, we first enhance the noisy images by a deep neural network, which is progressively trained from reconstructed neurons using traditional tracing algorithms. 
-Then we reconstruct neurons in each block using the enhanced image. 
+For each block, we first enhance the noisy images by a deep neural network, which is progressively trained from reconstructed neurons using our PLNPR. 
+Then we reconstruct neuron populations in each block using the enhanced image. 
 %
-Since it is more reliable to start from somas rather than subtle neurites for neuron reconstruction, our UltraNPR employs an effective block propagation strategy to trace dense neuronal populations in an adaptive order. 
+Since it is more reliable to start from somas rather than subtle neurites for neuron reconstruction, we first detect somas and start tracing from the blocks where somas can be detected. 
+%
+Our UltraNPR then employs an effective block propagation strategy to trace dense neuronal populations in an adaptive order by finding neighboring blocks with more nuerite tips. 
 Finally, we fuse overlapped neurites in adjacent blocks to reconstruct complete neuronal populations from the whole ultra-scale image.
 
 
@@ -24,10 +26,10 @@ Finally, we fuse overlapped neurites in adjacent blocks to reconstruct complete 
 %\subsection{Unsupervised Progressive Learning for Neuronal Population Reconstruction}
 \label{sec:PLNPR}
 
-To reconstruct neurons from a noisy OM image block, our PLNPR algorithm consists of three key components: a segmentation network, an image enhancement module and a neuron tracing module, as shown in Fig.~\ref{fig:framework}. 
+To reconstruct neurons from a noisy OM image block, our PLNPR algorithm consists of three key components: a segmentation network, an image enhancement module, and a neuron tracing module, as shown in Fig.~\ref{fig:framework}. 
 %
 The segmentation network is designed to extract neuron voxels from noisy and complex backgrounds.
-Compared with existing segmentation networks are trained with dense voxel-wise annotations for strong supervision, we use pseudo labels that are generated using traditional neuron tracing methods.
+Compared with existing segmentation networks that are trained with dense voxel-wise annotations for strong supervision, we use pseudo labels that are generated using traditional neuron tracing methods.
 %
 In each iteration of segmentation and reconstruction, we apply the NGPST~\cite{Quan2015} as the neuron tracing module to reconstruct neurons from image blocks. 
 The tracing module can be replaced by any other tracing method that does not require manual annotations for training.
@@ -37,14 +39,14 @@ It takes an image block $\mathbf{B}$ as input and reconstructs a neuronal popula
 From the reconstruction results, we produce a binary mask $\mathbf{M}$ indicating foreground by $\mathbf{M}(x)=1$ and background by $\mathbf{M}(x)=0$ for a voxel $x$.
 
 
-Given $N$ unlabeled image blocks, we train our segmentation network using the neuron masks $\{\mathbf{M}_i, i=1,\cdots,N\}$ generated from the neuron tracing module.
+Given $N$ unlabeled image blocks, we train our segmentation network using the neuron masks $\{\mathbf{M}_i\}_{i=1}^{N}$ generated from the neuron tracing module.
 %
 The output of the neuron segmentation network is a 3D probability map $\mathbf{P}$, which is computed by a voxel-wise softmax activation function. $\mathbf{P}(x)\in [0,1]$ indicating the probability of a voxel $x$ to be a neuron part.
 %
 Then, by fusing the predicted probability map with the raw image signals, the image block is enhanced in order to preserve both local signals and global structures simultaneously.
 When the enhanced block is fed into the neuron tracing module, more complete neuronal populations can be reconstructed and provide better pseudo labels for the next iteration of network training. 
 %
-Based on the iterative learning process, the powerful DNNs and tracing methods mutually complement and promote each other to gradually improve the neuron reconstruction performance.
+Based on the iterative learning process, the DNN and neuron tracer mutually complement and promote each other to gradually improve the neuron reconstruction performance.
 
 
  
@@ -52,19 +54,19 @@ Based on the iterative learning process, the powerful DNNs and tracing methods m
 \subsubsection{DNN for 3D Neuron Segmentation}
 \label{sec:network}
  
-Extracting neuron voxels from image blocks is not a trivial problem since the size, morphology and intensity of neurons vary significantly.
-In recent years, many 3D DNNs, such as 3D U-Net~\cite{Cicek2016}, 3D DSN~\cite{Dou2017} and DenseVoxNet~\cite{Yu2017} have demonstrated an outstanding capability in various biological and biomedical image segmentation tasks.
-%Therefore, we take advantage of 3D segmentation networks to extract more representative features to meet the challenges of neuron segmentation.
+Extracting neuron voxels from image blocks is non-trivial since the size, morphology, and intensity of neurons vary significantly.
+In recent years, many 3D DNNs, such as 3D U-Net~\cite{Cicek2016}, 3D DSN~\cite{Dou2017}, and DenseVoxNet~\cite{Yu2017}, have demonstrated their outstanding capability in various biological and biomedical image segmentation tasks.
+%
 We extend the 3D DSN~\cite{Dou2017} as our neuron segmentation network to balance the performance and computation burden.
 %
-Although the original 3D DSN has achieved excellent performance for 3D organ segmentation~\cite{Dou2017}, it is still prone to overfitting in our case due to the limited training data. 
+Although the original 3D DSN has achieved excellent performance for 3D organ segmentation~\cite{Dou2017}, it is prone to overfit in our case due to the limited training data. 
 We employ the dropout~\cite{Srivastava2014} technique during training to learn more robust features that better generalize to new data.
-In each convolutional layer, the dropout with a rate of $0.5$ is applied in our network. 
+In each convolutional layer, the dropout with a rate of $0.5$ is applied.% in our network. 
 
 
-Another challenge of training 3D DNN is the memory limitation because the 3D feature images are huge with respect to the input size. Therefore, for each input image block, we crop a group of small cubes in size of $160\times 160\times 160$ with $30\%$ overlaps, and set batch size to 1 during training. 
+Another challenge in training 3D DNN is the memory limitation because the 3D feature images are huge with respect to the input size. Therefore, for each input image block, we crop a group of small cubes in size of $160\times 160\times 160$ with $30\%$ overlaps, and set batch size to 1 during training. 
 %
-To have the same physical resolution with the lateral dimension in OM image blocks, voxels in the axial dimension are interpolated after the imaging process. However, this interpolation makes the image quality along different dimensions inhomogeneous. 
+To have the same physical resolution with the lateral dimension in OM image blocks, voxels in the axial dimension are interpolated after the imaging process. However, this interpolation leads to inhomogeneous image quality along different dimensions. 
 Therefore, a random transposition process is employed for each cube as data augmentation for network training.
 
 %Correspondingly, at the test time, we stitch these overlapped probability cubes together using average blending to get a probability map in the same size with the input block.
@@ -82,40 +84,43 @@ After training the segmentation network using pseudo labels, the trained model i
 By averaging the probabilities of the overlapped voxels between adjacent cubes, we can obtain the probability map $\mathbf{P}$ for the entire block $\mathbf{B}$.
 Each element in $\mathbf{P}$ indicates the probability of the corresponding voxel in $\mathbf{B}$ being a neuron voxel.
 To utilize the probability map, one natural way is to reconstruct neurons directly from it.
-However, since the pseudo labels are not as accurate as manual annotations, especially at the early iterations, some local details might lose in the probability map. Therefore, we employ an enhanced representation by fusing the probability map and the raw image block, in order to keep detailed structures and suppress noise signals effectively.
+However, since the pseudo labels are not as accurate as manual annotations, especially at the early iterations, some local details might lose in the probability map. Therefore, we employ an enhanced representation by fusing the probability map and the raw image block in order to keep detailed structures and suppress noise signals effectively.
 Specifically, a new probability map $\widetilde{\mathbf{P}} $ is first constructed by linearly mapping the value range of $ \mathbf{P}\in [0,1] $ to the value range $[{b}_{min}, {b}_{max}]$ of $\mathbf{B}$ as
 \begin{equation}
 \widetilde{\mathbf{P}}(x) = ({b}_{max}-{b}_{min})\mathbf{P}(x).
 \end{equation}
-
-
+%
 Then, an enhanced block $\mathbf{E}$ is computed as
 \begin{equation}
 \mathbf{E}(x) = \alpha\widetilde{\mathbf{P}}(x) + (1-\alpha)\mathbf{B}(x),
 \label{equ: enhance}
 \end{equation}
-where $\alpha\in [0,1]$ is a weight to control the contributions of voxel $ x $ in the original intensity and the probability map. By feeding the enhanced blocks to the neuron tracing module, neuronal populations can be reconstructed more completely.
+where $\alpha\in [0,1]$ is a weight to control the contributions of voxel $ x $ in the original intensity and the probability map. By feeding the enhanced block to the neuron tracing module, neuronal populations can be reconstructed more completely.
 
 
-With more reliable reconstruction results for supervision, the segmentation network could be further trained to learn more discriminative and representative features for producing probability maps, which in turn benefits the tracing module to reconstruct neurons in the next iteration.
+With more reliable reconstruction results as pseudo labels, the segmentation network could be further trained to learn more discriminative and representative features for producing probability maps, which in turn benefit the tracing module to reconstruct more complete neurons in the next iteration.
 %
-As shown in Fig.~\ref{fig:ngps}(a), due to the noises and low contrast in the raw image block, the intensity of neuron voxels is inhomogeneous.
-At first, by feeding the raw image to the conventional method~\cite{Quan2015}, a neuronal population can be reconstructed. However, compared to the ground truth (GT) shown in Fig.~\ref{fig:ngps}(k), the reconstructed neuronal population is incomplete and many neurites are missing, as Fig.~\ref{fig:ngps}(g) shows.
-Then, by utilizing the pseudo labels derived from imperfect reconstruction, the segmentation network can be trained to learn features for global trajectories. Fig.~\ref{fig:ngps}(b) shows the predicted probability map, which demonstrates the enhanced trajectories.
+As shown in Fig.~\ref{fig:ngps} (a), a raw image block typically contains many noises and inhomogeneous intensities.
+At first, by feeding the raw block to the tracer~\cite{Quan2015}, the reconstructed neuronal population is incomplete and many neurites are missing, as Fig.~\ref{fig:ngps}(g) shows, comparing with the ground truth (GT) shown in Fig.~\ref{fig:ngps}(k).
+%
+Then, by utilizing the pseudo labels derived from imperfect reconstruction, the segmentation network can be trained to learn features for global morphology. Fig.~\ref{fig:ngps}(b) shows the predicted probability map, which demonstrates the enhanced trajectories.
 With more iterations of neuron reconstruction and network training, more distinctive and long-range trajectory features can be progressively captured by the network, as shown in Fig.~\ref{fig:ngps}(c)(d)(e).
 By combining the original image intensities with the predicted probability map, both local signal details and global trajectories are well preserved in the enhanced block, as Fig.~\ref{fig:ngps}(f) shows.
-Iteration by iteration, the completeness and accuracy of neuron reconstruction are progressively improved, as shown in Fig.~\ref{fig:ngps}(h)(i)(j).
+Iteration by iteration, the completeness and accuracy of neuron reconstruction are progressively improved, as shown in Fig.~\ref{fig:ngps}~(h)(i)(j).
 
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\columnwidth]{./Illustrations/ngps.pdf}
-	\caption{Our progressive learning technique gradually improves the segmentation network to extract neuron signals from a raw image (a). (b)(c)(d)(e)(f) The probability maps generated by the segmentation network at different iterations.  Combing the probability map and the raw intensity, the enhanced block preserves both global trajectory and local details. (g)(h)(i)(j) More and more complete and accurate reconstruction of the neuronal populations can be obtained with more iterations. (k) The manually labeled neurons are shown for comparison. Separated neurons are shown in different colors.}
+	\caption{Our progressive learning technique gradually improves the segmentation network to extract neuron signals from a raw image block (a). 
+	(b-f) The probability maps generated by the segmentation network at different iterations.
+		%Combing the probability map and the raw intensity, the enhanced block preserves both global trajectory and local details. 
+	(g-j) More and more complete and accurate reconstruction of the neuronal populations can be obtained with more iterations. (k) Manually labeled neurons. Separated neurons are shown in different colors.}
 	\label{fig:ngps}
 \end{figure}
 %
 
-\subsection{Large-scale Neuronal Population Reconstruction}
+\subsection{Ultra-scale Neuronal Population Reconstruction}
 \label{sec:UltraNPR}
 
 \begin{figure}[t]
@@ -133,7 +138,7 @@ However, neurons usually exist across multiple blocks in an ultra-scale image.
 We propose an effective stitching process by looking for the most continuous block to trace dense neuron populations from all unreconstructed blocks. 
 %
 As somas are where signals from the dendrites are joined and pass on, we start from reconstructing neurons in the blocks where somas can be detected.
-For blocks where no soma can be detected, we trace the neurons by generating pseudo-somas from the neurite tips from their neighboring blocks. 
+For blocks where no soma can be detected, we trace the neurons by generating pseudo-somas from the neurite tips of their neighboring blocks. 
 %
 Finally, the overlapped neurites reconstructed from adjacent blocks are fused to get a complete reconstruction of neurons. 
 Fig.~\ref{fig:ultra_framework} shows the pipeline of our UltraNPR approach. 
@@ -163,10 +168,10 @@ If a block $B_{i}$ contains somas, we apply our PLNPR to reconctruct neurites an
 %For the remaining unreconstructed blocks, we check its neighboring blocks that have been reconstructed and add the neurite tips from the reconstructed blocks as its pseudo somas. 
 %
 For the remaining unreconstructed blocks, though NGPST can perform neuron tracing without any somas, it typically fails to distinguish multiple neurons with dense neurites, as shown in Fig.~\ref{fig:ngpst_pseudosoma}~(a).
-% The neuronal compartments which are close to the block boundary typically indicate the continuity of the structure of neurons. We call these compartments as terminal tips and use them as the potential continuous signals for searching the next blocks to grow the neuronal structure from each initial block. %all boundary tips from the previous tile’s reconstruction were detected as the reference locations
-In order to avoid under-segmentation of neurons in an unreconstructed block $B^*$, we follow the neuron structure in the blocks that have been traced by setting their neurite tips as pseudo somas for neuron reconstruction.
 %
-More specifically, for each neighboring reconstructed block of $B^*$, we collect the neuronal points that are close to the boundary of $B^*$, and use them as the pseudo-somas for growing the neuronal structure in $B^*$. After that, we get the neurites set $ \mathcal{N}^*$ in $B^*$.
+In order to avoid under-segmentation of neurons in an unreconstructed block $B_u$, we follow the neuron structure in its neighboring blocks that have been reconstructed.
+%
+More specifically, for each neighboring reconstructed block of $B_u$, we collect the neuronal points that are close to the boundary of $B_u$ and use them as the pseudo-somas for growing the neuronal structure in $B_u$. After that, we get the neurites set $ \mathcal{N}^*$ in $B_u$.
 %
 Therefore, for each iteration of our block propagation, the unreconstructed block which has the largest number of neighboring reconstructed blocks and the largest number of pseudo somas is selected for reconstruction next.
 %

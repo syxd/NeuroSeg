@@ -10,11 +10,11 @@ However, despite numerous efforts devoted, this task is still one of the main ch
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\columnwidth]{./Illustrations/brain2.pdf}
-	\caption{A 3D OM image for a mouse brain slice captured by the VISoR imaging system~\cite{Wang2019}. The large density of neurons, low contrast, image noises and huge volume pose significant challenges for automatic reconstruction of neuronal populations from the ultra-scale image.}	
+	\caption{A 3D OM image for a mouse brain slice captured by the VISoR imaging system~\cite{Wang2019}. The large density of neurons, low contrast, image noises, and huge volume pose significant challenges for automatic reconstruction of neuronal populations from the ultra-scale image.}	
 	\label{fig:brain}
 \end{figure}
 
-The challenges in large-scale neuronal population reconstruction are mainly caused by complex morphology of neurons, low quality and large volume of OM brain images.
+The challenges in large-scale neuronal population reconstruction are mainly caused by complex morphology of neurons, low quality, and large volume of OM brain images.
 Due to the complicated process of imaging acquisition and the uneven distribution of fluorescence markers in neurons, the voxel intensities vary dramatically in highly noisy and inhomogeneous environments.
 Moreover, to detail the structure of neurons in the brain, OM images in high resolution are required. Such an image typically contains trillions of voxels. It is even impractical to directly load the entire image into a computer memory before reconstructing neurons.
 In the other hand, manual reconstruction of neuronal populations from ultra-scale brain images is an extremely laborious and time-consuming task as well.
@@ -31,7 +31,7 @@ Despite their great improvements in this task, several limitations still remain.
 One main bottleneck is that the base tracers used for neuron tracing in image blocks typically employ a series of traditional image processing algorithms such as binarization, fast marching, ray-shooting, etc. 
 Unfortunately, these algorithms using hand-crafted features and rules have difficulty in reconstructing neurons from low-contrast and noisy image blocks.
 To improve the reconstruction quality, deep learning techniques have been adopted in neuron reconstruction recently~\cite{Xu2016, Li2017, Zhou2018, Kozinski-MIA2020}. 
-However, these approaches require huge amount of manually annotated data for neuron segmentation network training.
+However, these approaches require huge amount of manually annotated data to train the deep neuron segmentation networks.
 %
 
 Compared with manual annotations, the reconstruction results by conventional algorithms effectively provide approximate locations of neurons. 
@@ -39,8 +39,8 @@ Although these voxels may not cover all neurons precisely, they provide importan
 Therefore, we propose a progressive learning scheme for neuronal population reconstruction (PLNPR) to take advantage of both conventional methods and deep learning techniques.
 More specifically, we employ conventional methods to produce pseudo-labels for training a deep neural network for neuron segmentation. 
 The network is expected to learn more comprehensive features of neurons from noisy labels. 
-With a more powerful network for segmenting neurons, the neuron reconstruction using conventional tracers could be improved. 
-Then we progressively refine the network with better neuron reconstruction results as pseudo labels, and reconstruct more complete neurons with better neuron segmentation.
+With a more powerful DNN for segmenting neurons, the neuron reconstruction using conventional tracers could be improved. 
+Then we progressively refine the segmentation DNN with better neuron reconstruction results as pseudo labels and reconstruct more complete neurons with better neuron segmentation.
 We first investigate this concept in our preliminary work \cite{Zhao2019} on a few image blocks. 
 In this work, we apply PLNPR on dense neuron population reconstruction from an ultra-scale OM image. 
 
@@ -52,16 +52,16 @@ Following the commonly used block-by-block framework, we introduce UltraNPR, whi
 %
 We start local reconstruction using our PLNPR in the blocks where soma can be detected, and propagate a group of neurite tips as pseudo somas for neighboring blocks to trace the neuron population. 
 %
-There are typically over-tracing and topological discrepancy in the reconstructed neurites in adjacent blocks. 
-We design a fusion method with spatially varying confidences in order eliminate the tracing errors usually occur at boundary regions of local blocks.   
+There are over-tracing and topological discrepancy in the reconstructed neurites in adjacent blocks. 
+We design a fusion method with spatially varying confidences in order eliminate the tracing errors that usually occur at boundary regions of local blocks.   
 
 
 In summary, we propose PLNPR, a progressive learning framework that integrates traditional tracing methods and deep segmentation networks for neuron population reconstruction without using manual annotations.
 %
 We integrate PLNPR with a block-wise propagation and fusion strategy which can reconstruct dense neuronal populations from trillions of voxels in ultra-scale OM images. 
 %
-In order to evaluate our method, we build a dataset ``VISoR-40" which consists of 40 OM image blocks from mouse cortical regions. Manual annotations of eight blocks in the dataset are available for the community. 
-Extensive experiments on our VISoR-40 dataset and the BigNeuron dataset demonstrate the effectiveness and superiority of our progressive learning algorithm for both neuronal population reconstruction and single neuron reconstruction.
+In order to evaluate our method, we build a dataset ``VISoR-40" which consists of 40 OM image blocks from mouse cortical regions. Manual annotations of eight blocks in the dataset are available for the community. Extensive experiments on our VISoR-40 dataset and the BigNeuron dataset demonstrate the effectiveness and superiority of our progressive learning algorithm for both neuronal population reconstruction and single neuron reconstruction.
+The reconstructed neuron population from an ultra-scale image of a mouse brain slice shows the robustness of our UltraNPR.
 
 
 

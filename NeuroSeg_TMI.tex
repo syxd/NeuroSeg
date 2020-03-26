@@ -126,25 +126,21 @@
 % in the abstract or keywords.
 \begin{abstract}
 Reconstruction of neuronal populations from ultra-scale optical microscopy (OM) images is essential to investigate neuronal circuits and brain mechanisms.
-The noises, low contrast, huge memory requirement and high computational cost pose significant challenges in the neuronal population reconstruction.
+The noises, low contrast, huge memory requirement, and high computational cost pose significant challenges in the neuronal population reconstruction.
 %
 Recently, many studies have been conducted to extract neuron signals using deep neural networks (DNNs).
 However, training such DNNs usually relies on a huge amount of voxel-wise annotations in OM images, which are expensive in terms of both finance and labor.
-%Moreover, the high memory cost of DNNs limits the volume of input images that can be handled at one time. 
-%
 In this paper, we propose a novel framework for dense neuronal population reconstruction in ultra-scale images.
 %
 To solve the problem of high cost in obtaining manual annotation for training DNNs, we propose a progressive learning scheme for neuronal population reconstruction (PLNPR) which does not require any manual annotations. 
 %
 Our PLNPR scheme consists of a traditional neuron tracing module and a deep segmentation network that mutually complement and progressively promote each other. 
-%Based on the DNN model progressively trained, reconstructing neurons from local noisy image blocks is feasible with allowed memory.
-%
 To reconstruct dense neuronal populations from a terabyte-sized ultra-scale image, we introduce an automatic framework which adaptively traces neurons block by block and fuses fragmented neurites in overlapped regions continuously and smoothly.
 %
 We build a dataset ``VISoR-40" which consists of 40 large-scale OM image blocks from cortical regions of a mouse.
 Extensive experimental results on our VISoR-40 dataset and the public BigNeuron dataset demonstrate the effectiveness and superiority of our method on neuronal population reconstruction and single neuron reconstruction.
 Furthermore, we successfully apply our method to reconstruct dense neuronal populations from an ultra-scale mouse brain slice. 
-The proposed adaptive block-wise reconstruction and fusion strategy greatly improve the completeness of neurites in dense neuronal population reconstruction. 
+The proposed adaptive block propagation and fusion strategy greatly improve the completeness of neurites in dense neuronal population reconstruction. 
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
