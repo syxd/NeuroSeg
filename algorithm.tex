@@ -127,7 +127,7 @@ Iteration by iteration, the completeness and accuracy of neuron reconstruction a
 	\centering
 	%\vspace{1cm}
 	\includegraphics[width=1\columnwidth]{./Illustrations/ultranpr_block_search.pdf}
-	\caption{An example of the iterative block reconstruction for ten blocks. (a) The number indicate the order in which the ten blocks are traced. The blocks 1, 2, 3, 4 are firstly reconstructed using our PLNPR since there are somas detected in these four blocks. (b) Block-6 is reconstructed by setting the neurite tips (red dots) from its two neighboring blocks (3, 4) as pseudo somas for tracing. (c) Block-7 is reconstructed by setting the neurite tips from its neighboring block-1 as pseudo somas.}
+	\caption{An example of the iterative block reconstruction for ten adjacent blocks. (a) The numbers indicate the order in which the ten blocks are traced. The blocks 1, 2, 3, 4 are firstly reconstructed using our PLNPR since somas are detected in these four blocks. (b) Block-6 is then reconstructed by finding pseudo somas from the reconstructed neurites of its two neighboring blocks (3, 4) for tracing. (c) Block-7 is reconstructed by finding pseudo somas from the reconstructed neurites in block-1.}
 	\label{fig:blocksearch}
 \end{figure}
 
@@ -142,21 +142,7 @@ For blocks where no soma can be detected, we trace the neurons by generating pse
 %
 Finally, the overlapped neurites reconstructed from adjacent blocks are fused to get a complete reconstruction of neurons. 
 Fig.~\ref{fig:ultra_framework} shows the pipeline of our UltraNPR approach. 
-%Our UltraNPR consists of four components: a soma detection module, a block reconstruction module, a block search module, and a neurite fusion module, as shown in
-
-\delete{
-%\subsubsection{Initial Soma Detection}
-%\label{sec:soma}
- %
- %For each block $B_{i}$, we get a set of somas.
- % $\hat{S}_i = s_{ik}, k=1,\ldots,M_{i} $. 
- %Each soma $ s_{ik} $ is represented by its center $ (x,y,z) $ and radius $ r $.
-We apply the soma detection algorithm~\cite{Quan2013} on each block in an ultra-scale image separately. 
-Due to the overlap between blocks, somas in the overlapped area would be detected repeatedly.
-We merge the overlapping somas in adjacent blocks by averaging their positions and radius and get a set of somas in the entire image, \md{as shown in Fig.~4 of the supplementary file.} 
-%The soma detection results from the large-scale image are visualized in Fig.~{4} of the supplementary file.
-%These somas are also used to define the initial blocks for neuron reconstruction in the next step.
-}
+ 
 
 \subsubsection{Block Reconstruction and Propagation}
 \label{sec:trace}
@@ -165,17 +151,15 @@ We merge the overlapping somas in adjacent blocks by averaging their positions a
  
 We apply the soma detection algorithm~\cite{Quan2013} on each block in an ultra-scale image separately. 
 If a block $B_{i}$ contains somas, we apply our PLNPR to reconctruct neurites and get a set of neurites $\mathcal{N}_{i}$ in this block, as shown by the blocks in yellow frames in Fig.~\ref{fig:blocksearch}~(a).
-The reconstruction result of each neurite is saved as an SWC file~\cite{Cannon1998}, a text file that consists of a series of dense neuron points containing an index, radius, type, and connectivity information.
-% As a neuron reconstruction produced by our method is represented by a series of voxel-vise dense reconstruction compartments that have different coordinates and radius, 
-%For the remaining unreconstructed blocks, we check its neighboring blocks that have been reconstructed and add the neurite tips from the reconstructed blocks as its pseudo somas. 
-%
-For the remaining unreconstructed blocks, though NGPST can perform neuron tracing without any somas, it typically fails to distinguish multiple neurons with dense neurites, as shown in Fig.~\ref{fig:ngpst_pseudosoma}~(a).
+Each neurite consists of a series of neuron points with their radius, type, and connectivity information~\cite{Cannon1998}.
+For the remaining unreconstructed blocks, though NGPST can perform neuron tracing without any somas, it typically fails to distinguish multiple neurons with dense neurites, as shown in Fig.~\ref{fig:ngpst_pseudosoma}~(a).	
 %
 In order to avoid under-segmentation of neurons in an unreconstructed block $B_u$, we follow the neuron structure in its neighboring blocks that have been reconstructed.
 %
-More specifically, for each neighboring reconstructed block of $B_u$, we collect the neuron points that intersect the boundary of $B_u$ and use them as the pseudo-somas for growing the neuronal structure in $B_u$, as shown in Fig.~\ref{fig:blocksearch}~(b)(c). After that, we get the neurites set $ \mathcal{N}_u$ in $B_u$.
+More specifically, for each reconstructed block $B_a$ that is adjacent to $B_u$, we collect the intersection points of the reconstructed neurites in $B_a$ with the boundary plane of $B_u$ as the pseudo-somas for tracing neurons in $B_u$, as shown in Fig.~\ref{fig:blocksearch}~(b)(c). After that, we get the neurites set $ \mathcal{N}_u$ in $B_u$.
 %
 Therefore, for each iteration of our block propagation, the unreconstructed block which has the largest number of neighboring reconstructed blocks and the largest number of pseudo somas is selected for reconstruction next.
+The reconstructed neurites in this block can then be used to find pseudo somas for its neighboring block that has not been reconstructed.
 %
 Fig.~\ref{fig:blocksearch} shows the block propagation and reconstruction process of ten neighboring blocks. 
 %(b)(c) show two examples of unreconstructed blocks (red) that to be traced from its neighboring blocks (yellow) that have been reconstructed. 
@@ -203,41 +187,39 @@ This process continues iteratively until all the blocks in the ultra-scale image
 	\caption{An example of over-tracing (yellow) and topological discrepancy (red) when assembling two overlapped neurites. These reconstructions are shown in skeleton mode for better visualization.}
 	\label{fig:overlap_discrepancy}
 \end{figure}
-Since neurons would be split into fragmented neurites when dividing the raw image into blocks, we now fuse the neurites reconstructed separately from adjacent blocks into individual and complete neurons.
-Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for any pair of neurites $N_a$ and $N_b$ in the two sets respectively, if their overlapping volume is larger than a threshold $\delta_{ovlp}$, we fuse them together to get a more complete neurite.
+Since a neuron might be split into fragmented neurites when the ultra-scale image is divided into blocks, we now merge and fuse the neurites reconstructed separately from adjacent blocks into individual and complete neurons.
+Given the reconstructed neurite sets $\mathcal{N}_a$ and $\mathcal{N}_b$ in two overlapped blocks $\mathbf{B}_a$ and $\mathbf{B}_b$ respectively, for any pair of neurites $N_a$ and $N_b$ in the two sets, if their overlapping volume is larger than a threshold $\delta_{ovlp}$, we fuse them together to get a more complete neurite.
 
 There might be over-tracing and topological discrepancy between two neurites that are reconstructed in two blocks separately, as shown in Fig.~\ref{fig:overlap_discrepancy}.
-Generally, the reconstruction quality near the block boundary is less accurate and reliable than that in the middle of blocks because of less context. 
+Generally, the traced neurites that are close to the block boundary is less reliable than those in the middle of blocks because of less context. 
 Therefore, when fusing two neurites, we tend to keep the neurite segments in the middle of blocks as following.
-%But this region is inside the adjacent block due to the overlap between them, which means substantial context information of this region can be provided to the tracing methods and leads to a better reconstruction.
-%Therefore, when assembling two matched neurites from adjacent blocks, we only consider neuronal \md{points} which are not near the boundary of the corresponding block. 
-  
-To fuse two neurites, we first select the longer one as the reference neurite $N_a$, and fuse the other neurite $N_b$ to the reference neurite, as shown in Fig.~\ref{fig:fusion_algorithm} (b).
+%
+We first select the longer one of two overlapped neurites as the reference neurite $N_a$ and fuse the other neurite $N_b$ to the reference neurite, as shown in Fig.~\ref{fig:fusion_algorithm} (b).
 %
 Each neurite is decomposed to a set of neurite branches, as Fig.~\ref{fig:fusion_algorithm} (c) shows.
 Each branch is sampled uniformly into a set of neuron compartments, as Fig.~\ref{fig:fusion_algorithm} (d) shows.
 %
 For each branch $\brc_b$ of neurite $N_b$, we search the branch $\brc_a$ of $N_a$ which has the largest overlapped volume with $\brc_b$, as Fig~\ref{fig:fusion_algorithm} (f) shows.
 
-To fuse the matched two branches, for each point $p_a$ in the branch $\brc_a$, if $p_a$ lies in the boundary region of block $\blk_a$ ($\delta_{bound}$ voxels to the block boundary of $\blk_a$), it will be removed and all its child branches are also deleted, as shown in Fig~\ref{fig:fusion_algorithm} (g).  
+To fuse the two matched branches, for each point $p_a$ in the branch $\brc_a$, if $p_a$ lies in the boundary region of block $\blk_a$ ($\delta_{bound}$ voxels to the block boundary of $\blk_a$), it will be removed and all its child branches are also deleted, as shown in Fig~\ref{fig:fusion_algorithm} (g).  
 The same deletion operation is performed on the points in the branch $\brc_b$ that are located in the boundary regions of block $\blk_b$.
 %
-Then, for each remaining point $p_b$ in branch $\brc_b$, if there is a point $p_a$ in branch $\brc_a$ so that $dis(p_b,p_a)<\delta_{pt}$, it will be removed since the point $p_a$ is kept, as Fig~\ref{fig:fusion_algorithm} (g) shows.
+Then, for each remaining point $p_b$ in branch $\brc_b$, if there is a point $p_a$ in branch $\brc_a$ so that $dis(p_b,p_a)<\delta_{pt}$, it will be removed while the point $p_a$ is kept, as Fig~\ref{fig:fusion_algorithm} (g) shows.
 %
 After that, the remaining part of branch $\brc_b$ is merged to the reference branch $\brc_a$ by connecting it to the nearest point in $\brc_a$.
-After all matched branches are processed as above, we can obtain the fused neurite $N_{ab}$.
+After all matched branches are processed as above, we obtain the fused neurite $N_{ab}$.
 %
 For the remaining branches in $N_b$ which are not fused to any branches in $N_a$, they will be merged to the neurite $N_{ab}$ by connecting each of them to the nearest point in $N_{ab}$.
 %
 Fig~\ref{fig:fusion_algorithm} (h) shows the final fusion result of the two neurites. 
-By fusing all neurites in two adjacent blocks, we can obtain more complete reconstruction of dense neuronal populations, as shown in Fig~\ref{fig:fusion_algorithm} (e).
+By fusing all neurites in two adjacent blocks, more complete reconstruction of dense neuronal populations can be obtained, as shown in Fig~\ref{fig:fusion_algorithm} (e).
 
 
  
  \begin{figure}[t]
  	\centering
  	\includegraphics[width=1\columnwidth]{./Illustrations/fusion_algorithm.pdf}
- 	\caption{Neurite fusion in two adjacent blocks. (a) Neurites reconstructed separately in two blocks. For two matched neurites $N_a$ and $N_b$ (b), each neurite is decomposed to branches (c) and each branch is sampled into points (d). We delete the points in the boundary regions and merge the points in the middle area of the block (g) to get a more smooth and complete neurite (h). (e) Fusion results of two blocks. }
+ 	\caption{Neurite fusion in two adjacent blocks. (a) Neurites reconstructed separately in two blocks. For two matched neurites $N_a$ and $N_b$ (b), each neurite is decomposed to branches (c) and each branch is sampled uniformly into compartments (d). We delete the neurite points in the boundary regions and merge the points in the middle area of the overlapping region (g) to get a more smooth and complete neurite $N_ab$ (h). (e) Fusion results of two blocks. }
  	\label{fig:fusion_algorithm}
  \end{figure}
  

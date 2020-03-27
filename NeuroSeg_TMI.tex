@@ -36,7 +36,7 @@
 \newcommand{\blk}{\mathbf{B}}
 \newcommand{\nrt}{N}
 \newcommand{\nset}{\mathcal{N}}
-\newcommand{\brc}{F}
+\newcommand{\brc}{B}
 \newcommand{\delete}[1]{}
 
 \usepackage[pagebackref=false,breaklinks=false,letterpaper=false,colorlinks,bookmarks=false]{hyperref}
@@ -168,10 +168,12 @@ Neuronal population reconstruction, ultra-scale images, optical microscopy, prog
 %%%%%%%%%%%%%%%%
 \section{Conclusion}
 \label{sec:conclusion}
-In this work, we propose PLNPR, a progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
+In this work, we propose a novel UltraNPR framework for ultra-scale neuron population reconstruction in OM images.
+%
+We first propose PLNPR, a progressive learning framework for neuronal population reconstruction from noisy and low-quality OM image blocks.
 Without using any manual annotations, our PLNPR method takes advantage of neuron tracing techniques and deep segmentation networks, and makes them mutually complement and promote each other progressively.
 We extensively validate the proposed PLNPR for neuron reconstruction and the results demonstrate the effectiveness and superiority of our method.
-Integrating PLNPR with an efficient block-wise tracing and fusion strategy, our UltraNPR successfully reconstruct dense neuronal populations from an ultra-scale OM images of a mouse brain slice.
+Secondly, integrating PLNPR with an efficient block-wise tracing and fusion strategy, our UltraNPR successfully reconstructs dense neuronal populations from an ultra-scale OM image of a mouse brain slice.
 %
 We construct a new dataset ``VISoR-40'' which consists of 40 OM image blocks for evaluation of neuronal population reconstruction.
 This dataset is now available and we believe that it will facilitate further brain studies, including neuron counting, neuron reconstruction, neuron morphology analysis, and so on.
