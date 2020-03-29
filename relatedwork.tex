@@ -10,7 +10,7 @@
 %\subsection{Techniques for Robust Neuron Reconstruction}
 %\label{sec:neuron reconstruction}
 
-Early techniques for neuron reconstruction from optical microscopy images typically employ traditional image processing algorithms, such as snakes~\cite{Wang2011, Cai2006}, principal curves~\cite{Bas2011}, graph theory~\cite{Peng2010a, Yang2013, De2016}, model-fitting~\cite{Zhao2011, Santamaria2015}, watershed~\cite{Navlakha2013, Suembuel2016}, energy minimization~\cite{Quan2013, Liu2016}, mean-shift clustering~\cite{Frasconi2014}, ray-shooting~\cite{Wu2014, Liu2019}, fast-marching~\cite{Peng2011, Xiao2013, Liu2018}, and so on.
+Early techniques for neuron reconstruction from optical microscopy images typically employ traditional image processing algorithms, such as snakes~\cite{Wang2011, Cai2006}, principal curves~\cite{Bas2011}, graph theory~\cite{Peng2010a, Yang2013, De2016}, model-fitting~\cite{Zhao2011, Santamaria2015}, watershed~\cite{Navlakha2013, Suembuel2016}, energy minimization~\cite{Quan2013, Liu2016}, mean-shift clustering~\cite{Frasconi2014}, fast-marching~\cite{Peng2011, Xiao2013, Liu2018}, ray-shooting~\cite{Wu2014, Liu2019}, and so on.
 Unfortunately, these conventional algorithms rely on hand-crafted features and carefully tuned parameters, thus usually tending to fail when the image quality is poor.
 %TReMAP~\cite{Zhou2016}, NGPST~\cite{Quan2015},
 
@@ -19,7 +19,7 @@ This kind of methods employs various classifiers with hand-crafted features, suc
 However, these methods employ hand-crafted features that usually suffer from limited representation capability for accurate recognition, considering more challenging images and complex neuron morphologies.
 
 
-Recently, deep-learning-based methods~\cite{Li2017, Zhou2018, Xu2016, Kozinski-MIA2020} bring the power of DNNs to improve the reconstruction performance. 
+Recently, deep learning-based methods~\cite{Li2017, Zhou2018, Xu2016, Kozinski-MIA2020} bring the power of DNNs to improve the reconstruction performance. 
 Instead of manually designing sophisticated features, these DNNs learn feature representations in a data-driven way and extract more distinctive features. 
 With more powerful feature representation and classifiers for extracting neurons from image blocks, these methods achieve more robust reconstruction results. 
 Despite great improvements, these DNN-based methods rely on extensive manual annotations of neuron voxels for network training.
@@ -38,7 +38,7 @@ The sheer volume of an ultra-scale OM image is usually far beyond the processing
 In recent years, some attempts have been made to reconstruct neurons from large-scale OM images, such as Neuron Crawler~\cite{Zhou2015}, UltraTracer~\cite{Peng2017}, and MEIT~\cite{Wang2018}.
 To tackle the challenge of huge image volume, a common solution is to reconstruct a neuron block by block. 
 %Each block is cropped from the raw image and is much smaller in size than the raw image.
-In each local block cropped from a large-scale image, existing tracing methods, such as APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, and FMST~\cite{Yang2019}, can be directly used as the base tracer to trace neurites. 
+In each local block cropped from a large-scale image, existing tracing methods, such as APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, neuTube~\cite{Feng2015}, and FMST~\cite{Yang2019}, can be directly used as the base tracer to trace neurites. 
 Starting from the cell body, the neurites are then traced in neighboring blocks and then fused together based on signal strengths and structure continuity.
 %
 However, all of these methods focus on single neuron reconstruction.

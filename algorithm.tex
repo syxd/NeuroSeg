@@ -11,7 +11,7 @@
 Given an ultra-scale noisy OM image, our UltraNPR follows a block-by-block neruon reconstruction scheme, as Fig.~\ref{fig:ultra_framework} shows. 
 %
 The ultra-scale input image may contain billions or even trillions of voxels.
-We first divide the input image into blocks that are averagely in size of $0.5mm\times 1mm\times 0.4mm$ with overlaps. 
+We first divide the input image into blocks that are averagely in size of $0.5mm\times 1.0mm\times 0.4mm$ with overlaps. 
 %
 For each block, we first enhance the noisy images by a deep neural network, which is progressively trained from reconstructed neurons using our PLNPR. 
 Then we reconstruct neuronal populations in each block using the enhanced image. 
@@ -44,7 +44,7 @@ Given $N$ unlabeled image blocks, we train our segmentation network using the ne
 The output of the neuron segmentation network is a 3D probability map $\mathbf{P}$, which is computed by a voxel-wise softmax activation function. $\mathbf{P}(x)\in [0,1]$ indicating the probability of a voxel $x$ to be a neuron part.
 %
 Then, by fusing the predicted probability map with the raw image signals, the image block is enhanced in order to preserve both local signals and global structures simultaneously.
-When the enhanced block is fed into the neuron tracing module, more complete neuronal populations can be reconstructed and provide better pseudo labels for the next iteration of network training. 
+When the enhanced block is fed into the neuron tracing module, a more complete neuronal population can be reconstructed and provide better pseudo labels for the next iteration of network training. 
 %
 Based on the iterative learning process, the DNN and neuron tracer mutually complement and promote each other to gradually improve the neuron reconstruction performance.
 
@@ -57,9 +57,9 @@ Based on the iterative learning process, the DNN and neuron tracer mutually comp
 Extracting neuron voxels from image blocks is non-trivial since the size, morphology, and intensity of neurons vary significantly.
 In recent years, many 3D DNNs, such as 3D U-Net~\cite{Cicek2016}, 3D DSN~\cite{Dou2017}, and DenseVoxNet~\cite{Yu2017}, have demonstrated their outstanding capability in various biological and biomedical image segmentation tasks.
 %
-We extend the 3D DSN~\cite{Dou2017} as our neuron segmentation network to balance the performance and computation burden.
+We extend the 3D DSN as our neuron segmentation network to balance the performance and computation burden.
 %
-Although the original 3D DSN has achieved excellent performance for 3D organ segmentation~\cite{Dou2017}, it is prone to overfit in our case due to the limited training data. 
+Although the original 3D DSN has achieved excellent performance for 3D organ segmentation~\cite{Dou2017}, it is prone to overfitting in our case due to the limited training data. 
 We employ the dropout~\cite{Srivastava2014} technique during training to learn more robust features that better generalize to new data.
 In each convolutional layer, the dropout with a rate of $0.5$ is applied.% in our network. 
 

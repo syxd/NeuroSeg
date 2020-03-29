@@ -24,7 +24,7 @@
 \bibitem{Petrella2003}
 J.~R. Petrella, R.~E. Coleman, and P.~M. Doraiswamy, ``Neuroimaging and early
   diagnosis of alzheimer disease: A look to the future,'' \emph{Radiology},
-  vol. 226, no.~2, pp. 315--336, 2003.
+  vol. 226, no.~2, pp. 315--336, Feb. 2003.
 
 \bibitem{Giorgio2013}
 A.~Giorgio and N.~De~Stefano, ``Clinical use of brain volumetry,'' \emph{J.
@@ -37,7 +37,7 @@ S.~L. Senft, ``A brief history of neuronal reconstruction,''
 \bibitem{Wang2019}
 H.~Wang, Q.~Zhu, L.~Ding, Y.~Shen, C.-Y. Yang, F.~Xu \emph{et~al.}, ``{Scalable
   volumetric imaging for ultrahigh-speed brain mapping at synaptic
-  resolution},'' \emph{National Science Review}, vol.~6, no.~2, p. 982–992,
+  resolution},'' \emph{National Science Review}, vol.~6, no.~2, pp. 982--992,
   Sept. 2019.
 
 \bibitem{Zhou2015}
@@ -78,7 +78,7 @@ M.~Kozinski, A.~Mosinska, M.~Salzmann, and P.~Fua, ``Tracing in 2{D} to reduce
 \bibitem{Zhao2019}
 J.~Zhao, X.~Chen, Z.~Xiong, D.~Liu, J.~Zeng, Y.~Zhang \emph{et~al.},
   ``Progressive learning for neuronal population reconstruction from optical
-  microscopy images,'' in \emph{Proc. MICCAI}, 2019, pp. 750--759.
+  microscopy images,'' in \emph{Proc. MICCAI}, Oct. 2019, pp. 750--759.
 
 \bibitem{Wang2011}
 Y.~Wang, A.~Narayanaswamy, C.-L. Tsai, and B.~Roysam, ``A broadly applicable
@@ -98,7 +98,7 @@ E.~Bas and D.~Erdogmus, ``Principal curves as skeletons of tubular objects,''
 \bibitem{Peng2010a}
 H.~Peng, Z.~Ruan, D.~Atasoy, and S.~Sternson, ``Automatic reconstruction of 3d
   neuron structures using a graph-augmented deformable model,''
-  \emph{Bioinformatics}, vol.~26, no.~12, pp. 38--46, 2010.
+  \emph{Bioinformatics}, vol.~26, no.~12, pp. 38--46, Jun. 2010.
 
 \bibitem{Yang2013}
 J.~Yang, P.~T. Gonzalez-Bellido, and H.~Peng, ``A distance-field based
@@ -148,7 +148,21 @@ S.~Liu, D.~Zhang, S.~Liu, D.~Feng, H.~Peng, and W.~Cai, ``Rivulet: {3D} neuron
 P.~Frasconi, L.~Silvestri, P.~Soda, R.~Cortini, F.~S. Pavone, and G.~Iannello,
   ``Large-scale automated identification of mouse brain cells in confocal light
   sheet microscopy images,'' \emph{Bioinformatics}, vol.~30, no.~17, pp.
-  587--593, 2014.
+  587--593, Sept. 2014.
+
+\bibitem{Peng2011}
+H.~Peng, F.~Long, and G.~Myers, ``Automatic {3D} neuron tracing using all-path
+  pruning,'' \emph{Bioinformatics}, vol.~27, no.~13, pp. 239--247, Jul. 2011.
+
+\bibitem{Xiao2013}
+H.~Xiao and H.~Peng, ``{APP2}: automatic tracing of {3D} neuron morphology
+  based on hierarchical pruning of a gray-weighted image distance-tree,''
+  \emph{Bioinformatics}, vol.~29, no.~11, pp. 1448--1454, Jun. 2013.
+
+\bibitem{Liu2018}
+S.~Liu, D.~Zhang, Y.~Song, H.~Peng, and W.~Cai, ``{Automated 3-D Neuron Tracing
+  With Precise Branch Erasing and Confidence Controlled Back Tracking},''
+  \emph{IEEE Trans. Med. Imag.}, vol.~37, no.~11, pp. 2441--2452, Nov. 2018.
 
 \bibitem{Wu2014}
 J.~Wu, Y.~He, Z.~Yang, C.~Guo, Q.~Luo, W.~Zhou \emph{et~al.}, ``{3D BrainCV}:
@@ -159,21 +173,7 @@ J.~Wu, Y.~He, Z.~Yang, C.~Guo, Q.~Luo, W.~Zhou \emph{et~al.}, ``{3D BrainCV}:
 \bibitem{Liu2019}
 M.~Liu, W.~Chen, C.~Wang, and H.~Peng, ``{A Multiscale Ray-Shooting Model for
   Termination Detection of Tree-Like Structures in Biomedical Images},''
-  \emph{IEEE Trans. Med. Imag.}, vol.~38, no.~8, pp. 1923--1934, 2019.
-
-\bibitem{Peng2011}
-H.~Peng, F.~Long, and G.~Myers, ``Automatic {3D} neuron tracing using all-path
-  pruning,'' \emph{Bioinformatics}, vol.~27, no.~13, pp. 239--247, 2011.
-
-\bibitem{Xiao2013}
-H.~Xiao and H.~Peng, ``{APP2}: automatic tracing of {3D} neuron morphology
-  based on hierarchical pruning of a gray-weighted image distance-tree,''
-  \emph{Bioinformatics}, vol.~29, no.~11, pp. 1448--1454, 2013.
-
-\bibitem{Liu2018}
-S.~Liu, D.~Zhang, Y.~Song, H.~Peng, and W.~Cai, ``{Automated 3-D Neuron Tracing
-  With Precise Branch Erasing and Confidence Controlled Back Tracking},''
-  \emph{IEEE Trans. Med. Imag.}, vol.~37, no.~11, pp. 2441--2452, 2018.
+  \emph{IEEE Trans. Med. Imag.}, vol.~38, no.~8, pp. 1923--1934, Aug. 2019.
 
 \bibitem{Chen2015}
 H.~Chen, H.~Xiao, T.~Liu, and H.~Peng, ``{SmartTracing}: self-learning-based
@@ -183,7 +183,7 @@ H.~Chen, H.~Xiao, T.~Liu, and H.~Peng, ``{SmartTracing}: self-learning-based
 \bibitem{Basu2016}
 S.~{Basu}, W.~T. {Ooi}, and D.~{Racoceanu}, ``Neurite tracing with object
   process,'' \emph{IEEE Trans. Med. Imag.}, vol.~35, no.~6, pp. 1443--1451,
-  June 2016.
+  Jun. 2016.
 
 \bibitem{Radojevic2017}
 M.~Radojević and E.~Meijering, ``{Automated neuron tracing using probability
@@ -211,6 +211,11 @@ H.~{Skibbe}, M.~{Reisert}, K.~{Nakae}, A.~{Watakabe}, J.~{Hata}, H.~{Mizukami}
   neurons in large 3-d micrographs,'' \emph{IEEE Trans. Med. Imag.}, vol.~38,
   no.~1, pp. 69--78, Jan. 2019.
 
+\bibitem{Feng2015}
+L.~Feng, T.~Zhao, and J.~Kim, ``{neuTube 1.0}: A new design for efficient
+  neuron reconstruction software based on the swc format,'' \emph{eNeuro},
+  vol.~2, no.~1, pp. ENEURO.0049--14.2014, Jan. 2015.
+
 \bibitem{Yang2019}
 J.~Yang, M.~Hao, X.~Liu, Z.~Wan, N.~Zhong, and H.~Peng, ``{FMST}: an automatic
   neuron tracing method based on fast marching and minimum spanning tree,''
@@ -224,7 +229,7 @@ T.~Quan, H.~Zhou, J.~Li, S.~Li, A.~Li, Y.~Li \emph{et~al.}, ``{NeuroGPS-Tree}:
 \bibitem{Cicek2016}
 {\"O}.~{\c{C}}i{\c{c}}ek, A.~Abdulkadir, S.~S. Lienkamp, T.~Brox, and
   O.~Ronneberger, ``{3D U-Net}: learning dense volumetric segmentation from
-  sparse annotation,'' in \emph{Proc. MICCAI}, 2016, pp. 424--432.
+  sparse annotation,'' in \emph{Proc. MICCAI}, Oct. 2016, pp. 424--432.
 
 \bibitem{Dou2017}
 Q.~Dou, L.~Yu, H.~Chen, Y.~Jin, X.~Yang, J.~Qin \emph{et~al.}, ``{3D} deeply
@@ -234,23 +239,23 @@ Q.~Dou, L.~Yu, H.~Chen, Y.~Jin, X.~Yang, J.~Qin \emph{et~al.}, ``{3D} deeply
 \bibitem{Yu2017}
 L.~Yu, J.-Z. Cheng, Q.~Dou, X.~Yang, H.~Chen, J.~Qin \emph{et~al.}, ``Automatic
   {3D} cardiovascular mr segmentation with densely-connected volumetric
-  convnets,'' in \emph{Proc. MICCAI}, 2017, pp. 287--295.
+  convnets,'' in \emph{Proc. MICCAI}, Sept. 2017, pp. 287--295.
 
 \bibitem{Srivastava2014}
 N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov,
   ``Dropout: A simple way to prevent neural networks from overfitting,''
-  \emph{J. Mach. Learn. Res.}, vol.~15, no.~1, pp. 1929--1958, 2014.
+  \emph{J. Mach. Learn. Res.}, vol.~15, no.~56, pp. 1929--1958, Jun. 2014.
 
 \bibitem{Cannon1998}
 R.~Cannon, D.~Turner, G.~Pyapali, and H.~Wheal, ``An on-line archive of
   reconstructed hippocampal neurons,'' \emph{J. Neurosci. Meth.}, vol.~84,
-  no.~1, pp. 49 -- 54, 1998.
+  no.~1, pp. 49--54, Oct. 1998.
 
 \bibitem{peng2015}
 H.~Peng, M.~Hawrylycz, J.~Roskams, S.~Hill, N.~Spruston, E.~Meijering
   \emph{et~al.}, ``{BigNeuron}: large-scale 3d neuron reconstruction from
   optical microscopy images,'' \emph{Neuron}, vol.~87, no.~2, pp. 252--256,
-  2015.
+  Jul. 2015.
 
 \bibitem{Peng2014}
 H.~Peng, J.~Tang, H.~Xiao, A.~Bria, J.~Zhou, V.~Butler \emph{et~al.}, ``Virtual
@@ -268,10 +273,5 @@ Z.~Zhou, X.~Liu, B.~Long, and H.~Peng, ``{TReMAP}: Automatic {3D} neuron
   reconstruction based on tracing, reverse mapping and assembling of 2d
   projections,'' \emph{Neuroinformatics}, vol.~14, no.~1, pp. 41--50, Jan.
   2016.
-
-\bibitem{Feng2015}
-L.~Feng, T.~Zhao, and J.~Kim, ``{neuTube 1.0}: A new design for efficient
-  neuron reconstruction software based on the swc format,'' \emph{eNeuro},
-  vol.~2, no.~1, pp. 0049--0014, 2015.
 
 \end{thebibliography}
