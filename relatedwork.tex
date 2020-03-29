@@ -38,7 +38,7 @@ The sheer volume of an ultra-scale OM image is usually far beyond the processing
 In recent years, some attempts have been made to reconstruct neurons from large-scale OM images, such as Neuron Crawler~\cite{Zhou2015}, UltraTracer~\cite{Peng2017}, and MEIT~\cite{Wang2018}.
 To tackle the challenge of huge image volume, a common solution is to reconstruct a neuron block by block. 
 %Each block is cropped from the raw image and is much smaller in size than the raw image.
-In each local block cropped from a large-scale image, existing tracing methods, such as APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, neuTube~\cite{Feng2015}, and FMST~\cite{Yang2019}, can be directly used as the base tracer to trace neurites. 
+In each local block cropped from a large-scale image, existing tracing methods, such as APP2~\cite{Xiao2013}, MOST~\cite{Wu2014}, neuTube~\cite{Feng2015}, and FMST~\cite{Yang2019}, can be directly used as the base tracer to trace neurites.
 Starting from the cell body, the neurites are then traced in neighboring blocks and then fused together based on signal strengths and structure continuity.
 %
 However, all of these methods focus on single neuron reconstruction.
