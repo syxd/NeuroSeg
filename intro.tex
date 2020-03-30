@@ -14,13 +14,13 @@ However, despite numerous efforts devoted, this task is still one of the main ch
 	\label{fig:brain}
 \end{figure}
 
-The challenges in ultra-scale neuronal population reconstruction are mainly caused by complex morphology of neurons, low quality, and huge volume of OM brain images.
+The challenges in large-scale neuronal population reconstruction are mainly caused by complex morphology of neurons, low quality, and huge volume of OM brain images.
 Due to the complicated process of imaging acquisition and the uneven distribution of fluorescence markers in neurons, the voxel intensities vary dramatically in highly noisy and inhomogeneous environments.
 Moreover, to detail the structure of neurons in the brain, OM images in high resolution are required. Such an image typically contains trillions of voxels. It is even impractical to directly load the entire image into a computer memory before reconstructing neurons.
 In the other hand, manual reconstruction of neuronal populations from ultra-scale brain images is an extremely laborious and time-consuming task as well.
 Moreover, sophisticated knowledge of neuron morphology is also required for manual reconstruction.
 %
-Therefore, an effective and automatic algorithm for reconstructing ultra-scale neuronal populations in these challenging situations is greatly desired in practice.
+Therefore, an effective and automatic algorithm for reconstructing large-scale neuronal populations in these challenging situations is greatly desired in practice.
  % 
  
  
@@ -50,7 +50,7 @@ For dense neuronal population reconstruction from ultra-scale images, dense neur
 % 
 Following the commonly used block-by-block framework, we introduce UltraNPR, which utilizes our PLNPR approach as the base tracer in blocks, and design novel tracing and fusion strategies for reconstructing dense neuronal populations.
 %
-We start local reconstruction using our PLNPR in the blocks where soma can be detected, and propagate a group of neurite tips as pseudo somas for neighboring blocks to trace the neuron population. 
+We start local reconstruction using our PLNPR in the blocks where soma can be detected, and propagate a group of neurite tips as pseudo somas for neighboring blocks to trace the neuronal population. 
 %
 There are over-tracing and topological discrepancy in the reconstructed neurites in adjacent blocks. 
 We design a fusion method with spatially varying confidences in order eliminate the tracing errors that usually occur at boundary regions of local blocks.   
